@@ -1,0 +1,67 @@
+<!-- <div class='background'> -->
+<div id='header'>
+  <img class="header item" id='logo' src='/assets/images/logo.png'>
+  <form #loginForm="ngForm" class="header item" id='signin' (submit)="onLoginSubmit()">
+    <div class="ui left icon input">
+      <input class='textbox' type='text' [(ngModel)]='login.username' name='login.username' placeholder='Username'>
+      <i class="user icon"></i>
+    </div>
+    <div class="ui left icon input">
+      <input class='textbox' type='password' [(ngModel)]='login.password' name='password' placeholder='Password'>
+      <i class="lock icon"></i>
+    </div>
+    <input class='textbox' id='login' [disabled]='!loginForm.form.valid' type='submit' name='submit' value='Sign in'>
+  </form>
+</div>
+<div *ngIf="isSuccess == true" class="ui success message">{{message}}</div>
+<div *ngIf="isError == true" class="ui negative message">{{error}}</div>
+<div class="ui vertically divided grid" style='text-align: center; width: 100%'>
+  <div class="two column row">
+    <div class="column">
+      <div style='display: inline-block; text-align: center'>
+        <img src="/assets/images/index.png" alt="itsamatch">
+      </div>
+    </div>
+    <div class="column">
+      <div id='signup' class='four wide column' style='display: inline-block'>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="ui negative message four wide column">
+          <p>Username must be at least 4 characters</p>
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="ui negative message four wide column">
+          <p>Please enter a valid email.</p>
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="ui negative message">
+          <p> Password must be at least 6 characters, <br>containing at least one letter and a number.</p>
+        </div>
+        <h1>Sign Up</h1>
+        <form #userForm="ngForm" (submit)='onSignupSubmit()'>
+          <input class='name' type='text' [(ngModel)]='user.firstname' name='firstname' placeholder='First Name*' required>
+          <input class='name' type='text' [(ngModel)]='user.lastname' name='lastname' placeholder='Last Name*' required><br/>
+          <input class='txtbox' type='text' [(ngModel)]='user.username' name='username' placeholder='Username*' minlength='4' #username='ngModel' required><br/>
+          <label>Birthday*</label>
+          <select class="ui dropdown" [(ngModel)]='user.dobday' name='dobday' required maxlength='2'>
+            <option [value]="">Day</option>
+            <option *ngFor='let day of days' [value]='day'>
+              {{day}}
+            </option>
+          </select>
+          <select class="ui dropdown" [(ngModel)]='user.dobmonth' name='dobmonth' required maxlength='2'>
+            <option [value]="">Month</option>
+            <option *ngFor="let month of months; let i = index" [value]='i'>
+              {{month}}
+            </option>
+          </select>
+          <input id='bdaybox' type='number' [(ngModel)]='user.dobyear' name='dobyear' min='1920' max='1999' minlength='4' maxlength='4' placeholder='Year' required><br />
+          <input email class='txtbox' [(ngModel)]='user.email' name='email' placeholder='Email*' #email='ngModel' required><br/>
+          <input class='txtbox' type='password' [(ngModel)]='user.password' pattern='(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)' name='password' placeholder='Password*' minlength='6' #password='ngModel' required><br/>
+          <select [(ngModel)]='user.gender' name='gender' class="ui dropdown txtbox" required maxlength='2'>
+            <option [value]="">Gender</option>
+            <option *ngFor="let sex of gender; let i = index" [value]='i'>
+              {{sex}}
+            </option>
+          </select><br />
+          <input [disabled]='!userForm.form.valid' class='txtbox' id='register' type='submit' name='submit' value='Sign Up'>
+        </form>
+      </div>
+    </div>
+  </div>

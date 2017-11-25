@@ -1,0 +1,75 @@
+<header id="header">
+  <a routerLink='/home' id='logo'>
+    <img class="header item" id='logo' src='/assets/images/logo.png'>
+  </a>
+  <nav class="links">
+    <ul>
+      <li>
+        <a routerLink='/profile'><i class='user icon'></i> Profile</a>
+      </li>
+      <li>
+        <a href='chat'><i class='chat basic icon'></i> Chat</a>
+      </li>
+      <li>
+        <a href='notifications'><i class='bell outline icon'></i> Notifications</a>
+        <label> 0</label>
+      </li>
+      <li>
+        <a href='#' (click)='logout()'><i class='sign out icon'></i> Logout</a>
+      </li>
+    </ul>
+  </nav>
+  <nav class="main">
+    <ul>
+      <li class="search">
+        <a class="fa-search" href="#search">Search</a>
+        <form id="search" method="get" action="#">
+          <input type="text" name="query" placeholder="Search" />
+        </form>
+      </li>
+      <li class="menu">
+        <a class="fa-bars" href="#menu">Menu</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<section id="menu">
+
+  <!-- Search -->
+  <section>
+    <form class="search" method="get" action="#">
+      <input type="text" name="query" placeholder="Search" />
+    </form>
+  </section>
+
+  <!-- Links -->
+  <section>
+    <ul class="links">
+      <li>
+        <a href="#">
+          <h3>Profile</h3>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <h3>Chat</h3>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <h3>Notifications</h3>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Actions -->
+  <section>
+    <ul class="actions vertical">
+      <li>
+        <a href="#" class="button big fit">Logout</a>
+      </li>
+    </ul>
+  </section>
+
+</section>

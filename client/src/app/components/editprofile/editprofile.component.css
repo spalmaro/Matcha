@@ -1,0 +1,56 @@
+#smallprofile {
+	margin-right: 30px;
+	border-radius: 50%;
+	height: 80px;
+	width: 80px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+#smallprofile, #smalllogin{
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 30px;
+}
+
+#bio{
+	height: 60px;
+	padding: 6px 10px;
+	resize: vertical;
+}
+
+#top{
+	padding-top: 80px;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#bdaybox{
+	width: 100px;
+	height : 44px;
+}
+
+
+#submit{
+	margin-top: 20px;
+	/*margin-left: auto;*/
+	/*margin-right: auto;*/
+}
+form div{
+	display: flex;
+	vertical-align: middle;
+}
+form div label{
+	margin-right: 30px;
+	width: 85px;
+	line-height: 3;
+	/*text-align: right;*/
+}
+
+form div input, textarea, form div select{
+	/*height: 44px;*/
+	/*min-width:100px;*/
+	max-width: 300px;
+	vertical-align: middle;
+}
