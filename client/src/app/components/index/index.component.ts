@@ -44,7 +44,7 @@ export class IndexComponent implements OnInit {
     this._userService.authenticateUser(this.login).subscribe(data => {
       if (data.success) {
         this._userService.storeUserData(data.token, data.user);
-        if (data.first === true) {
+        if (data.firstConnection === true) {
           this.router.navigate(['/editprofile']);
         } else {
           this.router.navigate(['/home']);

@@ -16,6 +16,17 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.set('view engine', 'jade');
 
+//setup socketio
+const socketio = require("socket.io");
+var io = socketio()
+app.io = io;
+
+io.on("connection", function(socket) {
+  console.log("A user is connected");
+});
+
+require('./socket')(io)
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));

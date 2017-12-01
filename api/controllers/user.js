@@ -7,7 +7,7 @@ const url = 'mongodb://localhost:27017/Matcha_DB';
 const addUser = (item, res) => {
     mongodb.connect(url, (err, db) => {
         assert.equal(null, err)
-        db.collection('users').findOne({$or: [{'login' : item.login}, {'email': item.email}]}, (err, result) => {
+        db.collection('users').findOne({$or: [{'username' : item.username}, {'email': item.email}]}, (err, result) => {
             if (err) {
                 console.log(err)
                 res.json({
@@ -29,12 +29,23 @@ const addUser = (item, res) => {
     })
 }
 
-const updateUser = (item, login) => {
+const updateUser = (item, socket) => {
+    console.log('updating...')
+    delete item._id;
     mongodb.connect(url, (err, db) => {
-        assert.equal(null, err)
-        db.collection('users').update({ 'login': login }, { $set: item }, (err, result) => {
-            assert.equal(null, err)
-            console.log('User Updated')
+        if (err) {
+          socket.emit({ success: false, error: err });
+        }
+        db.collection('users').update({ 'username': item.username }, { $set: item }, (err, result) => {
+            if (err) {
+              socket.emit('updateProfile:done', { success: false, error: err });
+            } 
+            if (result) {
+                socket.emit('updateProfile:done', { success: true, message: "Your profile has successfully been updated" });
+                console.log(item.username + "s profile has been updated")
+            } else {
+                socket.emit('updateProfile:done', { success: false, error: err });
+            }
             db.close()
         })
     })
@@ -45,11 +56,15 @@ const getUserInfo = (username, socket) => {
         if (err) {
             socket.emit({success: false, error: err})
         }
-        db.collection('users').findOne({'login': username}, (err, result) => {
+        db.collection('users').findOne({'username': username}, (err, result) => {
             if (err) {
               socket.emit('userInfo:sent', { success: false, error: err });
             } else {
-                socket.emit('userInfo:sent', { success: true, user: result })
+                if (result)
+                    socket.emit('userInfo:sent', { success: true, user: result })
+                else {
+                    socket.emit('userInfo:sent', { success: false, error: 'An error has occurred' })
+                }
             }
         })
     })

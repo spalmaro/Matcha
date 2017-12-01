@@ -1,24 +1,37 @@
-<app-navbar></app-navbar>
-<!-- <div> -->
+<app-navbar class='darken'></app-navbar>
+<div>
   <section id='top'>
-    <div id='smallprofile'>
-      <img class='ui medium circular image' src="https://cdn.intra.42.fr/users/medium_lvalenti.jpg" />
+    <div class='popup-background'[hidden]='upload === false' (click)="showPopup(false)">
+      <div id="popup-upload" [hidden]='upload === false'>
+        <ul>
+          <input #fileInput (change)="uploadPicture($event)" id="file" type="file" name="file" accept="image/*">
+          <li><button (click)="fileInput.click()" name="uploadPicture" class="upload-picture">Upload Photo</button></li>
+          <li><button name="removePicture" class="upload-picture">Remove Photo</button></li>
+          <li><button (click)="showPopup(false)" name="cancelPopup" class="upload-picture">Cancel</button></li>
+        </ul>
+      </div>
     </div>
+      <div id='smallprofile' (click)='showPopup(true)' *ngIf="user.profilePicture" [style.backgroundImage]="'url('+ user.profilePicture +')'">
+        <span>
+          <i class="camera icon"></i></span>
+      </div>
+      <div id='smallprofile' (click)='showPopup(true)' *ngIf="!user.profilePicture || user.profilePicture == ''" style="background-image: url('https://cdn.intra.42.fr/users/medium_lvalenti.jpg')">
+        <span>
+          <i class="camera icon"></i></span>
+      </div>
     <div id='smalllogin'>
       <h1>
         {{user.username}}
       </h1>
     </div>
-    <form class='ui form' action='/edit' method='post'>
+    <form class='ui form' #userForm='ngForm' (submit)='onUpdateSubmit()'>
       <div>
         <label>First Name</label>
-        <!-- <input name='fname' maxlength="15" type='text' value="<%= firstName%>" /> -->
-        <input type='text' [(ngModel)]='user.firstname' name='firstname'>
+        <input type='text' name='firstname' [(ngModel)]='user.firstname'>
       </div>
       <div>
         <label>Last Name</label>
-        <!-- <input name='lname' maxlength="15" type='text' value="<%= lastName%>" /> -->
-        <input type='text' [(ngModel)]='user.lastname' name='lastname' required>
+        <input type='text' [(ngModel)]='user.lastname' name='lastname' [value]='user.lastname' required>
       </div>
       <div>
         <label>Birthday</label>
@@ -28,48 +41,39 @@
             {{day}}
           </option>
         </select>
-        <!-- </div> -->
-        <!-- <div class="field"> -->
         <select id='bdaybox' class="ui dropdown" [(ngModel)]='user.dobmonth' name='dobmonth' required maxlength='2'>
           <option [value]="">Month</option>
           <option *ngFor="let month of months; let i = index" [value]='i'>
             {{month}}
           </option>
         </select>
-        <!-- </div> -->
-        <!-- <input type="text" name="byear" maxlength="4" placeholder="Year" value="<%= byear%>" id='bdaybox'> -->
         <input id='bdaybox' type='number' [(ngModel)]='user.dobyear' name='dobyear' min='1920' max='1999' minlength='4' maxlength='4'>
       </div>
       <div>
         <label>Email</label>
-        <!-- <input name='email' type='text' value="<%= email%>" /> -->
         <input email class='txtbox' [(ngModel)]='user.email' name='email' #email='ngModel' required>
       </div>
       <div>
         <label>Gender</label>
         <select [(ngModel)]='user.gender' name='gender' class="ui dropdown txtbox" required maxlength='2'>
-            <option [value]="">Gender</option>
-            <option *ngFor="let sex of gender; let i = index" [value]='i'>
+            <option *ngFor="let sex of gender" [value]='sex'>
               {{sex}}
             </option>
           </select><br />
       </div>
       <div>
         <label>Interested in</label>
-        <select name='orientation' class="ui dropdown">
-          <option *ngFor="let sex of orientation; let i = index" [value]='i'>
+        <select name='orientation' [(ngModel)]='user.orientation' class="ui dropdown">
+          <option *ngFor="let sex of orientation" [value]='sex'>
             {{sex}}
           </option>
-          <!-- <option value="Both" <%=o rientation=='Both' ? 'selected' : '' %>>Both</option>
-          <option value="Guys" <%=o rientation=='Guys' ? 'selected' : '' %>>Guys</option>
-          <option value="Girls" <%=o rientation=='Girls' ? 'selected' : '' %>>Girls</option> -->
         </select>
       </div>
       <div>
         <label>Bio</label>
-        <textarea name=bio id='bio'>{{user.description}}</textarea>
+        <textarea name=description id='description' [(ngModel)]='user.description' >{{user.description}}</textarea>
       </div>
       <button id='submit' type='submit'>Submit Changes</button>
     </form>
   </section>
-<!-- </div> -->
+</div>

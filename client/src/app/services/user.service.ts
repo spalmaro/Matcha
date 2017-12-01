@@ -34,7 +34,7 @@ export class UserService {
   }
 
   getCurrentUser() {
-    return sessionStorage.getItem('currentUser');
+    return (sessionStorage.getItem('currentUser'));
   }
 
   loadToken() {

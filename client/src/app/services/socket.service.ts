@@ -8,28 +8,21 @@ export class SocketService {
   private url = environment.API_URL;
 
   constructor() {
-    this.socket = io(this.url)
-    // this.connection = io.connect(this.url);
-    // const that = this;
-
-    // this.connection.on('connect', function() {
-    //   that.connection.on('authenticated', function() {
-    //     console.log('authenticated !');
-    //   });
-
-    //   that.connection.emit('authenticate', {
-    //     token: localStorage.getItem('token')
-    //   });
-    // });
+    this.socket = io.connect(this.url)
+    this.socket.on('connection', socket => {
+      socket.on('authenticated', () => {
+        console.log('AUTHENTICATED')
+      })
+    }).emit('authenticate', { token: localStorage.getItem('token')})
   }
 
-  // socket() {
-  //   if (!this.connection) {
-  //     this.connection = io.connect(this.url);
-  //     this.connection.emit('authenticate', {
-  //       token: localStorage.getItem('token')
-  //     });
-  //   }
-  //   return this.connection;
-  // }
+  socketConnect() {
+    if (!this.socket) {
+      this.socket = io.connect(this.url);
+      this.socket.emit('authenticate', {
+        token: localStorage.getItem('token')
+      });
+    }
+    return this.socket;
+  }
 }

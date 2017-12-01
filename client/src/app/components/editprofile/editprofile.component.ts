@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user'
 import { ApiService } from '../../services/api.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-editprofile',
@@ -21,20 +22,54 @@ export class EditprofileComponent implements OnInit {
   public gender = ['Male', 'Female']
 
   public orientation = ['Guys', 'Girls', 'Both']
+  public upload = false;
   public user: User;
 
-  constructor(private _apiService: ApiService) {
+  constructor(private _apiService: ApiService, private router: Router) {
       this.user = new User({ firstname: '', lastname: '', email: '', username: '', password: '',
         lastConnected: Date.now(), description: '', dobday: 'Day', dobmonth: 'Month', gender: 'Gender', profilePicture: ''
       })
-    // this._apiService.userInfo.subscribe(data => {
-    //   if (data.success === true) {
-    //     this.user = data.user;
-    //   }
-    // })
+
+    this._apiService.userInfo.subscribe(data => {
+      if (data.success === true) {
+        this.user = data.user;
+        this.user.firstConnection = false
+        console.log('####DATA', data)
+      }
+    })
+
+    this._apiService.getUserInfo();
+
+    this._apiService.updateInfo.subscribe(data => {
+      console.log('PROFILE', data)
+      if (data.success === true) {
+        router.navigate(['profile'])
+      }
+    })
   }
 
   ngOnInit() {
+  }
+
+  uploadPicture(event: any) {
+    const pictureFile: HTMLInputElement = event.target || event.srcElement || event.currentTarget;
+    const formData = new FormData();
+    const username: any = this.user.username;
+    formData.append('file', pictureFile.files.item(0));
+    formData.append('username', username);
+  }
+
+  showPopup(show: Boolean) {
+    if (show === true) {
+      this.upload = true;
+    } else {
+      this.upload = false;
+    }
+  }
+
+  onUpdateSubmit() {
+    console.log(this.user);
+    this._apiService.updateUserProfile(this.user);
   }
 
 }

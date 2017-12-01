@@ -8,19 +8,29 @@ export class ApiService {
   private socket: any;
 
   @Output() userInfo: EventEmitter<any> = new EventEmitter();
+  @Output() updateInfo: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private socketService: SocketService,
     private _userService: UserService
   ) {
-    // this.socket = socketService.socket();
+    this.socket = socketService.socketConnect();
 
-    // this.socket.on('userInfo:sent', data => {
-    //     this.userInfo.emit(data);
-    // })
+    this.socket.on('userInfo:sent', data => {
+        this.userInfo.emit(data);
+    })
+
+    this.socket.on('updateProfile:done', data => {
+      this.updateInfo.emit(data)
+    })
   }
 
   getUserInfo() {
-    // this.socket.emit('userInfo:get', this._userService.getCurrentUser());
+    this.socket.emit('userInfo:get', this._userService.getCurrentUser());
+  }
+
+  updateUserProfile(user) {
+    console.log('##USER', user)
+    this.socket.emit('updateProfile:set', user)
   }
 }

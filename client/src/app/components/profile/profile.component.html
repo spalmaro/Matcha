@@ -1,3 +1,80 @@
-<p>
-  profile works!
-</p>
+<app-navbar></app-navbar>
+<div class= 'ui center aligned container' class='top'>
+<section id='first'>
+  <div class="ui items">
+    <div class='popup-background' [hidden]='upload === false' (click)="showPopup(false)">
+      <div id="popup-upload" [hidden]='upload === false'>
+        <ul>
+          <input #fileInput (change)="uploadPicture($event)" id="file" type="file" name="file" accept="image/*">
+          <li>
+            <button (click)="fileInput.click()" name="uploadPicture" class="upload-picture">Upload Photo</button>
+          </li>
+          <li>
+            <button name="removePicture" class="upload-picture">Remove Photo</button>
+          </li>
+          <li>
+            <button (click)="showPopup(false)" name="cancelPopup" class="upload-picture">Cancel</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="item">
+      <div class="profile-pic" (click)="showPopup(true)" *ngIf="user.profilePicture" [style.backgroundImage]="'url('+ user.profilePicture +')'">
+        <span><i class="camera icon"></i>Change Image</span>
+      </div>
+      <div class="profile-pic" (click)="showPopup(true)" *ngIf="!user.profilePicture || user.profilePicture == ''" style="background-image: url('https://cdn.intra.42.fr/users/medium_lvalenti.jpg')">
+        <span><i class="camera icon"></i>Change Image</span>
+      </div>
+      <div class="content">
+        <div class='name'>
+            <h1>
+              <span>{{user.username}}</span>, {{user.age}} <span *ngIf="user.gender == 'Male'"> ♂</span> <span *ngIf="user.gender == 'Female'"> ♀</span>
+            </h1>
+          <a routerLink='/editprofile'>
+            <button>Edit profile</button>
+          </a>
+        </div>
+        <div class="orientation">
+          <h2>Interested in: {{user.orientation}}</h2>
+        </div>
+        <div class="score">
+          <h3>Score: {{user.score}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id='top'>
+  <div>
+    <h1>{{user.firstname}} {{user.lastname}}</h1>
+      <p *ngIf='user.description'>
+        {{user.description}}
+      </p>
+        <img class='picture' src='https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg'
+        />
+        <img class='picture' src='https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg'
+        />
+        <img class='picture' src='https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg'
+        />
+        <img class='picture' src='https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg'
+        />
+  </div>
+</section>
+<section id='top'>
+  <div>
+    <h1>Interests</h1>
+    <div class="ui orange labels">
+      <a *ngFor="let interest of user.interests" class="ui label">
+        {{interest}}
+      </a>
+      <!-- <a class="ui label">
+        #42
+        <div class="detail">22</div>
+      </a> -->
+      <a class="ui label">
+        <input #interest class='interest' type='text' name='interest' placeholder="Add Interest..." (keyup)='addInterest($event, interest)'>
+      </a>
+    </div>
+  </div>
+</section>
+</div>

@@ -56,7 +56,7 @@
           <input class='txtbox' type='password' [(ngModel)]='user.password' pattern='(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)' name='password' placeholder='Password*' minlength='6' #password='ngModel' required><br/>
           <select [(ngModel)]='user.gender' name='gender' class="ui dropdown txtbox" required maxlength='2'>
             <option [value]="">Gender</option>
-            <option *ngFor="let sex of gender; let i = index" [value]='i'>
+            <option *ngFor="let sex of gender" [value]='sex'>
               {{sex}}
             </option>
           </select><br />
