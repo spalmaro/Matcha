@@ -13,12 +13,14 @@ import { EditprofileComponent } from './components/editprofile/editprofile.compo
 import { AuthGuardService } from './services/auth-guard.service'
 import { UserService } from './services/user.service';
 import { ApiService } from 'app/services/api.service';
-import { SocketService } from './services/socket.service'
+import { SocketService } from './services/socket.service';
+import { HomeComponent } from './components/home/home.component'
 
 const appRoutes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuardService] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] }
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] }
 ]
 
 @NgModule({
@@ -27,7 +29,8 @@ const appRoutes: Routes = [
     IndexComponent,
     ProfileComponent,
     NavbarComponent,
-    EditprofileComponent
+    EditprofileComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

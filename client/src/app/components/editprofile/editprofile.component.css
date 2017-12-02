@@ -46,8 +46,8 @@
 
 #top{
 	padding-top: 80px;
-  min-width: 500px;
-  width: 35%;
+  min-width: 422px;
+  width: 24%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -57,17 +57,17 @@
 	height : 44px;
 }
 
-
 #submit{
-  margin-top: 20px;
+  /* margin-top: 20px; */
   background-color: #fd5068;
   color: white;
   font-size: 14px;
 	padding:9px 8px 7px;
 	border:1px solid #dbdbdb;
   border-radius: 3px;
-  max-width: 300px;
-  vertical-align: middle;
+  display: block;
+  margin: 20px auto;
+  /* max-width: 300px; */
 }
 
 form div{
