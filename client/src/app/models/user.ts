@@ -1,3 +1,5 @@
+import { SafeUrl } from '@angular/platform-browser/src/security/dom_sanitization_service';
+
 export class User {
          public firstname: String;
          public lastname: String;
@@ -11,7 +13,7 @@ export class User {
          public dobmonth: String;
          public dobyear: String;
          public orientation: String;
-         public profilePicture: String;
+         public profilePicture: SafeUrl;
          public firstConnection: Boolean;
          public age: Number;
          public score: Number;

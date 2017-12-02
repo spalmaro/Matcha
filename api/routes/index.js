@@ -33,6 +33,7 @@ router.post('/signup', (req, res, next) => {
     description: '',
     location: '',
     lastConnected: '',
+    profilePicture: '',
     score: 10.00,
     interests: [],
     liked: [],

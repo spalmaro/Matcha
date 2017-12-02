@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="item">
-      <div class="profile-pic" (click)="showPopup(true)" *ngIf="user.profilePicture" [style.backgroundImage]="'url('+ user.profilePicture +')'">
+      <div class="profile-pic" (click)="showPopup(true)" *ngIf="user.profilePicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.profilePicture +')'">
         <span><i class="camera icon"></i>Change Image</span>
       </div>
       <div class="profile-pic" (click)="showPopup(true)" *ngIf="!user.profilePicture || user.profilePicture == ''" style="background-image: url('https://cdn.intra.42.fr/users/medium_lvalenti.jpg')">

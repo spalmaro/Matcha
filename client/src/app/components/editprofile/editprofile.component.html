@@ -11,7 +11,7 @@
         </ul>
       </div>
     </div>
-      <div id='smallprofile' (click)='showPopup(true)' *ngIf="user.profilePicture" [style.backgroundImage]="'url('+ user.profilePicture +')'">
+      <div id='smallprofile' (click)='showPopup(true)' *ngIf="user.profilePicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.profilePicture +')'">
         <span>
           <i class="camera icon"></i></span>
       </div>
