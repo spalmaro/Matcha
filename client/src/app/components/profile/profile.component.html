@@ -50,14 +50,28 @@
       <p *ngIf='user.description'>
         {{user.description}}
       </p>
-        <img class='picture' src='https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg'
-        />
-        <img class='picture' src='https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg'
-        />
-        <img class='picture' src='https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg'
-        />
-        <img class='picture' src='https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg'
-        />
+      <div class="ui stackable four column grid">
+        <div class="column">
+          <div class="picture" (click)="showPopup(true)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
+            <span><i class="camera icon"></i>Change Image</span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="picture" (click)="showPopup(true)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
+            <span><i class="camera icon"></i>Change Image</span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="picture" (click)="showPopup(true)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
+            <span><i class="camera icon"></i>Change Image</span>
+          </div>
+        </div>
+        <div class="column">
+          <div class="picture" (click)="showPopup(true)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
+            <span><i class="camera icon"></i>Change Image</span>
+          </div>
+        </div>
+      </div>
   </div>
 </section>
 <section id='top'>

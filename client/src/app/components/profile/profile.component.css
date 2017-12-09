@@ -114,9 +114,37 @@ form div input, textarea{
 }
 
 .picture {
-	width: 23%;
+	width: 100%;
 	margin-right: 1%;
-	/*margin-bottom: 1%;*/
+	height: 0;
+	padding-bottom: 100%;
+	overflow: hidden;
+  cursor: pointer;
+
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  vertical-align: middle;
+  text-align: center;
+  color: transparent;
+  transition: all .3s ease;
+  text-decoration: none;
+}
+
+.picture:hover {
+    background-color: rgba(0,0,0,.5);
+    z-index: 10000;
+    color: #fff;
+    transition: all .3s ease;
+    text-decoration: none;
+}
+
+.picture span {
+    display: inline-flex;
+    font-size: 1em;
+    /* vertical-align: middle; */
+    padding-top: 76px;
+    /* padding-bottom: 4.5em; */
 }
 
 #popup-upload {

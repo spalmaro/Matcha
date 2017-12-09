@@ -64,6 +64,7 @@ export class ProfileComponent implements OnInit {
 
   addInterest(event: any, interest) {
     if (event.keyCode === 13) {
+      this.user.interests.push('#' + interest.value);
       this._apiService.updateUserProfile(this.user);
       interest.value = '';
     }
