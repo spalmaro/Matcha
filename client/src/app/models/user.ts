@@ -14,6 +14,10 @@ export class User {
          public dobyear: String;
          public orientation: String;
          public profilePicture: SafeUrl;
+         public picture1: SafeUrl;
+         public picture2: SafeUrl;
+         public picture3: SafeUrl;
+         public picture4: SafeUrl;
          public firstConnection: Boolean;
          public age: Number;
          public score: Number;
@@ -37,5 +41,9 @@ export class User {
            this.age = data.age;
            this.score = data.score;
            this.interests = data.interests;
+           this.picture1 = data.picture1;
+           this.picture2 = data.picture2;
+           this.picture3 = data.picture3;
+           this.picture4 = data.picture4;
          }
        }

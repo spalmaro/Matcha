@@ -6,7 +6,6 @@
         <ul>
           <input #fileInput (change)="uploadPicture($event)" id="file" type="file" name="file" accept="image/*">
           <li><button (click)="fileInput.click()" name="uploadPicture" class="upload-picture">Upload Photo</button></li>
-          <li><button name="removePicture" class="upload-picture">Remove Photo</button></li>
           <li><button (click)="showPopup(false)" name="cancelPopup" class="upload-picture">Cancel</button></li>
         </ul>
       </div>

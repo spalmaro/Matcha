@@ -24,6 +24,7 @@ span {
 	margin-left: auto;
 	margin-right: auto;
 }
+
 #top{
 	padding-top: 40px;
 	max-width: 750px;
@@ -150,8 +151,8 @@ form div input, textarea{
 #popup-upload {
 	width: 400px;
 	margin: 0 auto;
-	height: 200px;
-	top: 25%;
+	height: 150px;
+	top: 30%;
 	text-align: center;
 	position: relative;
 	background-color: white;
@@ -178,7 +179,7 @@ ul {
 }
 
 li {
-	height: 33.3%;
+	height: 50%;
 }
 
 .upload-picture {
@@ -202,4 +203,12 @@ input[type='file'] {
 
 .interest::placeholder{
   color: white;
+}
+
+.remove-picture {
+  color: white;
+  cursor: pointer;
+  top: 10%;
+  right: 10%;
+  position: absolute;
 }

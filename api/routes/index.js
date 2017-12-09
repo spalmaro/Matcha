@@ -37,9 +37,12 @@ router.post('/signup', (req, res, next) => {
     score: 10.00,
     interests: [],
     liked: [],
-    photos: [],
     disliked: [],
-    firstConnection: true
+    firstConnection: true,
+    picture1: '',
+    picture2: '',
+    picture3: '',
+    picture4: ''
   }
   User.addUser(item, res);
   
