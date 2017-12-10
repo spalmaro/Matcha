@@ -1,0 +1,30 @@
+/* .whole {
+  background-color: #fafafa;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
+  position: fixed; */
+  /* overflow: scroll; */
+/* } */
+app-home {
+  background-color: #fafafa;
+}
+
+.filters {
+  background-color: #ffffff;
+  /* max-width: 550px;
+  min-width: 350px; */
+  width: 88%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+#card {
+  margin-left: auto;
+  margin-right: auto;
+  width: 350px;
+}

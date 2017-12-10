@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class='ui center aligned container' class='top'>
+<div class='ui center grid' class='top'>
   <section id='first'>
     <div class="ui items">
       <div class='popup-background' [hidden]='upload === false' (click)="showPopup(false)">
@@ -49,7 +49,6 @@
         </p>
         <div class="ui stackable four column grid">
           <div class="column" *ngIf="!user.picture1 || user.picture1 == ''">
-            <!-- <span class="remove-picture" (click)="removePicture(pic1)">x</span> -->
             <div #pic1 class="picture" (click)="showPopup(true, 1)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
@@ -61,7 +60,6 @@
             </div>
           </div>
           <div class="column" *ngIf="!user.picture2 || user.picture2 == ''">
-            <!-- <span class="remove-picture" (click)="removePicture(pic2)">x</span> -->
             <div #pic2 class="picture" (click)="showPopup(true, 2)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
@@ -73,7 +71,6 @@
             </div>
           </div>
           <div class="column" *ngIf="!user.picture3 || user.picture3 == ''">
-            <!-- <span class="remove-picture" (click)="removePicture(pic3)">x</span> -->
             <div #pic3 class="picture" (click)="showPopup(true, 3)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
@@ -85,7 +82,6 @@
             </div>
           </div>
           <div class="column" *ngIf="!user.picture4 || user.picture4 == ''">
-            <!-- <span class="remove-picture" (click)="removePicture(pic4)">x</span> -->
             <div #pic4 class="picture" (click)="showPopup(true, 4)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
               <span><i class="camera icon"></i>Change Image</span>
             </div>

@@ -11,13 +11,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component'
 
 import { AuthGuardService } from './services/auth-guard.service'
+import { AuthGuardService2 } from './services/auth-guard2.service'
 import { UserService } from './services/user.service';
 import { ApiService } from 'app/services/api.service';
 import { SocketService } from './services/socket.service';
 import { HomeComponent } from './components/home/home.component'
 
 const appRoutes: Routes = [
-  { path: '', component: IndexComponent },
+  { path: '', component: IndexComponent, canActivate: [AuthGuardService2] },
   { path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] }
@@ -38,7 +39,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [UserService, AuthGuardService, ApiService, SocketService],
+  providers: [UserService, AuthGuardService, AuthGuardService2, ApiService, SocketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

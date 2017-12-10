@@ -29,8 +29,14 @@ img {
 
 #header{
 	border-bottom: 1px solid rgba(0,0,0,.0975);
-	display: block;
+  display: block;
+  background-color: white;
 	/* background-color: #ffffff; */
+}
+
+#bg {
+  background-color: white;
+  height: 88%;
 }
 
 #logo, #signin{
