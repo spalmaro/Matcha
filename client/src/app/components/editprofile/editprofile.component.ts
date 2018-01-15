@@ -37,7 +37,10 @@ export class EditprofileComponent implements OnInit {
           this.user.profilePicture = this.sanitizer.bypassSecurityTrustUrl(data.user.profilePicture);
         }
         this.user = data.user;
-        this.user.firstConnection = false
+        if (this.user.firstConnection === true) {
+          this.user.firstConnection = false;
+          this._apiService.updateUserProfile(this.user);
+        }
         console.log('####DATA', data)
       }
     })

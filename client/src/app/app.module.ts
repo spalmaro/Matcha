@@ -9,13 +9,13 @@ import { IndexComponent } from './components/index/index.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { EditprofileComponent } from './components/editprofile/editprofile.component'
+import { HomeComponent } from './components/home/home.component'
 
 import { AuthGuardService } from './services/auth-guard.service'
 import { AuthGuardService2 } from './services/auth-guard2.service'
 import { UserService } from './services/user.service';
 import { ApiService } from 'app/services/api.service';
 import { SocketService } from './services/socket.service';
-import { HomeComponent } from './components/home/home.component'
 
 const appRoutes: Routes = [
   { path: '', component: IndexComponent, canActivate: [AuthGuardService2] },

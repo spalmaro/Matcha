@@ -9,6 +9,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 export class UserService {
   authToken: any
   private API_URL = environment.API_URL;
+  private API_KEY = environment.API_KEY;
 
   constructor( private http: Http ) {}
 
@@ -35,6 +36,20 @@ export class UserService {
 
   getCurrentUser() {
     return (sessionStorage.getItem('currentUser'));
+  }
+
+  getLocation(latitude, longitude) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${this.API_KEY}`)
+      .map(res => res.json())
+  }
+
+  getLocationBackup() {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(`https://www.googleapis.com/geolocation/v1/geolocate?key=${this.API_KEY}`, {})
+      .map(res => res.json())
   }
 
   loadToken() {

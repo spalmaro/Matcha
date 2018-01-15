@@ -35,10 +35,12 @@ const updateUser = (item, socket) => {
     mongodb.connect(url, (err, db) => {
         if (err) {
           socket.emit({ success: false, error: err });
+          return ;
         }
         db.collection('users').update({ 'username': item.username }, { $set: item }, (err, result) => {
             if (err) {
               socket.emit('updateProfile:done', { success: false, error: err });
+              return ;
             } 
             if (result) {
                 socket.emit('updateProfile:done', { success: true, message: "Your profile has successfully been updated" });
@@ -55,6 +57,7 @@ const getUserInfo = (username, socket) => {
     mongodb.connect(url, (err, db) => {
         if (err) {
             socket.emit({success: false, error: err})
+            return ;
         }
         db.collection('users').findOne({'username': username}, (err, result) => {
             if (err) {

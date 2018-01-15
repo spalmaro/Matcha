@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
 import { User } from '../../models/user'
 import { UserService } from '../../services/user.service'
+import { ApiService } from '../../services/api.service'
 
 @Component({
   selector: 'app-index',
@@ -28,7 +29,7 @@ export class IndexComponent implements OnInit {
   public error = '';
 
 
-  constructor(private router: Router, private _userService: UserService) {
+  constructor(private _apiService: ApiService, private router: Router, private _userService: UserService) {
   this.user = new User({
     firstname: '', lastname: '', email: '', username: '', password: '',
     lastConnected: Date.now(), description: '', dobday: 'Day', dobmonth: 'Month', gender: 'Gender', profilePicture: ''
@@ -46,8 +47,14 @@ export class IndexComponent implements OnInit {
         this._userService.storeUserData(data.token, data.user);
         if (data.firstConnection === true) {
           this.router.navigate(['/editprofile']);
+          // if (navigator.geolocation){
+          //   navigator.geolocation.getCurrentPosition(this.setLocation.bind(this));
+          // }
         } else {
           this.router.navigate(['/home']);
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.setLocation.bind(this), this.setLocationBackup.bind(this));
+          }
         }
       } else {
         console.log('Unsuccessful login');
@@ -72,6 +79,29 @@ export class IndexComponent implements OnInit {
         this.router.navigate(['/'])
       }
     })
+  }
+
+  setLocation(position) {
+    console.log('Test -> ', position)
+    if (position) {
+      const {latitude, longitude} = position.coords;
+      this._userService.getLocation(latitude, longitude).subscribe(data => {
+        this.user.address = data.results[4].formatted_address;
+        this.user.location = [longitude, latitude];
+        this._apiService.updateUserProfile(this.user);
+      })
+    }
+  }
+
+  setLocationBackup() {
+      this._userService.getLocationBackup().subscribe(data => {
+        const {lat, lng} = data.location;
+        this._userService.getLocation(lat, lng).subscribe(result => {
+          this.user.address = result.results[4].formatted_address;
+          this.user.location = [lng, lat];
+          this._apiService.updateUserProfile(this.user);
+      })
+      })
   }
 
 }

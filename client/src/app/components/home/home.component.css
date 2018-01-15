@@ -15,7 +15,7 @@ app-home {
   background-color: #ffffff;
   /* max-width: 550px;
   min-width: 350px; */
-  width: 88%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   padding: 30px;
@@ -28,3 +28,20 @@ app-home {
   margin-right: auto;
   width: 350px;
 }
+
+.image img {
+  height:350px;
+  object-fit: cover;
+}
+
+.choice {
+  padding: 0 1em 1em 1em;
+}
+
+.choice img {
+  height: 70px;
+  width: 70px;
+  margin-left: auto;
+  margin-right: auto;
+}
+

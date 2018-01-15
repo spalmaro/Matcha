@@ -22,6 +22,8 @@ export class User {
          public age: Number;
          public score: Number;
          public interests: Array<String>;
+         public location: Array<number>;
+         public address: String;
 
          constructor(data: any) {
            this.firstname = data.firstname;
@@ -45,5 +47,7 @@ export class User {
            this.picture2 = data.picture2;
            this.picture3 = data.picture3;
            this.picture4 = data.picture4;
+           this.location = data.location;
+           this.address = data.address;
          }
        }
