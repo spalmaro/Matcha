@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http'
+import { Ng4GeoautocompleteModule } from 'ng4-geoautocomplete';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
@@ -16,12 +17,16 @@ import { AuthGuardService2 } from './services/auth-guard2.service'
 import { UserService } from './services/user.service';
 import { ApiService } from 'app/services/api.service';
 import { SocketService } from './services/socket.service';
+import { SliderModule } from 'primeng/slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChatComponent } from './components/chat/chat.component';
 
 const appRoutes: Routes = [
   { path: '', component: IndexComponent, canActivate: [AuthGuardService2] },
   { path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] }
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]}
 ]
 
 @NgModule({
@@ -31,15 +36,26 @@ const appRoutes: Routes = [
     ProfileComponent,
     NavbarComponent,
     EditprofileComponent,
-    HomeComponent
+    HomeComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    Ng4GeoautocompleteModule.forRoot(),
+    ReactiveFormsModule,
+    SliderModule
   ],
-  providers: [UserService, AuthGuardService, AuthGuardService2, ApiService, SocketService],
+  providers: [
+    UserService,
+    AuthGuardService,
+    AuthGuardService2,
+    ApiService,
+    SocketService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

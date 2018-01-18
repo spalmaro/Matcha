@@ -26,11 +26,11 @@ app-home {
 #card {
   margin-left: auto;
   margin-right: auto;
-  width: 350px;
+  width: 70%;
 }
 
 .image img {
-  height:350px;
+  max-height: 410px;
   object-fit: cover;
 }
 
@@ -43,5 +43,61 @@ app-home {
   width: 70px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.interest {
+  background-color: transparent;
+  border: 0px;
+  color: white;
+  outline-width: 0;
+  width: 80px;
+
+}
+
+.interest::placeholder{
+  color: white;
+}
+
+.remove-picture {
+  color: white;
+  cursor: pointer;
+  top: 10%;
+  right: 10%;
+  position: absolute;
+}
+
+#inter{
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  color: white;
+  background-color: orange;
+  padding: 2px 4px;
+  border-radius: 50%;
+}
+
+#register{
+  /* background-color: #fd5068; */
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.txtbox{
+	margin-bottom: 3px;
+	/* width: 334px; */
+	font-size: 14px;
+	padding:9px 8px 7px;
+	border:1px solid #dbdbdb;
+  border-radius: 5px;
+  width:30%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
 }
 

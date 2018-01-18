@@ -52,6 +52,10 @@
         <label>Email</label>
         <input email class='txtbox' [(ngModel)]='user.email' name='email' #email='ngModel' required>
       </div>
+      <div class='demo'>
+        <label>Address</label>
+        <ng4geo-autocomplete [userSettings]="userSettings" #test (componentCallback)="autoCompleteCallback($event)"></ng4geo-autocomplete>
+      </div>
       <div>
         <label>Gender</label>
         <select [(ngModel)]='user.gender' name='gender' class="ui dropdown txtbox" required maxlength='2'>

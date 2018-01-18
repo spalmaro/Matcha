@@ -93,6 +93,10 @@ img {
   width:100%;
 }
 
+button:disabled {
+  background-color: lightgrey;
+}
+
 .background {
   min-width: 100%;
 	min-height: auto;

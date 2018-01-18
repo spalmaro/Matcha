@@ -6,20 +6,27 @@
       <div class='column'>
         <div class="ui card" id='card'>
           <div class="content">
-            <div class="right floated meta">14h</div>
-            <img class="ui avatar image" src="https://cdn.intra.42.fr/users/medium_lvalenti.jpg"> Elliot
+            <div class="right floated meta">Online</div>
+            <img class="ui avatar image" src="https://cdn.intra.42.fr/users/medium_lvalenti.jpg"> Username
           </div>
           <div class="image">
             <img src='https://cdn.intra.42.fr/users/medium_lvalenti.jpg'>
           </div>
           <div class="content">
-            <div class="header">Matt Giampietro</div>
+            <div class="header">First and Last</div>
             <div class="meta">
-              <a>Friends</a>
+              <a>Interested In: </a>
+            </div>
+            <div class="meta">
+              <a>5km away </a>
             </div>
             <div class="description">
               Matthew is an interior designer living in New York.
             </div>
+          </div>
+          <div class="choice" style="display:inline-flex">
+            <img src='/assets/images/left.svg'>
+            <img src='/assets/images/right.svg'>
           </div>
           <!-- <div class="content"> -->
             <!-- <span class="right floated">
@@ -40,8 +47,38 @@
     </div>
     <div class='column'>
       <div class='filters'>
-        <h1>Filters</h1>
-
+        <h1>Advanced Search</h1>
+        <form #searchForm="ngForm" (submit)='submitSearch()'>
+          <div>
+            <h3>Age Interval: {{ageInterval[0]}} - {{ageInterval[1]}}<span *ngIf='ageInterval[1] === 55'>+</span></h3>
+            <p-slider [(ngModel)]='ageInterval' name="ageInterval" [range]="true" [min]="18" [max]="65"></p-slider>
+          </div><br>
+          <div>
+            <h3>Score Interval: {{scoreInterval[0]}} - {{scoreInterval[1]}}<span *ngIf='scoreInterval[1] === 100'>+</span></h3>
+            <p-slider [(ngModel)]='scoreInterval' name="scoreInterval" [range]="true" [min]="0" [max]="100"></p-slider>
+          </div><br>
+          <div>
+            <h3>Distance: Less than {{search.distance}} km away</h3>
+            <p-slider [(ngModel)]='search.distance' name="distance" [min]="2" [max]="160"></p-slider>
+          </div><br>
+          <div>
+            <h3>Interests: </h3>
+              <div class="ui orange labels">
+                <a *ngFor="let interest of search.interests" class="ui label" id='inter'>
+                  {{interest}}
+                  <div class="close">
+                    <div>x</div>
+                  </div>
+                </a>
+                <a class="ui label">
+                  <input #interest class='interest' type='text' name='interest' placeholder="Enter Interest..." (keyup)='addInterest($event, interest)'>
+                </a>
+              </div>
+          </div>
+          <br><div>
+            <button type="submit" class='txtbox' id='register'>Search</button>
+          </div>
+        </form>
       </div>
     </div>
 </div>

@@ -9,6 +9,7 @@ export class ApiService {
 
   @Output() userInfo: EventEmitter<any> = new EventEmitter();
   @Output() updateInfo: EventEmitter<any> = new EventEmitter();
+  @Output() list: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private socketService: SocketService,
@@ -23,6 +24,10 @@ export class ApiService {
     this.socket.on('updateProfile:done', data => {
       this.updateInfo.emit(data)
     })
+
+    this.socket.on('list:post', list => {
+      this.list.emit(list);
+    })
   }
 
   getUserInfo() {
@@ -32,5 +37,9 @@ export class ApiService {
   updateUserProfile(user) {
     console.log('##USER', user)
     this.socket.emit('updateProfile:set', user)
+  }
+
+  getList(user) {
+    this.socket.emit('list:get', user);
   }
 }

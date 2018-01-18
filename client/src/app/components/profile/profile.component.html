@@ -19,7 +19,7 @@
         <div class="profile-pic" (click)="showPopup(true, 0)" *ngIf="user.profilePicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.profilePicture +')'">
           <span><i class="camera icon"></i>Change Image</span>
         </div>
-        <div class="profile-pic" (click)="showPopup(true, 0)" *ngIf="!user.profilePicture || user.profilePicture == ''" style="background-image: url('https://cdn.intra.42.fr/users/medium_lvalenti.jpg')">
+        <div class="profile-pic" (click)="showPopup(true, 0)" *ngIf="!user.profilePicture || user.profilePicture == ''" style="background-image: url('https://scontent.cdninstagram.com/t51.2885-19/11906329_960233084022564_1448528159_a.jpg')">
           <span><i class="camera icon"></i>Change Image</span>
         </div>
         <div class="content">
@@ -37,6 +37,7 @@
           <div class="score">
             <h3>Score: {{user.score}}</h3>
           </div>
+          <h3>{{user.address}}</h3>
         </div>
       </div>
     </div>
@@ -49,7 +50,7 @@
         </p>
         <div class="ui stackable four column grid">
           <div class="column" *ngIf="!user.picture1 || user.picture1 == ''">
-            <div #pic1 class="picture" (click)="showPopup(true, 1)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
+            <div #pic1 class="picture" (click)="showPopup(true, 1)" style="background-image: url('http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png')">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
           </div>
@@ -60,7 +61,7 @@
             </div>
           </div>
           <div class="column" *ngIf="!user.picture2 || user.picture2 == ''">
-            <div #pic2 class="picture" (click)="showPopup(true, 2)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
+            <div #pic2 class="picture" (click)="showPopup(true, 2)" style="background-image: url('http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png')">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
           </div>
@@ -71,7 +72,7 @@
             </div>
           </div>
           <div class="column" *ngIf="!user.picture3 || user.picture3 == ''">
-            <div #pic3 class="picture" (click)="showPopup(true, 3)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
+            <div #pic3 class="picture" (click)="showPopup(true, 3)" style="background-image: url('http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png')">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
           </div>
@@ -82,7 +83,7 @@
             </div>
           </div>
           <div class="column" *ngIf="!user.picture4 || user.picture4 == ''">
-            <div #pic4 class="picture" (click)="showPopup(true, 4)" style="background-image: url('https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/16110482_776345915848356_5698877480975204352_n.jpg')">
+            <div #pic4 class="picture" (click)="showPopup(true, 4)" style="background-image: url('http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png')">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
           </div>
@@ -99,8 +100,11 @@
     <div class="four column wide">
       <h1>Interests</h1>
       <div class="ui orange labels">
-        <a *ngFor="let interest of user.interests" class="ui label">
+        <a *ngFor="let interest of user.interests" class="ui label" id='inter'>
           {{interest}}
+          <div class="close">
+            <div>x</div>
+          </div>
         </a>
         <!-- <a class="ui label">
           #42

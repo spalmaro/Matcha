@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
             }
           }
           this.user = data.user;
-          this.user.firstConnection = false;
+          // this.user.firstConnection = false;
           // console.log('####DATA', data)
         }
       })
@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
         }
       }
       this.user = data.user;
-      this.user.firstConnection = false;
+      // this.user.firstConnection = false;
     }
   })
 

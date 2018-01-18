@@ -216,3 +216,18 @@ input[type='file'] {
   right: 10%;
   position: absolute;
 }
+
+#inter{
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  color: white;
+  background-color: orange;
+  padding: 2px 4px;
+  border-radius: 50%;
+}
