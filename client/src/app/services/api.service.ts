@@ -42,4 +42,8 @@ export class ApiService {
   getList(user) {
     this.socket.emit('list:get', user);
   }
+
+  setLikeDislike(status, username) {
+    this.socket.emit('status:set', {currentUser: this._userService.getCurrentUser(), subject: username, status: status})
+  }
 }

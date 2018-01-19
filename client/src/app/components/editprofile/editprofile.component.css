@@ -44,7 +44,7 @@
 	resize: vertical;
 }
 
-#top{
+#top2{
 	padding-top: 80px;
   min-width: 422px;
   width: 24%;
@@ -129,9 +129,9 @@ ul {
 	/* height: 100%; */
 }
 
-li {
+/* li {
 	height: 50%;
-}
+} */
 
 .upload-picture {
 	cursor: pointer;

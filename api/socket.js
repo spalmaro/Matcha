@@ -4,6 +4,7 @@ module.exports = (io) => {
     const env = require('./config/environment')
     const userCtrl = require('./controllers/user')
     const searchCtrl = require('./controllers/search')
+    const matchCtrl= require('./controllers/match')
 
     io.on('connection', socketioJwt.authorize({
         secret: env.secret,
@@ -20,6 +21,10 @@ module.exports = (io) => {
 
         socket.on('list:get', (user) => {
             searchCtrl.getList(user, socket);
+        })
+
+        socket.on('status:set', (data) => {
+            matchCtrl.setLikeDislike(data, socket);
         })
     })
 }

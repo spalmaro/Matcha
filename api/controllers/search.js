@@ -24,14 +24,18 @@ module.exports = {
       mongodb.connect(url, (err, db) => {
         if (err) {
           console.log(err);
-          socket.emit({ success: false, error: err });
+          socket.emit('list:post', { success: false, error: err });
           return;
         }
         let query = {};
+        query.interests = {$elemMatch: user.interests};
+        // query.
         if (user.orientation !== 'Both') {
           query.gender = user.orientation
+        } else {
+          query.gender =  {$in: ['Male', 'Female']}
         }
-        db.collection('users').find({interests: {$elemMatch: user.interests}})
+        db.collection('users').find()
       })
     }
 }

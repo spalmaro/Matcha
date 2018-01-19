@@ -13,6 +13,7 @@ import { ApiService } from 'app/services/api.service';
 export class HomeComponent implements OnInit {
   public search = new Search({distance: 2, interests: []});
   public user: User;
+  public list: User[];
 
   ageInterval = [18, 24];
   scoreInterval = [10, 100];
@@ -41,6 +42,10 @@ export class HomeComponent implements OnInit {
   submitSearch() {
     [this.search.startAge, this.search.endAge] = this.ageInterval;
     [this.search.startScore, this.search.endScore] = this.scoreInterval;
+  }
+
+  setLikeDislike(status: string) {
+    // this._apiService.setLikeDislike(status, )
   }
 
 
