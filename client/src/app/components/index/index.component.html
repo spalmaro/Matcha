@@ -55,8 +55,8 @@
           <input id='bdaybox' type='number' [(ngModel)]='user.dobyear' name='dobyear' min='1920' max='1999' minlength='4' maxlength='4' placeholder='Year' required><br />
           <input email class='txtbox' [(ngModel)]='user.email' name='email' placeholder='Email*' #email='ngModel' required><br/>
           <input class='txtbox' type='password' [(ngModel)]='user.password' pattern='(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)' name='password' placeholder='Password*' minlength='6' #password='ngModel' required><br/>
-          <select [(ngModel)]='user.gender' name='gender' class="ui dropdown txtbox" required minlength='2'>
-            <option [value]="">Gender</option>
+          <select [(ngModel)]='user.gender' name='gender' class="ui dropdown txtbox" required minlength='4'>
+            <option [value]=''>Sex</option>
             <option *ngFor="let sex of gender" [value]='sex'>
               {{sex}}
             </option>

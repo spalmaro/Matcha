@@ -29,7 +29,7 @@ export class EditprofileComponent implements OnInit {
 
   public userSettings: any = {
     showRecentSearch: false,
-    showCurrentLocation: true,
+    showCurrentLocation: false,
     showSearchButton: false,
     inputPlaceholderText: ''
   }
@@ -38,10 +38,10 @@ export class EditprofileComponent implements OnInit {
       this.user = new User({ firstname: '', lastname: '', email: '', username: '', password: '',
         lastConnected: Date.now(), description: '', dobday: 'Day', dobmonth: 'Month', gender: 'Gender', profilePicture: ''
       })
-
-      this.userSettings = Object.assign({}, this.userSettings);
+      this._apiService.getUserInfo();
 
       this._apiService.userInfo.subscribe(data => {
+        console.log('USER', data)
         if (data.success === true) {
           if (data.user.profilePicture != null) {
             this.user.profilePicture = this.sanitizer.bypassSecurityTrustUrl(data.user.profilePicture);
@@ -61,17 +61,16 @@ export class EditprofileComponent implements OnInit {
       }
     })
 
-    this._apiService.getUserInfo();
-
-    this._apiService.updateInfo.subscribe(data => {
-      console.log('PROFILE', data)
-      if (data.success === true) {
-        router.navigate(['profile'])
-      }
-    })
+    // this._apiService.updateInfo.subscribe(data => {
+    //   console.log('PROFILE', data)
+    //   if (data.success === true) {
+    //     router.navigate(['profile'])
+    //   }
+    // })
   }
 
   ngOnInit() {
+    this.userSettings = Object.assign({}, this.userSettings);
   }
 
   base64Clean(base64) {
@@ -105,6 +104,7 @@ export class EditprofileComponent implements OnInit {
   onUpdateSubmit() {
     console.log(this.user);
     this._apiService.updateUserProfile(this.user);
+    this.router.navigate(['profile'])
   }
 
   setLocation(position) {

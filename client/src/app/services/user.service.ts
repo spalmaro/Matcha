@@ -27,11 +27,11 @@ export class UserService {
       .map(res => res.json())
   }
 
-  storeUserData(token, user) {
+  storeUserData(token, username) {
     localStorage.setItem('token', token)
-    localStorage.setItem('user', JSON.stringify(user))
+    // localStorage.setItem('user', JSON.stringify(user))
     sessionStorage.setItem('connected', 'true');
-    sessionStorage.setItem('currentUser', user.username);
+    sessionStorage.setItem('currentUser', username);
   }
 
   getCurrentUser() {

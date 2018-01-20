@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SliderModule } from 'primeng/slider';
 import { User } from '../../models/user'
 import { ApiService } from 'app/services/api.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ import { ApiService } from 'app/services/api.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public search = new Search({distance: 2, interests: []});
+  public search = new Search({distance: 160, interests: []});
   public user: User;
   public list: User[] = [];
 
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
   scoreInterval = [0, 100];
 
 
-  constructor(private _apiService: ApiService) {
+  constructor(private _apiService: ApiService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit {
     });
     this._apiService.list.subscribe(data => {
       this.list = data;
+
       console.log(this.list, 'the list')
     })
   }
@@ -48,7 +50,8 @@ export class HomeComponent implements OnInit {
   submitSearch(event) {
     [this.search.startAge, this.search.endAge] = this.ageInterval;
     [this.search.startScore, this.search.endScore] = this.scoreInterval;
-    this._apiService.searchList(this.search, this.user)
+    this._apiService.searchList(this.search, this.user);
+    this.list.shift();
   }
 
   setLikeDislike(status: string) {

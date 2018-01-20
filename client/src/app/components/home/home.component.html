@@ -11,24 +11,25 @@
             <img class="ui avatar image" src="https://cdn.intra.42.fr/users/medium_lvalenti.jpg"> {{list[0].username}}
           </div>
           <div class="image">
-            <img src='https://cdn.intra.42.fr/users/medium_lvalenti.jpg'>
+            <img [src]="'data:image/jpeg;base64,'+ list[0].profilePicture">
           </div>
           <div class="content">
-            <div class="header">First and Last</div>
+            <div class="header">{{list[0].firstname}} {{list[0].lastname}}</div>
             <div class="meta">
-              <a>Interested In: </a>
+              <a>Interested In: {{list[0].orientation}}</a>
             </div>
             <div class="meta">
               <a>5km away </a>
             </div>
             <div class="description">
-              Matthew is an interior designer living in New York.
+              {{list[0].description}}
             </div>
           </div>
-          <div class="choice" style="display:inline-flex">
+          <div *ngIf='user.profilePicture' class="choice" style="display:inline-flex">
             <img src='/assets/images/left.svg' (click)='setLikeDislike("dislike")'>
             <img src='/assets/images/right.svg' (click)='setLikeDislike("like")'>
           </div>
+          <div *ngIf="!user.profilePicture" style="padding: 5px;text-align: center;"><h4>Enable likes and dislikes by uploading a profile picture</h4></div>
           <!-- <div class="content"> -->
             <!-- <span class="right floated">
                     <i class="heart outline like icon"></i>

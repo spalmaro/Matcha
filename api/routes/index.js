@@ -35,7 +35,7 @@ router.post('/signup', (req, res, next) => {
     address: '',
     lastConnected: '',
     profilePicture: '',
-    score: 10.00,
+    score: 10,
     interests: [],
     blocked: [],
     reportedBy: [], 

@@ -93,7 +93,7 @@ img {
   width:100%;
 }
 
-button:disabled {
+#register:disabled {
   background-color: lightgrey;
 }
 
