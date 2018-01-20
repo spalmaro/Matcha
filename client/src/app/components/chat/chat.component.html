@@ -1,6 +1,64 @@
 <app-navbar></app-navbar>
-<div>
-  <ul *ngIf=''>
-    <li></li>
-  </ul>
+<div class="chat-box">
+	<!-- <ul class="discussions-list">
+		<li class="current-discussion">
+			<div class="target-user-pic-box">
+				<img src="/assets/images/left.svg" alt="Target user" class="target-user-pic">
+			</div>
+			<div class="target-user-info">
+				<div class="target-user-firstname">
+					<label>First Name:&nbsp;</label>
+					<span>...</span>
+				</div>
+				<div class="target-user-name">
+					<label>Name:&nbsp;</label>
+					<span>...</span>
+				</div>
+				<div class="target-user-connexion-status"></div>
+			</div>
+		</li>
+	</ul> -->
+	<div id="chat-box-inside-title">
+		<h3>Chat with ...</h3>
+	</div>
+	<div class="chat-box-inside-text">
+		<ul id="chat-box-inside-list">
+			<li class="chat-box-inside-content">
+				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
+				<span>Salut j'adore tes photos !</span>
+			</li>
+			<li class="chat-box-inside-content target-user">
+				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
+				<span>Sale Tchoin</span>
+			</li>
+			<li class="chat-box-inside-content target-user">
+				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
+				<span>Sale Tchoin</span>
+			</li>
+			<li class="chat-box-inside-content target-user">
+				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
+				<span>Sale Tchoin</span>
+			</li>
+			<li class="chat-box-inside-content target-user">
+				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
+				<span>Sale Tchoin</span>
+			</li>
+			<li class="chat-box-inside-content target-user">
+				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
+				<span>Sale Tchoin</span>
+			</li>
+			<li class="chat-box-inside-content target-user">
+				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
+				<span>T'es qui d'abord avec tes div et ton css de merde !!T'es qui d'abord avec tes div et ton css de merde !!T'es qui d'abord avec tes div et ton css de merde !!</span>
+			</li>
+			<li class="chat-box-inside-content">
+				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
+				<span>Salut j'adore tes photos !Salut j'adore tes photos !Salut j'adore tes photos !Salut j'adore tes photos !Salut j'adore tes photos !Salut j'adore tes photos !</span>
+			</li>
+		</ul>
+	</div>
+	<form>
+		<input type="text" id="chat-box-inside-form">
+		<input type="submit" value="Post" id="chat-box-inside-submit">
+	</form>
 </div>
