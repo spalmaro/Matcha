@@ -38,6 +38,10 @@ export class ApiService {
     this.socket.on('messages:post', data => {
       this.messages.emit(data);
     })
+
+    this.socket.on('search:post', data => {
+      this.list.emit(data)
+    })
   }
 
   getUserInfo() {
@@ -50,8 +54,11 @@ export class ApiService {
   }
 
   getList(user) {
-    console.log(user);
     this.socket.emit('list:get', user);
+  }
+
+  searchList(search, user) {
+    this.socket.emit('search:get', {search: search, user: user})
   }
 
   setLikeDislike(status, username) {

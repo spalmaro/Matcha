@@ -4,10 +4,11 @@
   <div class='ui centered grid'>
     <div class='doubling two column row'>
       <div class='column'>
-        <div class="ui card" id='card'>
+        <div class="ui card" id='card' *ngIf='!list.length' style='text-align: center'><h2>No profiles of interest available</h2></div>
+        <div class="ui card" id='card' *ngIf='list.length > 0'>
           <div class="content">
             <div class="right floated meta">Online</div>
-            <img class="ui avatar image" src="https://cdn.intra.42.fr/users/medium_lvalenti.jpg"> Username
+            <img class="ui avatar image" src="https://cdn.intra.42.fr/users/medium_lvalenti.jpg"> {{list[0].username}}
           </div>
           <div class="image">
             <img src='https://cdn.intra.42.fr/users/medium_lvalenti.jpg'>
@@ -48,7 +49,7 @@
     <div class='column'>
       <div class='filters'>
         <h1>Advanced Search</h1>
-        <form #searchForm="ngForm" (submit)='submitSearch()'>
+        <!-- <form #searchForm="ngForm"> -->
           <div>
             <h3>Age Interval: {{ageInterval[0]}} - {{ageInterval[1]}}<span *ngIf='ageInterval[1] === 55'>+</span></h3>
             <p-slider [(ngModel)]='ageInterval' name="ageInterval" [range]="true" [min]="18" [max]="65"></p-slider>
@@ -71,14 +72,14 @@
                   </div>
                 </a>
                 <a class="ui label">
-                  <input #interest class='interest' type='text' name='interest' placeholder="Enter Interest..." (keyup)='addInterest($event, interest)'>
+                  <input #interest class='interest' type='text' name='interest' placeholder="Enter Interest..." (keydown)='addInterest($event, interest)'>
                 </a>
               </div>
           </div>
           <br><div>
-            <button type="submit" class='txtbox' id='register'>Search</button>
+            <button (click)='submitSearch()' class='txtbox' id='register'>Search</button>
           </div>
-        </form>
+        <!-- </form> -->
       </div>
     </div>
 </div>
