@@ -13,18 +13,18 @@ import { ApiService } from 'app/services/api.service';
 export class HomeComponent implements OnInit {
   public search = new Search({distance: 2, interests: []});
   public user: User;
-  public list: User[];
+  public list: User[] = [];
 
-  ageInterval = [18, 24];
-  scoreInterval = [10, 100];
+  ageInterval = [18, 65];
+  scoreInterval = [0, 100];
 
 
   constructor(private _apiService: ApiService) {
   }
 
   ngOnInit() {
-    this.ageInterval = [18, 24];
-    this.scoreInterval = [10, 100];
+    this.ageInterval = [18, 65];
+    this.scoreInterval = [0, 100];
     this._apiService.getUserInfo();
     this._apiService.userInfo.subscribe(data => {
       if (data.success === true) {
@@ -33,21 +33,22 @@ export class HomeComponent implements OnInit {
       }
     });
     this._apiService.list.subscribe(data => {
-      console.log('TEEEEEST', data)
       this.list = data;
+      console.log(this.list, 'the list')
     })
   }
 
-  addInterest(event: any, interest) {
+  addInterest(event, interest) {
     if (event.keyCode === 13) {
       this.search.interests.push('#' + interest.value);
       interest.value = '';
     }
   }
 
-  submitSearch() {
+  submitSearch(event) {
     [this.search.startAge, this.search.endAge] = this.ageInterval;
     [this.search.startScore, this.search.endScore] = this.scoreInterval;
+    this._apiService.searchList(this.search, this.user)
   }
 
   setLikeDislike(status: string) {

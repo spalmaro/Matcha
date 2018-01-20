@@ -28,5 +28,9 @@ module.exports = (io) => {
             matchCtrl.setLikeDislike(data, socket);
         })
 
+        socket.on('search:get', (data) => {
+            searchCtrl.search(data, socket);
+        });
+
     })
 }

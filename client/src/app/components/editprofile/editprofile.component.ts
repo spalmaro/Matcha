@@ -110,6 +110,7 @@ export class EditprofileComponent implements OnInit {
   setLocation(position) {
     if (position) {
       const {latitude, longitude} = position.coords;
+      console.log ('LATITUDE', latitude)
       this._userService.getLocation(latitude, longitude).subscribe(data => {
         this.user.address = data.results[4].formatted_address;
         this.user.location = [longitude, latitude];
