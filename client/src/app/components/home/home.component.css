@@ -36,6 +36,7 @@ app-home {
 
 .choice {
   padding: 0 1em 1em 1em;
+  cursor: pointer;
 }
 
 .choice img {
@@ -43,6 +44,7 @@ app-home {
   width: 70px;
   margin-left: auto;
   margin-right: auto;
+  /* cursor: pointer; */
 }
 
 .interest {

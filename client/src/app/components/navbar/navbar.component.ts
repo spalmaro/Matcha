@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  public notifications;
+  public notiftotal = 0;
+  public newmsgs = 0;
 
   constructor(private _userService: UserService, private router: Router) { }
 

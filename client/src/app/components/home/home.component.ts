@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ageInterval = [18, 24];
+    this.scoreInterval = [10, 100];
     this._apiService.getUserInfo();
     this._apiService.userInfo.subscribe(data => {
       if (data.success === true) {
@@ -30,6 +32,10 @@ export class HomeComponent implements OnInit {
         this._apiService.getList(this.user);
       }
     });
+    this._apiService.list.subscribe(data => {
+      console.log('TEEEEEST', data)
+      this.list = data;
+    })
   }
 
   addInterest(event: any, interest) {
@@ -45,7 +51,8 @@ export class HomeComponent implements OnInit {
   }
 
   setLikeDislike(status: string) {
-    // this._apiService.setLikeDislike(status, )
+    this._apiService.setLikeDislike(status, this.list[0].username);
+    // console.log('aads', this.list[0].username);
   }
 
 

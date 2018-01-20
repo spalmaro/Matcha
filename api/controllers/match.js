@@ -52,14 +52,18 @@ module.exports = {
             }, (err, result) => {
                 if (result) {
                     db.collection('match').insert({
-                        user: [data.username, data.currentUser]
+                        users: [data.username, data.currentUser],
+                        timestamp: new Date().getTime(),
+                        messages: [],
+                        read: true
                     }, (err, result) => {
                         if (err) throw err;
                         socket.emit('match:post', {success: true})
                     })
                     let date = new Date().getTime();
-                    db.collection('notifications').insert({'type': 'match', 'who': data.username, 'from': data.currentUser, 'read': false, 'date': date}, (err, result) => {
-                    if (err) throw err;
+                    db.collection('notifications').insert([{'type': 'match', 'who': data.username, 'from': data.currentUser, 'read': false, 'date': date},
+                    {'type': 'match', 'who': data.currentUser, 'from': data.username, 'read': false, 'date': date}], (err, result) => {
+                        if (err) throw err;
                 })
                 }
             })

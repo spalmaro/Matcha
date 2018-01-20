@@ -20,11 +20,13 @@ module.exports = (io) => {
         })
 
         socket.on('list:get', (user) => {
+            console.log('getting list of users to match')
             searchCtrl.getList(user, socket);
         })
 
         socket.on('status:set', (data) => {
             matchCtrl.setLikeDislike(data, socket);
         })
+
     })
 }
