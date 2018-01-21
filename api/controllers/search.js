@@ -7,9 +7,10 @@ module.exports = {
           if (err) { console.log(err); return; }
           db.collection('views').find({'currentUser': data.user.username}, {'subject': 1}, (err, cursor) => {
           cursor.toArray((err, result) => {
-            let query = {};
+			let query = {};
+			console.log('###data =>', data.search.interests);
             if (data.search.interests.length){
-              query.interests = {$elemMatch: data.search.interests}
+              query.interests = {$in: data.search.interests}
             }
 			if (data.user.orientation !== 'Both') {
               query.gender = data.user.orientation == 'Guys' ? 'Male' : 'Female'
@@ -52,7 +53,7 @@ module.exports = {
           cursor.toArray((err, result) => {
             let query = {};
             if (user.interests.length){
-              query.interests = {$elemMatch: user.interests}
+              query.interests = {$in: user.interests}
             }
             if (user.orientation !== 'Both') {
               query.gender = user.orientation == 'Guys' ? 'Male' : 'Female'
