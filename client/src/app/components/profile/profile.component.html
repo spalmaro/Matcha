@@ -120,7 +120,7 @@
           <div class="ui divider"></div>
           <ul>
             <li *ngFor="let user of likeBy">
-              <a [routerLink]="'/search/' + user.subject">{{user.subject}}</a>
+              <a [routerLink]="'/search/' + user.from">{{user.from}}</a>
             </li>
           </ul>
           <h4 *ngIf='likeBy.length === 0'><i>No one has liked your profile yet</i></h4>

@@ -5,20 +5,21 @@ module.exports = {
     search(data, socket) {
         mongodb.connect(url, (err, db) => {
           if (err) { console.log(err); return; }
-          db.collection('views').find({'currentUser' : data.user.username}, {'subject': 1}, (err, cursor) => {
+          db.collection('views').find({'currentUser': data.user.username}, {'subject': 1}, (err, cursor) => {
           cursor.toArray((err, result) => {
             let query = {};
             if (data.search.interests.length){
               query.interests = {$elemMatch: data.search.interests}
             }
-            if (data.user.orientation !== 'Both') {
-              query.gender = data.user.orientation;
+			if (data.user.orientation !== 'Both') {
+              query.gender = data.user.orientation == 'Guys' ? 'Male' : 'Female'
             } else {
               query.gender =  {$in: ['Male', 'Female']}
             }
+            query.orientation = {$in: [data.user.gender == 'Male' ? 'Guys' : 'Girls' , 'Both']} ;
             query.profilePicture = {$ne: ''};
             query.score = {$gte: data.search.startScore};
-            query.age = {$gte: data.search.startAge}
+			query.age = {$gte: data.search.startAge}
             if (data.search.endAge !== 65) {
               query.age['$lte'] = data.search.endAge;
             }
@@ -32,11 +33,11 @@ module.exports = {
                   coordinates: data.user.location
                 },
                 $minDistance: 0,
-                $maxDistance: data.search.distance
+                $maxDistance: data.search.distance * 1000
               }
-            }
+			}
             db.collection('users').find(query).sort({'score' : 1}).limit(16).toArray((err, items) => {
-              if (err) throw err ;
+			  if (err) throw err ;
               socket.emit('search:post', items);
             })
           })
