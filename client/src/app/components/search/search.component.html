@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+<div class='ui center grid' class='top'>
+  <section id='first'>
+    <div class="ui items">
+      <div class="item">
+        <div class="profile-pic" *ngIf="profile.profilePicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.profilePicture +')'"></div>
+        <div class="profile-pic" *ngIf="!profile.profilePicture || profile.profilePicture == ''" style="background-image: url('https://scontent.cdninstagram.com/t51.2885-19/11906329_960233084022564_1448528159_a.jpg')"></div>
+        <div class="content">
+          <div class='name'>
+            <h1>
+              <span>{{profile.username}}</span>, {{profile.age}}
+              <span *ngIf="profile.gender == 'Male'"> ♂</span>
+              <span *ngIf="profile.gender == 'Female'"> ♀</span>
+            </h1>
+          </div>
+          <div class="orientation">
+            <h2>Interested in: {{profile.orientation}}</h2>
+          </div>
+          <div class="score">
+            <h3>Score: {{profile.score}}</h3>
+          </div>
+          <h3>{{profile.address}}</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id='top'>
+    <div>
+      <h1>{{profile.firstname}} {{profile.lastname}}</h1>
+      <p *ngIf='profile.description'>
+        {{profile.description}}
+      </p>
+      <div class="ui stackable four column grid">
+        <div class="column" *ngIf="profile.picture1">
+          <div #pic1 class="picture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.picture1 +')'">
+          </div>
+        </div>
+        <div class="column" *ngIf="profile.picture2">
+          <div #pic2 class="picture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.picture2 +')'">
+          </div>
+        </div>
+        <div class="column" *ngIf="profile.picture3">
+          <div #pic3 class="picture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.picture3 +')'">
+          </div>
+        </div>
+        <div class="column" *ngIf="profile.picture4">
+          <div #pic4 class="picture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.picture4 +')'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id='top'>
+    <div class="four column wide">
+      <h1>Interests</h1>
+      <div class="ui orange labels">
+        <a *ngFor="let interest of profile.interests" class="ui label" id='inter'>
+          {{interest}}
+        </a>
+        <!-- <a class="ui label">
+          #42
+          <div class="detail">22</div>
+        </a> -->
+      </div>
+    </div>
+  </section>
+</div>

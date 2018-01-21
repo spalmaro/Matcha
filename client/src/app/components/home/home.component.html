@@ -8,10 +8,14 @@
         <div class="ui card" id='card' *ngIf='list.length > 0'>
           <div class="content">
             <div class="right floated meta">Online</div>
-            <img class="ui avatar image" src="https://cdn.intra.42.fr/users/medium_lvalenti.jpg"> {{list[0].username}}
+            <img class="ui avatar image" [src]="'data:image/jpeg;base64,'+ list[0].profilePicture"> {{list[0].username}}
           </div>
-          <div class="image">
-            <img [src]="'data:image/jpeg;base64,'+ list[0].profilePicture">
+          <div [ngClass]="list[0].picture1 ? 'image ui slide masked reveal': 'image'">
+            <img [src]="'data:image/jpeg;base64,'+ list[0].profilePicture" class='visible content'>
+            <img *ngIf="list[0].picture1" [src]="'data:image/jpeg;base64,'+ list[0].picture1" class='hidden content'>
+            <img *ngIf="list[0].picture2" [src]="'data:image/jpeg;base64,'+ list[0].picture2" class='hidden content'>
+            <img *ngIf="list[0].picture3" [src]="'data:image/jpeg;base64,'+ list[0].picture3" class='hidden content'>
+            <img *ngIf="list[0].picture4" [src]="'data:image/jpeg;base64,'+ list[0].picture4" class='hidden content'>
           </div>
           <div class="content">
             <div class="header">{{list[0].firstname}} {{list[0].lastname}}</div>
@@ -19,7 +23,7 @@
               <a>Interested In: {{list[0].orientation}}</a>
             </div>
             <div class="meta">
-              <a>5km away </a>
+              <a>Score: {{list[0].score}} </a>
             </div>
             <div class="description">
               {{list[0].description}}

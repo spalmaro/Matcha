@@ -13,7 +13,7 @@ module.exports = {
             }
             db.collection('views').insert({
                 currentUser: data.currentUser,
-                subject: data.username,
+                subject: data.subject,
                 status: data.status
             }, (err, result) => {
                 if (err) {
@@ -23,15 +23,15 @@ module.exports = {
                 }
             });
             if (data.status === 'like') {
-                checkMatch(data, socket);
+                this.checkMatch(data, socket);
                 scoreCtrl.addScore(data);
-                db.collection('notifications').insert({'type': 'like', 'who': data.username, 'from': data.currentUser, 'read': false, 'date': new Date().getTime()}, (err, result) => {
+                db.collection('notifications').insert({'type': 'like', 'who': data.subject, 'from': data.currentUser, 'read': false, 'date': new Date().getTime()}, (err, result) => {
                     if (err)
                         throw err;
                 })
             } else {
                 scoreCtrl.subtractScore(data);
-                db.collection('notifications'.insert({'type': 'dislike', 'who': data.username, 'from': data.currentUser, 'read': false, 'date': new Date().getTime()}, (err, result) => {
+                db.collection('notifications'.insert({'type': 'dislike', 'who': data.subject, 'from': data.currentUser, 'read': false, 'date': new Date().getTime()}, (err, result) => {
                     if (err) throw err;
                 }))
             }
@@ -46,13 +46,13 @@ module.exports = {
                 return;
             }
             db.collection('views').findOne({
-                currentUser: data.username,
+                currentUser: data.subject,
                 subject: data.currentUser,
                 status: 'like'
             }, (err, result) => {
                 if (result) {
                     db.collection('match').insert({
-                        users: [data.username, data.currentUser],
+                        users: [data.subject, data.currentUser],
                         timestamp: new Date().getTime(),
                         messages: [],
                         read: true
@@ -61,8 +61,8 @@ module.exports = {
                         socket.emit('match:post', {success: true})
                     })
                     let date = new Date().getTime();
-                    db.collection('notifications').insert([{'type': 'match', 'who': data.username, 'from': data.currentUser, 'read': false, 'date': date},
-                    {'type': 'match', 'who': data.currentUser, 'from': data.username, 'read': false, 'date': date}], (err, result) => {
+                    db.collection('notifications').insert([{'type': 'match', 'who': data.subject, 'from': data.currentUser, 'read': false, 'date': date},
+                    {'type': 'match', 'who': data.currentUser, 'from': data.subject, 'read': false, 'date': date}], (err, result) => {
                         if (err) throw err;
                 })
                 }

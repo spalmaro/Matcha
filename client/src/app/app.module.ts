@@ -17,16 +17,24 @@ import { AuthGuardService2 } from './services/auth-guard2.service'
 import { UserService } from './services/user.service';
 import { ApiService } from 'app/services/api.service';
 import { SocketService } from './services/socket.service';
+import { NotificationService } from './services/notification.service'
 import { SliderModule } from 'primeng/slider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatComponent } from './components/chat/chat.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { SearchComponent } from './components/search/search.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 const appRoutes: Routes = [
+  { path: 'search/:username', component: SearchComponent, canActivate: [AuthGuardService]},
+  { path: 'search', redirectTo: '', canActivate: [AuthGuardService]},
   { path: '', component: IndexComponent, canActivate: [AuthGuardService2] },
   { path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuardService] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
-  { path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]}
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]},
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService]},
+  { path: '**', component: PagenotfoundComponent}
 ]
 
 @NgModule({
@@ -37,7 +45,10 @@ const appRoutes: Routes = [
     NavbarComponent,
     EditprofileComponent,
     HomeComponent,
-    ChatComponent
+    ChatComponent,
+    NotificationsComponent,
+    SearchComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +65,8 @@ const appRoutes: Routes = [
     AuthGuardService,
     AuthGuardService2,
     ApiService,
-    SocketService
+    SocketService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

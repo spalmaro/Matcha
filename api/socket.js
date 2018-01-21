@@ -5,6 +5,7 @@ module.exports = (io) => {
     const userCtrl = require('./controllers/user')
     const searchCtrl = require('./controllers/search')
     const matchCtrl= require('./controllers/match')
+    const notificationCtrl= require('./controllers/notification')
 
     io.on('connection', socketioJwt.authorize({
         secret: env.secret,
@@ -31,6 +32,21 @@ module.exports = (io) => {
         socket.on('search:get', (data) => {
             searchCtrl.search(data, socket);
         });
+
+        socket.on('notifications:get', (data) => {
+            console.log('getting notifications')
+            notificationCtrl.getNotifications(data, socket);
+        })
+
+        socket.on('notifications:set', data => {
+            console.log('mark notifications as read');
+            notificationCtrl.readNotifications(data)
+        })
+
+        socket.on('profile:get', username => {
+            console.log('searching for user');
+            searchCtrl.getProfile(username, socket);
+        })
 
     })
 }

@@ -1,0 +1,9 @@
+<app-navbar *ngIf='user'></app-navbar>
+<div class='ui centered grid'>
+  <div class='column notifications'>
+        <h1 class='header'>Bad Gateway</h1>
+        <div class="ui divider"></div>
+        <h2>The URL is not valid or is deprecated</h2>
+        <a *ngIf='!user' routerLink='/'>Go to the Home Page</a>
+  </div>
+</div>

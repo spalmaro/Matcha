@@ -60,13 +60,6 @@ export class EditprofileComponent implements OnInit {
           console.log('####DATA', data)
       }
     })
-
-    // this._apiService.updateInfo.subscribe(data => {
-    //   console.log('PROFILE', data)
-    //   if (data.success === true) {
-    //     router.navigate(['profile'])
-    //   }
-    // })
   }
 
   ngOnInit() {

@@ -51,12 +51,14 @@ export class HomeComponent implements OnInit {
     [this.search.startAge, this.search.endAge] = this.ageInterval;
     [this.search.startScore, this.search.endScore] = this.scoreInterval;
     this._apiService.searchList(this.search, this.user);
-    this.list.shift();
   }
 
   setLikeDislike(status: string) {
     this._apiService.setLikeDislike(status, this.list[0].username);
-    // console.log('aads', this.list[0].username);
+    this.list.shift();
+    if (this.list.length === 0) {
+      this._apiService.getList(this.user);
+    }
   }
 
 

@@ -10,8 +10,8 @@ export class ApiService {
   @Output() userInfo: EventEmitter<any> = new EventEmitter();
   @Output() updateInfo: EventEmitter<any> = new EventEmitter();
   @Output() list: EventEmitter<any> = new EventEmitter();
-  @Output() notifications: EventEmitter<any> = new EventEmitter();
   @Output() messages: EventEmitter<any> = new EventEmitter();
+  @Output() profile: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private socketService: SocketService,
@@ -31,10 +31,6 @@ export class ApiService {
       this.list.emit(list);
     })
 
-    this.socket.on('notifications:post', data => {
-      this.notifications.emit(data);
-    })
-
     this.socket.on('messages:post', data => {
       this.messages.emit(data);
     })
@@ -42,10 +38,18 @@ export class ApiService {
     this.socket.on('search:post', data => {
       this.list.emit(data)
     })
+
+    this.socket.on('profile:post', data => {
+      this.profile.emit(data);
+    })
   }
 
   getUserInfo() {
     this.socket.emit('userInfo:get', this._userService.getCurrentUser());
+  }
+
+  getProfile(username) {
+    this.socket.emit('profile:get', username);
   }
 
   updateUserProfile(user) {
@@ -67,10 +71,6 @@ export class ApiService {
 
   getNotifications(user) {
     this.socket.emit('notifications:get', user);
-  }
-
-  readUnreadNotifications(notification) {
-    this.socket.emit('notifications:set', notification);
   }
 
   sendMessage(message) {

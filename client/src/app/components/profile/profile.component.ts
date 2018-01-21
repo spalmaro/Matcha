@@ -23,17 +23,13 @@ export class ProfileComponent implements OnInit {
         if (data.success === true) {
           const table = [data.user.profilePicture, data.user.picture1, data.user.picture2, data.user.picture3, data.user.picture4];
           const table2 = [this.user.profilePicture, this.user.picture1, this.user.picture2, this.user.picture3, this.user.picture4];
-          // if (data.user.profilePicture != null) {
-          //   this.user.profilePicture = this.sanitizer.bypassSecurityTrustUrl(data.user.profilePicture);
-          // }
+
           for (const i in table) {
             if (table[i] !== null || table[i] !== '') {
               table2[i] = this.sanitizer.bypassSecurityTrustUrl(table[i]);
             }
           }
           this.user = data.user;
-          // this.user.firstConnection = false;
-          // console.log('####DATA', data)
         }
       })
 

@@ -1,0 +1,29 @@
+.notifications {
+  margin-top: 100px;
+  max-width: 400px;
+  min-width: 200px;
+  min-height: 400px;
+  background-color: white;
+  padding: 90px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  overflow-y: auto;
+  overflow-x: auto;
+  /* padding-right: 150px; */
+}
+ul {
+  padding: 10px;
+}
+li {
+  list-style: none;
+}
+
+h2 {
+  text-align: center;
+}
+
+#timestamp {
+  float: right;
+  padding-right: 30px;
+}
+

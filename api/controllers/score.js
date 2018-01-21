@@ -9,7 +9,7 @@ module.exports = {
                 console.log(err);
                 return;
             }
-            db.collection('users').update({'username': data.username}, {$set: {$inc : { score: 1}}}, (err, result) => {
+            db.collection('users').update({'username': data.subject}, {$inc : { score: 1}}, (err, result) => {
                 if (err) {
                     console.log(err);
                     return ;
@@ -25,7 +25,7 @@ module.exports = {
             console.log(err);
             return;
         }
-        db.collection('users').update({'username': data.username}, {$set: {$inc : { score: -1}}}, (err, result) => {
+        db.collection('users').update({'username': data.subject}, {$inc : { score: -1}}, (err, result) => {
             if (err) {
                 console.log(err);
                 return ;

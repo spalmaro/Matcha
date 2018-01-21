@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div class='ui centered grid'>
+  <div class='column notifications'>
+    <ul>
+      <li>
+        <h2 class='header'>Notification Center</h2>
+      </li>
+      <div class="ui divider"></div>
+      <li *ngFor="let msg of notifications">
+          <div class='ui feed'>
+            {{msg.message}} <strong style='color:#fd5068;' routerLink='/:msg.from'>{{msg.from}}</strong>
+            <i id='timestamp'>{{ msg.date }}</i>
+          </div>
+      </li>
+    </ul>
+  </div>
+</div>

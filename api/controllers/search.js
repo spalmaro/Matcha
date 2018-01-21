@@ -4,8 +4,8 @@ const url = "mongodb://localhost:27017/Matcha_DB";
 module.exports = {
     search(data, socket) {
         mongodb.connect(url, (err, db) => {
-            if (err) { console.log(err); return; }
-            db.collection('views').find({'currentUser' : data.user.username}, {'subject': 1}, (err, cursor) => {
+          if (err) { console.log(err); return; }
+          db.collection('views').find({'currentUser' : data.user.username}, {'subject': 1}, (err, cursor) => {
           cursor.toArray((err, result) => {
             let query = {};
             if (data.search.interests.length){
@@ -54,12 +54,17 @@ module.exports = {
               query.interests = {$elemMatch: user.interests}
             }
             if (user.orientation !== 'Both') {
-              query.gender = user.orientation
+              query.gender = user.orientation == 'Guys' ? 'Male' : 'Female'
             } else {
               query.gender =  {$in: ['Male', 'Female']}
             }
+            query.orientation = {$in: [user.gender == 'Male' ? 'Guys' : 'Girls' , 'Both']} ;
             query.profilePicture = {$ne: ''};
-            query.username = {$nin: user.blocked, $nin: result, $ne: user.username};
+            let viewed = []
+            for (let subject of result) {
+              viewed.push(subject.subject);
+            }
+            query.username = {$nin: user.blocked, $nin: viewed, $ne: user.username};
             query.location = {
               $nearSphere: {
                 $geometry: {
@@ -75,6 +80,21 @@ module.exports = {
               socket.emit('list:post', items);
             })
           })
+        })
+      })
+    },
+
+    getProfile(username, socket) {
+      mongodb.connect(url, (err, db) => {
+        if (err)
+          throw err;
+        db.collection('users').findOne({'username': username}, (err, result) => {
+          if (err) throw err;
+          if (result) {
+            socket.emit('profile:post', result)
+          } else {
+            socket.emit('profile:post', {});
+          }
         })
       })
     }
