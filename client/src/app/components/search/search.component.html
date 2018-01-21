@@ -12,6 +12,9 @@
               <span *ngIf="profile.gender == 'Male'"> ♂</span>
               <span *ngIf="profile.gender == 'Female'"> ♀</span>
             </h1>
+            <a (click)='reportUser($event)'>
+              <button>Report User</button>
+            </a>
           </div>
           <div class="orientation">
             <h2>Interested in: {{profile.orientation}}</h2>
@@ -19,9 +22,16 @@
           <div class="score">
             <h3>Score: {{profile.score}}</h3>
           </div>
-          <h3>{{profile.address}}</h3>
+          <!-- <h3>{{profile.address}}</h3> -->
         </div>
       </div>
+        <div *ngIf='currentUser.profilePicture' class="choice" style="display:inline-flex">
+          <img src='/assets/images/left.svg' (click)='setLikeDislike("dislike")'>
+          <img src='/assets/images/right.svg' (click)='setLikeDislike("like")'>
+        </div>
+        <div *ngIf="!currentUser.profilePicture" style="padding: 5px;text-align: center;">
+          <h4>Enable likes and dislikes by uploading a profile picture</h4>
+        </div>
     </div>
   </section>
   <section id='top'>
@@ -31,6 +41,7 @@
         {{profile.description}}
       </p>
       <div class="ui stackable four column grid">
+        <div *ngIf='!profile.picture1 && !profile.picture2 &&!profile.picture3 &&!profile.picture4'> <h4><i>This user did not upload any pictures yet</i></h4></div>
         <div class="column" *ngIf="profile.picture1">
           <div #pic1 class="picture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.picture1 +')'">
           </div>

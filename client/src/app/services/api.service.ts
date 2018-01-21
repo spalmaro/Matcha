@@ -81,7 +81,11 @@ export class ApiService {
     this.socket.emit('messages:get', user)
   }
 
-  setVisit(currentUser, username) {
-    this.socket.emit('visit:set', { currentUser: currentUser, username: username });
+  setVisit(username) {
+    this.socket.emit('visit:set', { currentUser: this._userService.getCurrentUser(), username: username });
+  }
+
+  reportUser(userToReport) {
+    this.socket.emit('report:set', {userToReport: userToReport, currentUser: this._userService.getCurrentUser()})
   }
 }

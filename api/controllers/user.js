@@ -73,8 +73,22 @@ const getUserInfo = (username, socket) => {
     })
 }
 
+const reportUser = (data, socket) => {
+    mongodb.connect(url, (err, db) => {
+        if (err) {
+            throw err;
+        }
+        db.collection('users').update({'username': data.userToReport}, {$push: {reportedBy: data.currentUser}}, (err, result) => {
+            if (err) {
+              throw err;
+            } 
+        })
+    })
+}
+
 module.exports = {
     'addUser': addUser,
     'updateUser': updateUser,
-    'getUserInfo': getUserInfo
+    'getUserInfo': getUserInfo,
+    'reportUser': reportUser
 };

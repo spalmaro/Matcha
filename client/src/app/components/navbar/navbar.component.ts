@@ -25,7 +25,6 @@ export class NavbarComponent implements OnInit {
     });
 
     this._notificationService.unreadnotifs.subscribe(data => {
-      console.log('DATA', data);
       this.notiftotal = data;
     });
   }

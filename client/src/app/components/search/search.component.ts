@@ -26,6 +26,7 @@ export class SearchComponent implements OnInit {
 
     this._apiService.profile.subscribe(data => {
       if (data.username) {
+          this._apiService.setVisit(username);
           const table = [data.profilePicture, data.picture1, data.picture2, data.picture3, data.picture4];
           const table2 = [this.profile.profilePicture, this.profile.picture1, this.profile.picture2,
              this.profile.picture3, this.profile.picture4];
@@ -42,10 +43,21 @@ export class SearchComponent implements OnInit {
     })
 
     this._apiService.userInfo.subscribe(data => {
-      if (data) {
-        this.currentUser = data;
+      if (data.user) {
+        this.currentUser = data.user;
       }
     })
   }
 
+  reportUser(event: Event) {
+    event.stopPropagation();
+    // event.preventDefault();
+    if (confirm('Are you sure you want to report this user as a fake account?')) {
+      this._apiService.reportUser(this.profile.username)
+    }
+  }
+
+  setLikeDislike(status: string) {
+    this._apiService.setLikeDislike(status, this.profile.username);
+  }
 }

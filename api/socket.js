@@ -43,9 +43,19 @@ module.exports = (io) => {
             notificationCtrl.readNotifications(data)
         })
 
+        socket.on('visit:set', data => {
+            console.log('visiting user');
+            notificationCtrl.setVisit(data)
+        })
+
         socket.on('profile:get', username => {
             console.log('searching for user');
             searchCtrl.getProfile(username, socket);
+        })
+
+        socket.on('report:set', data => {
+            console.log('reporting user');
+            userCtrl.reportUser(data, socket);
         })
 
     })

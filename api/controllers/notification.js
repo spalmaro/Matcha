@@ -10,14 +10,14 @@ module.exports = {
                 console.log(err);
                 return;
             }
-            db.collection('visit').findOne({'subject': data.subject, 'from': data.currentUser}, (err, result) => {
+            db.collection('visit').findOne({'subject': data.username, 'from': data.currentUser}, (err, result) => {
                 if (result) {
                     return ;
                 } else {
-                    db.collection('visit').insert({'subject' : data.subject, 'from': data.currentUser }, (err, result) => {
+                    db.collection('visit').insert({'subject' : data.username, 'from': data.currentUser }, (err, result) => {
                         if (err) throw err;
 
-                        db.collection('notifications').insert({'type': 'visit', 'who': data.subject, 'from': data.currentUser, 'read': false, 'date': new Date().getTime()}, (err, result) => {
+                        db.collection('notifications').insert({'type': 'visit', 'who': data.username, 'from': data.currentUser, 'read': false, 'date': new Date().getTime()}, (err, result) => {
                         if (err) throw err
                         })
                     })
