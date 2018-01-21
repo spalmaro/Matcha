@@ -22,12 +22,15 @@
           <div class="score">
             <h3>Score: {{profile.score}}</h3>
           </div>
-          <!-- <h3>{{profile.address}}</h3> -->
+          <label *ngIf='likesme'><i>This user likes you</i></label>
         </div>
       </div>
-        <div *ngIf='currentUser.profilePicture' class="choice" style="display:inline-flex">
-          <img src='/assets/images/left.svg' (click)='setLikeDislike("dislike")'>
-          <img src='/assets/images/right.svg' (click)='setLikeDislike("like")'>
+        <div *ngIf='currentUser.profilePicture' style="display:inline-block; margin-top: 50px;">
+          <button *ngIf='!ilike' class='like' (click)='setLikeDislike("like")'>Like</button>
+          <button *ngIf='ilike' class='like' (click)='setLikeDislike("dislike")'>Liked</button>
+          <button *ngIf='!idislike' class='dislike' (click)='setLikeDislike("dislike")'>Dislike</button>
+          <button *ngIf='idislike' class='dislike' (click)='setLikeDislike("like")'>Disliked</button>
+          <button class='blocked' (click)='setBlocked()'>Block</button>
         </div>
         <div *ngIf="!currentUser.profilePicture" style="padding: 5px;text-align: center;">
           <h4>Enable likes and dislikes by uploading a profile picture</h4>
@@ -61,9 +64,10 @@
       </div>
     </div>
   </section>
-  <section id='top'>
+  <section id='top' style='margin-bottom: 80px;'>
     <div class="four column wide">
       <h1>Interests</h1>
+      <!-- <h4 *ngIf='profile.interests.length'><i>This user has not recorded any interests yet</i></h4> -->
       <div class="ui orange labels">
         <a *ngFor="let interest of profile.interests" class="ui label" id='inter'>
           {{interest}}

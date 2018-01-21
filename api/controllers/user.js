@@ -63,8 +63,22 @@ const getUserInfo = (username, socket) => {
             if (err) {
               socket.emit('userInfo:sent', { success: false, error: err });
             } else {
-                if (result)
-                    socket.emit('userInfo:sent', { success: true, user: result })
+                if (result) {
+                    db.collection('views').find({'currentUser': username}).toArray((err, status) => {
+                        let array = []
+                        let dis = []
+                        for (const iliked of status) {
+                            if (iliked.status === 'like')
+                                array.push(iliked.subject)
+                            else if (iliked.status === 'dislike')
+                                dis.push(iliked.subject);
+                        }
+                        result['liked'] = array;
+                        result['dislike'] = dis;
+                        socket.emit('userInfo:sent', { success: true, user: result })
+                        console.log(result.liked);
+                    })
+                }
                 else {
                     socket.emit('userInfo:sent', { success: false, error: 'An error has occurred' })
                 }

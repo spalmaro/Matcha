@@ -99,4 +99,9 @@ export class ProfileComponent implements OnInit {
       interest.value = '';
     }
   }
+
+  removeInterest(index) {
+    this.user.interests.splice(index, 1)
+    this._apiService.updateUserProfile(this.user);
+  }
 }

@@ -100,9 +100,9 @@
     <div class="four column wide">
       <h1>Interests</h1>
       <div class="ui orange labels">
-        <a *ngFor="let interest of user.interests" class="ui label" id='inter'>
+        <a *ngFor="let interest of user.interests; let i = index" class="ui label" id='inter'>
           {{interest}}
-          <div class="close">
+          <div class="close" (click)='removeInterest(i)'>
             <div>x</div>
           </div>
         </a>
@@ -133,7 +133,7 @@
         <div class="ui divider"></div>
           <ul>
             <li *ngFor="let user of viewedBy">
-              <a [routerLink]="'/search/' + user.subject">{{user.subject}}</a>
+              <a [routerLink]="'/search/' + user.from">{{user.from}}</a>
             </li>
           </ul>
           <h4 *ngIf='viewedBy.length === 0'><i>No one has visited your profile yet</i></h4>

@@ -11,17 +11,24 @@ module.exports = {
                 socket.emit('status:post', { success: false, error: err });
                 return;
             }
-            db.collection('views').insert({
-                currentUser: data.currentUser,
-                subject: data.subject,
-                status: data.status
-            }, (err, result) => {
-                if (err) {
-                    console.log(err);
-                    socket.emit('status:post', { success: false, error: err });
-                    return;
+            db.collection("views").findOne({currentUser: data.currentUser, subject: data.subject}, (err, exists) => {
+                if (err) throw err
+                if (exists) {
+                    db.collection('views').update({currentUser: data.currentUser, subject: data.subject}, {$set: {'status' : data.status} })
+                } else {
+                    db.collection('views').insert({
+                        currentUser: data.currentUser,
+                        subject: data.subject,
+                        status: data.status
+                    }, (err, result) => {
+                        if (err) {
+                            console.log(err);
+                            socket.emit('status:post', { success: false, error: err });
+                            return;
+                        }
+                    });
                 }
-            });
+            })
             if (data.status === 'like') {
                 this.checkMatch(data, socket);
                 scoreCtrl.addScore(data);
@@ -31,9 +38,9 @@ module.exports = {
                 })
             } else {
                 scoreCtrl.subtractScore(data);
-                db.collection('notifications'.insert({'type': 'dislike', 'who': data.subject, 'from': data.currentUser, 'read': false, 'date': new Date().getTime()}, (err, result) => {
+                db.collection('notifications').insert({'type': 'dislike', 'who': data.subject, 'from': data.currentUser, 'read': false, 'date': new Date().getTime()}, (err, result) => {
                     if (err) throw err;
-                }))
+                })
             }
         })
     },

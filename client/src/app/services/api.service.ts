@@ -22,6 +22,7 @@ export class ApiService {
     this.socket = socketService.socketConnect();
 
     this.socket.on('userInfo:sent', data => {
+      console.log('LIKED BY', data)
         this.userInfo.emit(data);
     })
 
@@ -46,12 +47,10 @@ export class ApiService {
     })
 
     this.socket.on('likeby:post', data => {
-      console.log('LIKED BY', data)
       this.likedBy.emit(data);
     })
 
     this.socket.on('viewdby:post', data => {
-      console.log('VIEWED ', data)
       this.viewedBy.emit(data);
     })
   }

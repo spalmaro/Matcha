@@ -13,6 +13,9 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class SearchComponent implements OnInit {
   profile: User;
   currentUser: User;
+  likesme: boolean = false;
+  ilike = false;
+  idislike = false;
 
   constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer,
   private router: Router, private _apiService: ApiService) { }
@@ -23,6 +26,7 @@ export class SearchComponent implements OnInit {
     this.currentUser = new User({});
     this._apiService.getProfile(username);
     this._apiService.getUserInfo();
+    this._apiService.getLikedByUsers();
 
     this._apiService.profile.subscribe(data => {
       if (data.username) {
@@ -37,6 +41,15 @@ export class SearchComponent implements OnInit {
             }
           }
         this.profile = data;
+        this._apiService.likedBy.subscribe((likes) => {
+          console.log('PROFIL', likes)
+          for (const d of likes) {
+            if (d.subject === this.profile.username) {
+              this.likesme = true
+              return ;
+            }
+          }
+        })
       } else {
         this.router.navigateByUrl('/profile');
       }
@@ -45,8 +58,15 @@ export class SearchComponent implements OnInit {
     this._apiService.userInfo.subscribe(data => {
       if (data.user) {
         this.currentUser = data.user;
+        if (this.currentUser['liked'].includes(this.profile.username)) {
+          this.ilike = true;
+        } else if (this.currentUser['dislike'].includes(this.profile.username)) {
+          this.idislike = true;
+        }
       }
     })
+
+
   }
 
   reportUser(event: Event) {
@@ -58,6 +78,19 @@ export class SearchComponent implements OnInit {
   }
 
   setLikeDislike(status: string) {
+    if (status === 'like') {
+      this.ilike = true;
+      this.idislike = false;
+    } else {
+      this.ilike = false;
+      this.idislike = true;
+    }
+    this.idislike = status === 'dislike' ? true : false;
     this._apiService.setLikeDislike(status, this.profile.username);
+  }
+
+  setBlocked() {
+    this._apiService.blockUser(this.profile.username)
+    this.router.navigate(['/']);
   }
 }
