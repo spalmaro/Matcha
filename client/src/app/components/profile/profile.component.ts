@@ -14,26 +14,12 @@ export class ProfileComponent implements OnInit {
   public user: User;
   public upload = false;
   public picture: any;
+  likeBy = [];
+  viewedBy = [];
 
   constructor(private _apiService: ApiService, private router: Router, private sanitizer: DomSanitizer) {
     this.user = new User({ firstname: '', lastname: '', email: '', username: '', password: '',
         lastConnected: Date.now(), description: '', dobday: '01', dobmonth: 'January', gender: 'Female', profilePicture: ''})
-
-    this._apiService.userInfo.subscribe(data => {
-        if (data.success === true) {
-          const table = [data.user.profilePicture, data.user.picture1, data.user.picture2, data.user.picture3, data.user.picture4];
-          const table2 = [this.user.profilePicture, this.user.picture1, this.user.picture2, this.user.picture3, this.user.picture4];
-
-          for (const i in table) {
-            if (table[i] !== null || table[i] !== '') {
-              table2[i] = this.sanitizer.bypassSecurityTrustUrl(table[i]);
-            }
-          }
-          this.user = data.user;
-        }
-      })
-
-    this._apiService.getUserInfo();
   }
 
   ngOnInit() {
@@ -47,11 +33,21 @@ export class ProfileComponent implements OnInit {
         }
       }
       this.user = data.user;
-      // this.user.firstConnection = false;
     }
   })
 
     this._apiService.getUserInfo();
+    this._apiService.getLikedByUsers();
+    this._apiService.getVisitedByUsers();
+
+    this._apiService.likedBy.subscribe(data => {
+      console.log('LIKED BY', data)
+      this.likeBy = data;
+    })
+
+    this._apiService.viewedBy.subscribe(data => {
+      this.viewedBy = data;
+    })
   }
 
   base64Clean(base64) {
@@ -62,7 +58,6 @@ export class ProfileComponent implements OnInit {
   }
 
   uploadPicture(event: any) {
-    // let margua = table[this.picture];
     const numb = this.picture
     const pictureFile: HTMLInputElement = event.target || event.srcElement || event.currentTarget;
     const myReader: FileReader = new FileReader();

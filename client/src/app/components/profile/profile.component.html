@@ -106,14 +106,37 @@
             <div>x</div>
           </div>
         </a>
-        <!-- <a class="ui label">
-          #42
-          <div class="detail">22</div>
-        </a> -->
         <a class="ui label">
           <input #interest class='interest' type='text' name='interest' placeholder="Add Interest..." (keyup)='addInterest($event, interest)'>
         </a>
       </div>
     </div>
   </section>
+  <div id='by'>
+    <!-- <div class='doubling two column row'> -->
+      <div class='likeby'>
+        <!-- <div class="column"> -->
+          <div class="header"> <h1>Liked By</h1></div>
+          <div class="ui divider"></div>
+          <ul>
+            <li *ngFor="let user of likeBy">
+              <a [routerLink]="'/search/' + user.subject">{{user.subject}}</a>
+            </li>
+          </ul>
+          <h4 *ngIf='likeBy.length === 0'><i>No one has liked your profile yet</i></h4>
+        <!-- </div> -->
+      </div>
+      <div class="viewedby">
+        <div class="header">
+          <h1>Visited By</h1>
+        </div>
+        <div class="ui divider"></div>
+          <ul>
+            <li *ngFor="let user of viewedBy">
+              <a [routerLink]="'/search/' + user.subject">{{user.subject}}</a>
+            </li>
+          </ul>
+          <h4 *ngIf='viewedBy.length === 0'><i>No one has visited your profile yet</i></h4>
+      </div>
+    </div>
 </div>

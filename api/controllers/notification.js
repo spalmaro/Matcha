@@ -67,7 +67,7 @@ module.exports = {
     },
 
     getMessages(data, socket) {
-        mongodb.connect(url, (err, result) => {
+        mongodb.connect(url, (err, db) => {
             if (err) {
                 throw err;
             }
@@ -76,5 +76,33 @@ module.exports = {
                 socket.emit('messages:post', result);
             })
         })
+    },
+
+    getLikedBy(data, socket) {
+        mongodb.connect(url, (err, db) => {
+            if (err) {
+                throw err;
+            }
+            db.collection('views').find({'currentUser': data, 'status': 'like'}).toArray((err, result) => {
+                if (err) throw err;
+
+                socket.emit('likeby:post', result);
+            })
+        })
+    },
+
+    getViewedBy(data, socket) {
+        mongodb.connect(url, (err, db) => {
+            if (err) {
+                throw err;
+            }
+            db.collection('visit').find({'subject': data}).toArray((err, result) => {
+                if (err) throw err;
+
+                socket.emit('viewdby:post', result);
+            })
+        })
     }
+
+
 }

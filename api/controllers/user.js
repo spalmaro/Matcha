@@ -73,7 +73,7 @@ const getUserInfo = (username, socket) => {
     })
 }
 
-const reportUser = (data, socket) => {
+const reportUser = (data) => {
     mongodb.connect(url, (err, db) => {
         if (err) {
             throw err;
@@ -86,9 +86,23 @@ const reportUser = (data, socket) => {
     })
 }
 
+const blockUser = (data) => {
+        mongodb.connect(url, (err, db) => {
+        if (err) {
+            throw err;
+        }
+        db.collection('users').update({'username': data.currentUser}, {$push: {blocked: data.blockedUser}}, (err, result) => {
+            if (err) {
+              throw err;
+            } 
+        })
+    })
+}
+
 module.exports = {
     'addUser': addUser,
     'updateUser': updateUser,
     'getUserInfo': getUserInfo,
-    'reportUser': reportUser
+    'reportUser': reportUser,
+    'blockUser': blockUser
 };

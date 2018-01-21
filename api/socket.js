@@ -55,8 +55,22 @@ module.exports = (io) => {
 
         socket.on('report:set', data => {
             console.log('reporting user');
-            userCtrl.reportUser(data, socket);
+            userCtrl.reportUser(data);
         })
 
+        socket.on('block:set', data => {
+            console.log('blocking user');
+            userCtrl.blockUser(data);
+        })
+
+        socket.on('likeby:get', data => {
+            console.log('getting users who like me');
+            notificationCtrl.getLikedBy(data, socket);
+        })
+
+        socket.on('viewedby:get', data => {
+            console.log('get users who visited profile');
+            notificationCtrl.getViewedBy(data, socket);
+        })
     })
 }

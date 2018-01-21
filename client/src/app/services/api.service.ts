@@ -12,6 +12,8 @@ export class ApiService {
   @Output() list: EventEmitter<any> = new EventEmitter();
   @Output() messages: EventEmitter<any> = new EventEmitter();
   @Output() profile: EventEmitter<any> = new EventEmitter();
+  @Output() likedBy: EventEmitter<any> = new EventEmitter();
+  @Output() viewedBy: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private socketService: SocketService,
@@ -41,6 +43,16 @@ export class ApiService {
 
     this.socket.on('profile:post', data => {
       this.profile.emit(data);
+    })
+
+    this.socket.on('likeby:post', data => {
+      console.log('LIKED BY', data)
+      this.likedBy.emit(data);
+    })
+
+    this.socket.on('viewdby:post', data => {
+      console.log('VIEWED ', data)
+      this.viewedBy.emit(data);
     })
   }
 
@@ -87,5 +99,17 @@ export class ApiService {
 
   reportUser(userToReport) {
     this.socket.emit('report:set', {userToReport: userToReport, currentUser: this._userService.getCurrentUser()})
+  }
+
+  blockUser(blockedUser) {
+    this.socket.emit('block:set', {blockedUser: blockedUser, currentUser: this._userService.getCurrentUser()})
+  }
+
+  getLikedByUsers() {
+    this.socket.emit('likeby:get', this._userService.getCurrentUser())
+  }
+
+  getVisitedByUsers() {
+    this.socket.emit('viewedby:get', this._userService.getCurrentUser())
   }
 }
