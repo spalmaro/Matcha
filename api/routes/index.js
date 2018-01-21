@@ -17,7 +17,6 @@ const env = require('../config/environment')
 // });
 
 router.post('/signup', (req, res, next) => {
-  console.log('### bodyy',req.body)
   let item = {
     email: req.body.email,
     username: req.body.username,

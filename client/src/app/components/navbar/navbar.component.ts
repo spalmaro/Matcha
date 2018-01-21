@@ -11,6 +11,7 @@ import { ApiService } from 'app/services/api.service';
 })
 export class NavbarComponent implements OnInit {
   public notiftotal = 0;
+  public search = '';
   public newmsgs = 0;
 
   constructor(private _userService: UserService,
@@ -34,6 +35,14 @@ export class NavbarComponent implements OnInit {
     event.stopPropagation();
 
 
+  }
+
+  searchUser(e) {
+    if (e.keyCode === 13) {
+      this.router.navigateByUrl('/search/' + this.search);
+      location.reload();
+      this.search = '';
+    }
   }
 
   logout() {

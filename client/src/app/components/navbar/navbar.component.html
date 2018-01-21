@@ -24,26 +24,24 @@
     <ul>
       <li class="search">
         <a class="fa-search" href="#search">Search</a>
-        <form id="search" method="get" action="#">
-          <input type="text" name="query" placeholder="Search" />
+        <form style="margin-right: 10px">
+          <input [(ngModel)]='search' (keydown)='searchUser($event)' type="text" name="query" placeholder="Search" />
         </form>
       </li>
-      <li class="menu">
+      <!-- <li class="menu">
         <a class="fa-bars" href="#menu">Menu</a>
-      </li>
+      </li> -->
     </ul>
   </nav>
 </header>
-<section id="menu">
+<!-- <section id="menu">
 
-  <!-- Search -->
   <section>
     <form class="search" method="get" action="#">
       <input type="text" name="query" placeholder="Search" />
     </form>
   </section>
 
-  <!-- Links -->
   <section>
     <ul class="links">
       <li>
@@ -64,7 +62,6 @@
     </ul>
   </section>
 
-  <!-- Actions -->
   <section>
     <ul class="actions vertical">
       <li>
@@ -73,4 +70,4 @@
     </ul>
   </section>
 
-</section>
+</section> -->
