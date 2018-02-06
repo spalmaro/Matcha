@@ -8,7 +8,7 @@
       <div class="ui divider"></div>
       <li *ngFor="let msg of notifications">
           <div class='ui feed'>
-            {{msg.message}} <strong style='color:#fd5068;' routerLink='/:msg.from'>{{msg.from}}</strong>
+            {{msg.message}} <strong style='color:#fd5068;' [routerLink]="'/search/' + msg.from">{{msg.from}}</strong>
             <i id='timestamp'>{{ msg.date }}</i>
           </div>
       </li>

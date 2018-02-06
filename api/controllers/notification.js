@@ -43,8 +43,8 @@ module.exports = {
     readNotifications(data, socket) {
         mongodb.connect(url, (err, db) => {
             if (err) throw err;
-            console.log('Data', data)
-            db.collection('notifications').update({'who': data}, {$set: {'read': true}}, (err, result) => {
+            console.log('alkdjf', data);
+            db.collection('notifications').update({'who': data}, {$set: {'read': true}}, {multi:true}, (err, result) => {
                 if (err) throw err;
                 // console.log('RESULT READ UNREAD NOTIF', result);
             })
@@ -54,10 +54,16 @@ module.exports = {
     sendMessage(data, socket) {
         mongodb.connect(url, (err, db) => {
             if (err) throw err;
+            console.log('lakdjflaksjdf', data)
             db.collection('match').findOne({users: {$all: [data.to, data.from]}}, (err, result) => {
                 if (err) throw err;
                 if (result) {
-                    let msg = result.messages.push(data.message);
+                    let message = {};
+                    messsage['to'] = data.to;
+                    message['from'] = data.from;
+                    message['message'] = data.message;
+                    message['timestamp'] = data.timestamp;
+                    let msg = result.messages.push(message);
                     db.collection('match').update({'users': {$all: [data.to, data.from]}}, {$set:  {'messages': msg, 'read': false}}, (err, result) => {
                         if (err) throw err;
                     })
@@ -71,7 +77,7 @@ module.exports = {
             if (err) {
                 throw err;
             }
-            db.collection('match').find({'users': {$in: data.username}, 'messages.from': {$nin: data.blocked}}).sort({'timestamp': -1}, (err, result) => {
+            db.collection('match').find({'users': data.username}).sort({'timestamp': -1, 'messages.timestamp': -1}).toArray((err, result) => {
                 if (err) throw err;
                 socket.emit('messages:post', result);
             })

@@ -72,5 +72,15 @@ module.exports = (io) => {
             console.log('get users who visited profile');
             notificationCtrl.getViewedBy(data, socket);
         })
+
+        socket.on('messages:get', data => {
+            console.log('getting messages');
+            notificationCtrl.getMessages(data, socket);
+        })
+
+        socket.on('message:set', data => {
+            console.log('sending message');
+            notificationCtrl.sendMessage(data, socket);
+        })
     })
 }

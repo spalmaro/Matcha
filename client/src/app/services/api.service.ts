@@ -22,7 +22,6 @@ export class ApiService {
     this.socket = socketService.socketConnect();
 
     this.socket.on('userInfo:sent', data => {
-      console.log('LIKED BY', data)
         this.userInfo.emit(data);
     })
 
@@ -84,8 +83,8 @@ export class ApiService {
     this.socket.emit('notifications:get', user);
   }
 
-  sendMessage(message) {
-    this.socket.emit('message:set', message);
+  sendMessage(message, to, timestamp) {
+    this.socket.emit('message:set', {message: message, to: to, from: this._userService.getCurrentUser, timestamp: timestamp});
   }
 
   getMessages(user) {

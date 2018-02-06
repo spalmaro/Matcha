@@ -24,9 +24,11 @@ import { ChatComponent } from './components/chat/chat.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SearchComponent } from './components/search/search.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { ChatDetailsComponent } from './components/chat-details/chat-details.component';
 
 const appRoutes: Routes = [
   { path: 'search/:username', component: SearchComponent, canActivate: [AuthGuardService]},
+  { path: 'chat/:username', component: ChatDetailsComponent, canActivate: [AuthGuardService]},
   { path: 'search', redirectTo: '', canActivate: [AuthGuardService]},
   { path: '', component: IndexComponent, canActivate: [AuthGuardService2] },
   { path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuardService] },
@@ -48,7 +50,8 @@ const appRoutes: Routes = [
     ChatComponent,
     NotificationsComponent,
     SearchComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    ChatDetailsComponent
   ],
   imports: [
     BrowserModule,

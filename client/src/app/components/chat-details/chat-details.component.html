@@ -1,0 +1,18 @@
+<app-navbar></app-navbar>
+<div class='chat-box'>
+  <div id="chat-box-inside-title">
+  		<h3>Chat with {{chatBuddy.username}}</h3>
+  	</div>
+  	<div class="chat-box-inside-text">
+  		<ul id="chat-box-inside-list">
+  			<li *ngFor='let msg of ' class="chat-box-inside-content target-user">
+  				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
+  				<span>Salut j'adore tes photos !</span>
+  			</li>
+  		</ul>
+  	</div>
+  	<form>
+  		<input type="text" [(ngModel)]='message' id="chat-box-inside-form" name='message' required >
+  		<input type="submit" value="post" id="chat-box-inside-submit" (click)='sendMessage()'>
+  	</form>
+</div>

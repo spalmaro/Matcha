@@ -35,8 +35,6 @@ export class HomeComponent implements OnInit {
     });
     this._apiService.list.subscribe(data => {
       this.list = data;
-
-      console.log(this.list, 'the list')
     })
   }
 
