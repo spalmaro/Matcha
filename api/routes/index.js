@@ -17,37 +17,13 @@ const env = require('../config/environment')
 // });
 
 router.post('/signup', (req, res, next) => {
-  let item = {
-    email: req.body.email,
-    username: req.body.username,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    age: getAge(req.body.dobyear + '-' + req.body.dobmonth + '-' + req.body.dobday),
-    dobday: req.body.dobday,
-    dobmonth: req.body.dobmonth,
-    dobyear: req.body.dobyear,
-    password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)),
-    gender: req.body.gender,
-    orientation: 'Both',
-    description: '',
-    location: [0, 0],
-    address: '',
-    lastConnected: '',
-    profilePicture: '',
-    score: 10,
-    interests: [],
-    blocked: [],
-    reportedBy: [], 
-    firstConnection: true,
-    picture1: '',
-    picture2: '',
-    picture3: '',
-    picture4: ''
-  }
+
+  let item = [
+    '', req.body.email,req.body.username, req.body.firstname, req.body.lastname, getAge(req.body.dobyear + '-' + req.body.dobmonth + '-' + req.body.dobday), req.body.dobday,
+    req.body.dobmonth, req.body.dobyear, bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)),req.body.gender,
+    'Both', '', [0, 0], '', '', '', 10, [], [], [],  true, '', '', '', ''
+  ]
   User.addUser(item, res);
-  
-  // req.session.user = req.body.login;
-  // res.redirect('/edit');
 })
 
 router.post('/login', async (req, res, next) => {

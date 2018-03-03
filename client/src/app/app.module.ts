@@ -17,14 +17,14 @@ import { AuthGuardService2 } from './services/auth-guard2.service'
 import { UserService } from './services/user.service';
 import { ApiService } from 'app/services/api.service';
 import { SocketService } from './services/socket.service';
-import { NotificationService } from './services/notification.service'
-import { SliderModule } from 'primeng/slider';
+import { NotificationService } from './services/notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatComponent } from './components/chat/chat.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SearchComponent } from './components/search/search.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ChatDetailsComponent } from './components/chat-details/chat-details.component';
+import { SliderModule } from 'primeng/slider';
 
 const appRoutes: Routes = [
   { path: 'search/:username', component: SearchComponent, canActivate: [AuthGuardService]},

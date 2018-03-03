@@ -67,7 +67,7 @@ CREATE TABLE notifications(
 CREATE TABLE match(
     match_uuid uuid DEFAULT uuid_generate_v4 (),
     users text[] NOT NULL,
-    match_ts timestamp,
+    match_ts timestamp default current_timestamp,
     match_read boolean DEFAULT FALSE,
     PRIMARY KEY (match_uuid)
 );
@@ -78,7 +78,7 @@ CREATE TABLE messages(
     msg_from text NOT NULL,
     msg_to text NOT NULL,
     msg_msg text NOT NULL,
-    msg_ts timestamp,
+    msg_ts timestamp default current_timestamp,
     PRIMARY KEY (msg_uuid),
     FOREIGN KEY (match_uuid) REFERENCES match (match_uuid) ON DELETE CASCADE
 );
@@ -91,5 +91,11 @@ CREATE TABLE views(
     PRIMARY KEY (views_uuid)
 );
 
+CREATE TABLE password_reset(
+    user_uuid uuid
+    activation_uuid uuid uuid_generate_v4 ()
+    expiration_ts timestamp default current_timestamp
+    PRIMARY KEY (user_uuid)
+)
 
 

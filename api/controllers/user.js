@@ -1,32 +1,68 @@
-const mongodb = require('mongodb').MongoClient;
+// const mongodb = require('mongodb').MongoClient;
 const assert = require('assert');
 
-const url = 'mongodb://localhost:27017/Matcha_DB';
+// const url = 'mongodb://localhost:27017/Matcha_DB';
+const { Pool, Client } = require('pg')
+const env = require('../config/environment')
+const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`
 
+const pool = new Pool({
+    connectionString: connectionString,
+})
 
 const addUser = (item, res) => {
-    mongodb.connect(url, (err, db) => {
-        assert.equal(null, err)
-        db.collection('users').findOne({$or: [{'username' : item.username}, {'email': item.email}]}, (err, result) => {
-            if (err) {
-                console.log(err)
-                res.json({
-                  success: false,
-                  msg: err
-                });
-            }
-            if (result){
-                res.json({success: false, msg: 'Email or username already exists'})
-            } else {
-                db.collection('users').insertOne(item, (err, result) => {
-                    assert.equal(null, err)
-                    console.log('User Inserted')
+    const insertUser = {
+        text: 'INSERT INTO users(email) VALUES($1)',
+        values: [item.email],
+    }
+
+    const checkUserExists = {
+        text: 'SELECT * FROM users WHERE username = $1 OR email = $2',
+        values: [item.username, item.email]
+    }
+
+    pool.query(checkUserExists)
+    .then(result => {
+        console.log("yep");
+        if (result.rowCount == 1) {
+            res.json({success: false, msg: 'Email or username already exists'})
+        } else {
+            pool.query(insertUser)
+            .then(resu => {
+                console.log('response -->', resu)
+                if (resu.rowsCount == 1) {
                     res.json({success: true, msg: 'User was successfully created. You can now log in.'})
-                    db.close()
-                })
-            }
-        })
+                } else {
+                    res.json({success: false, msg: 'An error has occurred. Please try again'})
+                }
+            })
+            .catch(e => console.error("user", e.stack))
+        }
+        // console.log("here", result)
     })
+    .catch(e => console.error("nope", e.stack))
+    // mongodb.connect(url, (err, db) => {
+    //     assert.equal(null, err)
+    //     db.collection('users').findOne({$or: [{'username' : item.username}, {'email': item.email}]}, (err, result) => {
+    //         if (err) {
+    //             console.log(err)
+    //             res.json({
+    //               success: false,
+    //               msg: err
+    //             });
+    //         }
+    //         if (result){
+    //             res.json({success: false, msg: 'Email or username already exists'})
+    //         } else {
+    //             db.collection('users').insertOne(item, (err, result) => {
+    //                 assert.equal(null, err)
+    //                 console.log('User Inserted')
+    //                 res.json({success: true, msg: 'User was successfully created. You can now log in.'})
+    //                 db.close()
+    //             })
+    //         }
+        // })
+    // })
 }
 
 const updateUser = (item, socket) => {
