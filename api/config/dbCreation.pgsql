@@ -1,7 +1,10 @@
 -- brew update
 -- brew install postgresql
--- postgres -D /usr/local/var/postgres || any other path
--- postgres -D path || to run the fucking server
+-- mkdir db && chmod 0700 db || directory of DATABASE
+-- postgres -D ~/Desktop/Matcha/api/db
+-- initdb ~/Desktop/Matcha/api/db
+-- pg_ctl -D /Users/lvalenti/Desktop/Matcha/api/db -l logfile start
+-- psql -d matcha (server)
 -- remove file that make crash line 127
 -- pg_ctl -D /Users/StanyaPalmaro/Documents/42/Matcha/api/db -l /usr/local/var/postgres/server.log restart || if pgadmin stinks
 -- launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist || im guessing to quit cause background
@@ -26,14 +29,14 @@ CREATE TABLE users(
     password text NOT NULL,
     gender text NOT NULL,
     orientation text NOT NULL DEFAULT 'Both',
-    description text NOT NULL ,
+    description text,
     location point,
-    address text NOT NULL,
-    lastConnected timestamp NOT NULL,
+    address text,
+    lastConnected timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     profilePicture text,
     score integer NOT NULL DEFAULT 10,
-    blocked text[] NOT NULL,
-    reportedBy text[] NOT NULL, 
+    blocked text[],
+    reportedBy text[], 
     firstConnection boolean NOT NULL DEFAULT TRUE,
     picture1 text,
     picture2 text,
@@ -92,9 +95,9 @@ CREATE TABLE views(
 );
 
 CREATE TABLE password_reset(
-    user_uuid uuid
-    activation_uuid uuid uuid_generate_v4 ()
-    expiration_ts timestamp default current_timestamp
+    user_uuid uuid,
+    activation_uuid uuid DEFAULT uuid_generate_v4 (),
+    expiration_ts timestamp DEFAULT current_timestamp,
     PRIMARY KEY (user_uuid)
 )
 
