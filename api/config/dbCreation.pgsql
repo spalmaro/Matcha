@@ -1,7 +1,6 @@
 -- brew update
 -- brew install postgresql
 -- mkdir db && chmod 0700 db || directory of DATABASE
--- postgres -D ~/Desktop/Matcha/api/db
 -- initdb ~/Desktop/Matcha/api/db
 -- pg_ctl -D /Users/lvalenti/Desktop/Matcha/api/db -l logfile start
 -- psql -d matcha (server)
