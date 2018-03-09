@@ -26,15 +26,14 @@ router.post('/signup', (req, res, next) => {
   let item = [
     req.body.email, req.body.username, req.body.firstname, req.body.lastname, getAge(req.body.dobyear + '-' + req.body.dobmonth + '-' + req.body.dobday), req.body.dobday,
     req.body.dobmonth, req.body.dobyear, bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)), req.body.gender,
-    'Both', '', '(0, 0)', '', '', 10, [], [], true, '', '', '', ''
+    'Both', '', '(0, 0)', '', '', 10, [], [], true, [], '', '', '', ''
   ]
-
   User.addUser(item, res);
 })
 
 router.post('/login', async (req, res, next) => {
   let checkPassword = {
-    text: "SELECT username, email, password, firstConnection FROM users WHERE username=$1",
+    text: "SELECT username, email, password, firstconnection FROM users WHERE username=$1",
     values: [req.body.username]
   }
   try {
@@ -44,7 +43,7 @@ router.post('/login', async (req, res, next) => {
         expiresIn: 604800 // 1 week
       });
       console.log("connect", result.rows);
-      res.json({ success: true, token: token, user: { username: result.rows[0].username, email: result.rows[0].email }, firstConnection: result.rows[0].firstconnection })
+      res.json({ success: true, token: token, user: { username: result.rows[0].username, email: result.rows[0].email }, firstconnection: result.rows[0].firstconnection })
     }
     else if (result.rows[0]) {
       res.json({ success: false, msg: 'Wrong Password' })

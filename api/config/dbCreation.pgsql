@@ -31,29 +31,18 @@ CREATE TABLE users(
     description text,
     location point,
     address text,
-    lastConnected timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    lastconnected timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     profilePicture text,
     score integer NOT NULL DEFAULT 10,
     blocked text[],
     reportedBy text[], 
-    firstConnection boolean NOT NULL DEFAULT TRUE,
+    firstconnection boolean NOT NULL DEFAULT TRUE,
+    interests text[],
     picture1 text,
     picture2 text,
     picture3 text,
     picture4 text,
     PRIMARY KEY (user_uuid)
-);
-
-CREATE TABLE interests(
-    interest_uuid uuid DEFAULT uuid_generate_v4 (),
-    interest text
-);
-
-CREATE TABLE user_interests(
-    user_uuid uuid NOT NULL,
-    interest_uuid uuid NOT NULL,
-    PRIMARY KEY (user_uuid, interest_uuid),
-    FOREIGN KEY (user_uuid) REFERENCES users (user_uuid) ON DELETE CASCADE
 );
 
 CREATE TABLE notifications(
