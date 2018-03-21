@@ -19,14 +19,14 @@ export class ProfileComponent implements OnInit {
 
   constructor(private _apiService: ApiService, private router: Router, private sanitizer: DomSanitizer) {
     this.user = new User({ firstname: '', lastname: '', email: '', username: '', password: '',
-        lastConnected: Date.now(), description: '', dobday: '01', dobmonth: 'January', gender: 'Female', profilePicture: ''})
+        lastconnected: Date.now(), description: '', dobday: '01', dobmonth: 'January', gender: 'Female', profilepicture: ''})
   }
 
   ngOnInit() {
     this._apiService.userInfo.subscribe(data => {
     if (data.success === true) {
-      const table = [data.user.profilePicture, data.user.picture1, data.user.picture2, data.user.picture3, data.user.picture4];
-      const table2 = [this.user.profilePicture, this.user.picture1, this.user.picture2, this.user.picture3, this.user.picture4];
+      const table = [data.user.profilepicture, data.user.picture1, data.user.picture2, data.user.picture3, data.user.picture4];
+      const table2 = [this.user.profilepicture, this.user.picture1, this.user.picture2, this.user.picture3, this.user.picture4];
       for (const i in table) {
         if (table[i] !== null || table[i] !== '') {
           table2[i] = this.sanitizer.bypassSecurityTrustUrl(table[i]);
@@ -65,10 +65,10 @@ export class ProfileComponent implements OnInit {
     myReader.readAsDataURL(pictureFile.files.item(0));
     const that = this;
     myReader.onloadend = function(loadEvent: any) {
-      const table = [that.user.profilePicture, that.user.picture1, that.user.picture2, that.user.picture3, that.user.picture4];
+      const table = [that.user.profilepicture, that.user.picture1, that.user.picture2, that.user.picture3, that.user.picture4];
       toclean = loadEvent.target.result;
       if (that.picture === 0) {
-        that.user.profilePicture = that.base64Clean(toclean);
+        that.user.profilepicture = that.base64Clean(toclean);
       } else {
         const index = 'picture' + that.picture;
         that.user[index] = that.base64Clean(toclean);

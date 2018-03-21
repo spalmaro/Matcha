@@ -29,7 +29,7 @@ export class IndexComponent implements OnInit {
   constructor(private _apiService: ApiService, private router: Router, private _userService: UserService) {
   this.user = new User({
     firstname: '', lastname: '', email: '', username: '', password: '',
-    lastConnected: Date.now(), description: '', dobday: 'Day', dobmonth: 'Month', gender: 'Sex', profilePicture: ''
+    lastconnected: Date.now(), description: '', dobday: 'Day', dobmonth: 'Month', gender: 'Sex', profilepicture: ''
   })
 
   this.login = { 'username': '', 'password': ''}
@@ -42,7 +42,7 @@ export class IndexComponent implements OnInit {
     this._userService.authenticateUser(this.login).subscribe(data => {
       if (data.success) {
         this._userService.storeUserData(data.token, data.user.username);
-        if (data.firstConnection === true) {
+        if (data.firstconnection === true) {
           this.router.navigate(['/editprofile']);
         } else {
           this.router.navigate(['/home']);

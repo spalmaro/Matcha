@@ -3,8 +3,8 @@
   <section id='first'>
     <div class="ui items">
       <div class="item">
-        <div class="profile-pic" *ngIf="profile.profilePicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.profilePicture +')'"></div>
-        <div class="profile-pic" *ngIf="!profile.profilePicture || profile.profilePicture == ''" style="background-image: url('https://scontent.cdninstagram.com/t51.2885-19/11906329_960233084022564_1448528159_a.jpg')"></div>
+        <div class="profile-pic" *ngIf="profile.profilepicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.profilepicture +')'"></div>
+        <div class="profile-pic" *ngIf="!profile.profilepicture || profile.profilepicture == ''" style="background-image: url('https://scontent.cdninstagram.com/t51.2885-19/11906329_960233084022564_1448528159_a.jpg')"></div>
         <div class="content">
           <div class='name'>
             <h1>
@@ -25,14 +25,14 @@
           <label *ngIf='likesme'><i>This user likes you</i></label>
         </div>
       </div>
-        <div *ngIf='currentUser.profilePicture' style="display:inline-block; margin-top: 50px;">
+        <div *ngIf='currentUser.profilepicture' style="display:inline-block; margin-top: 50px;">
           <button *ngIf='!ilike' class='like' (click)='setLikeDislike("like")'>Like</button>
           <button *ngIf='ilike' class='like' (click)='setLikeDislike("dislike")'>Liked</button>
           <button *ngIf='!idislike' class='dislike' (click)='setLikeDislike("dislike")'>Dislike</button>
           <button *ngIf='idislike' class='dislike' (click)='setLikeDislike("like")'>Disliked</button>
           <button class='blocked' (click)='setBlocked()'>Block</button>
         </div>
-        <div *ngIf="!currentUser.profilePicture" style="padding: 5px;text-align: center;">
+        <div *ngIf="!currentUser.profilepicture" style="padding: 5px;text-align: center;">
           <h4>Enable likes and dislikes by uploading a profile picture</h4>
         </div>
     </div>

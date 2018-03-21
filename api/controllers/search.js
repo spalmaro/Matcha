@@ -18,7 +18,7 @@ module.exports = {
               query.gender =  {$in: ['Male', 'Female']}
             }
             query.orientation = {$in: [data.user.gender == 'Male' ? 'Guys' : 'Girls' , 'Both']} ;
-            query.profilePicture = {$ne: ''};
+            query.profilepicture = {$ne: ''};
             query.score = {$gte: data.search.startScore};
 			query.age = {$gte: data.search.startAge}
             if (data.search.endAge !== 65) {
@@ -61,7 +61,7 @@ module.exports = {
               query.gender =  {$in: ['Male', 'Female']}
             }
             query.orientation = {$in: [user.gender == 'Male' ? 'Guys' : 'Girls' , 'Both']} ;
-            query.profilePicture = {$ne: ''};
+            query.profilepicture = {$ne: ''};
             let viewed = []
             for (let subject of result) {
               viewed.push(subject.subject);

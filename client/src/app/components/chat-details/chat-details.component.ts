@@ -28,8 +28,8 @@ export class ChatDetailsComponent implements OnInit {
     this._apiService.profile.subscribe(data => {
       if (data.username) {
           this._apiService.setVisit(username);
-          const table = [data.profilePicture, data.picture1, data.picture2, data.picture3, data.picture4];
-          const table2 = [this.chatBuddy.profilePicture, this.chatBuddy.picture1, this.chatBuddy.picture2,
+          const table = [data.profilepicture, data.picture1, data.picture2, data.picture3, data.picture4];
+          const table2 = [this.chatBuddy.profilepicture, this.chatBuddy.picture1, this.chatBuddy.picture2,
              this.chatBuddy.picture3, this.chatBuddy.picture4];
 
           for (const i in table) {

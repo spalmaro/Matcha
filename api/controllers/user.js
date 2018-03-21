@@ -45,10 +45,7 @@ const addUser = (item, res) => {
 const updateUser = (item, socket) => {
 
     console.log('UPDATING PROFILE', Object.values(item))
-    const userUpdate = {
-        text: "UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, $26) WHERE user_uuid=$1",
-        values: Object.values(item)
-    }
+    const userUpdate = { text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14 ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1", values: Object.values(item) };
 
     pool.query(userUpdate).then(result => {
             console.log('cdddhfgghnfhcghnould not update')

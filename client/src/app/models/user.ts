@@ -7,22 +7,22 @@ export class User {
          public gender: String;
          public username: String;
          public password: String;
-         public lastConnected: Date;
+         public lastconnected: Date;
          public description: String;
          public dobday: Number;
          public dobmonth: String;
          public dobyear: String;
          public orientation: String;
-         public profilePicture: SafeUrl;
+         public profilepicture: SafeUrl;
          public picture1: SafeUrl;
          public picture2: SafeUrl;
          public picture3: SafeUrl;
          public picture4: SafeUrl;
-         public firstConnection: Boolean;
+         public firstconnection: Boolean;
          public age: Number;
          public score: Number;
          public interests: Array<String>;
-         public location: Array<number>;
+         public location: String;
          public address: String;
 
          constructor(data: any) {
@@ -32,14 +32,14 @@ export class User {
            this.gender = data.gender;
            this.username = data.username;
            this.password = data.email;
-           this.lastConnected = data.lastConnected;
+           this.lastconnected = data.lastconnected;
            this.description = data.description;
            this.dobday = data.dobday;
            this.dobmonth = data.dobmonth;
            this.dobyear = data.dobyear;
            this.orientation = data.orientation;
-           this.profilePicture = data.profilePicture;
-           this.firstConnection = data.firstConnection;
+           this.profilepicture = data.profilepicture;
+           this.firstconnection = data.firstconnection;
            this.age = data.age;
            this.score = data.score;
            this.interests = data.interests;

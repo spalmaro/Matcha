@@ -2,12 +2,13 @@
 -- brew install postgresql
 -- mkdir db && chmod 0700 db || directory of DATABASE
 -- initdb ~/Desktop/Matcha/api/db
--- pg_ctl -D /Users/lvalenti/Desktop/Matcha/api/db -l logfile start
+-- postgres -D api/db
+-- pg_ctl -D api/db/ -l logfile start
 -- psql -d matcha (server)
--- remove file that make crash line 127
--- pg_ctl -D /Users/StanyaPalmaro/Documents/42/Matcha/api/db -l /usr/local/var/postgres/server.log restart || if pgadmin stinks
--- launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist || im guessing to quit cause background
-
+-- Or, if you don't want/need a background service you can just run:
+--   pg_ctl -D /usr/local/var/postgres start
+-- ==> Summary
+--  /usr/local/Cellar/postgresql/10.3: 3,383 files, 39.2MB
 
 CREATE DATABASE IF NOT EXISTS Test_DB;
 
@@ -31,12 +32,12 @@ CREATE TABLE users(
     description text,
     location point,
     address text,
-    lastconnected timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    profilePicture text,
+    lastconnected timestamp DEFAULT CURRENT_TIMESTAMP,
+    profilepicture text,
     score integer NOT NULL DEFAULT 10,
     blocked text[],
     reportedBy text[], 
-    firstconnection boolean NOT NULL DEFAULT TRUE,
+    firstconnection boolean DEFAULT TRUE,
     interests text[],
     picture1 text,
     picture2 text,

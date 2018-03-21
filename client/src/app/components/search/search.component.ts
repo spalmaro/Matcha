@@ -31,8 +31,8 @@ export class SearchComponent implements OnInit {
     this._apiService.profile.subscribe(data => {
       if (data.username) {
           this._apiService.setVisit(username);
-          const table = [data.profilePicture, data.picture1, data.picture2, data.picture3, data.picture4];
-          const table2 = [this.profile.profilePicture, this.profile.picture1, this.profile.picture2,
+          const table = [data.profilepicture, data.picture1, data.picture2, data.picture3, data.picture4];
+          const table2 = [this.profile.profilepicture, this.profile.picture1, this.profile.picture2,
              this.profile.picture3, this.profile.picture4];
 
           for (const i in table) {

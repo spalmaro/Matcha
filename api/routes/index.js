@@ -12,15 +12,6 @@ const pool = new Pool({
     connectionString: connectionString,
 })
 
-/* GET home page. */
-// router.get('/', function (req, res, next) {
-//   if (req.session.error) {
-//     res.locals.error = req.session.error;
-//     req.session.error = undefined;
-//   }
-//   res.render('index');
-// });
-
 router.post('/signup', (req, res, next) => {
 
   let item = [
