@@ -44,8 +44,20 @@ const addUser = (item, res) => {
 
 const updateUser = (item, socket) => {
 
-    console.log('UPDATING PROFILE', Object.values(item))
-    const userUpdate = { text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14 ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1", values: Object.values(item) };
+    let mf = Object.values(item)
+    mf[26] = item.location.x;
+    mf[27] = item.location.y;
+    console.log("UPDATING PROFILE", mf);
+    for (let x in mf) {
+        let l = x + 1;
+        console.log( l , mf[x])
+
+    }
+    
+    const userUpdate = {
+        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1",
+        values: mf
+    };
 
     pool.query(userUpdate).then(result => {
             console.log('cdddhfgghnfhcghnould not update')

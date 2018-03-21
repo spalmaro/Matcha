@@ -107,7 +107,7 @@ export class EditprofileComponent implements OnInit {
       console.log ('LATITUDE', latitude)
       this._userService.getLocation(latitude, longitude).subscribe(data => {
         this.user.address = data.results[4].formatted_address;
-        this.user.location = `(${longitude}, ${latitude})`;
+        this.user.location = { x: longitude, y: latitude };
         this._apiService.updateUserProfile(this.user);
       })
     }
@@ -118,7 +118,7 @@ export class EditprofileComponent implements OnInit {
         const {lat, lng} = data.location;
         this._userService.getLocation(lat, lng).subscribe(result => {
           this.user.address = result.results[4].formatted_address;
-          this.user.location = `(${lng}, ${lat})`;
+          this.user.location = { x: lng, y: lat };
           this._apiService.updateUserProfile(this.user);
       })
       })
@@ -128,7 +128,7 @@ export class EditprofileComponent implements OnInit {
     if (selectedData.data) {
       const {lat, lng} = selectedData.data.geometry.location;
       this.user.address = selectedData.data.formatted_address;
-      this.user.location = `(${lng}, ${lat})`;
+      this.user.location = {x: lng, y: lat};
     }
   }
 

@@ -22,7 +22,7 @@ export class User {
          public age: Number;
          public score: Number;
          public interests: Array<String>;
-         public location: String;
+         public location: Object;
          public address: String;
 
          constructor(data: any) {
