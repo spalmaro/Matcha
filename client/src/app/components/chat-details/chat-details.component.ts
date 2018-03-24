@@ -22,7 +22,6 @@ export class ChatDetailsComponent implements OnInit {
 
   ngOnInit() {
     const username = this.route.snapshot.paramMap.get('username');
-    this._apiService.getUserInfo();
     this._apiService.getProfile(username);
 
     this._apiService.profile.subscribe(data => {
@@ -43,7 +42,7 @@ export class ChatDetailsComponent implements OnInit {
       }
     })
 
-    this._apiService.userInfo.subscribe(data => {
+    this._userService.getUserInfo().subscribe(data => {
       if (data.user) {
         this.currentUser = data.user;
         this._apiService.getMessages(this.currentUser);

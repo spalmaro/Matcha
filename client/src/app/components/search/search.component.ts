@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'app/models/user';
 import { ParamMap } from '@angular/router/src/shared';
 import { ApiService } from 'app/services/api.service';
+import { UserService } from 'app/services/user.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -18,14 +19,13 @@ export class SearchComponent implements OnInit {
   idislike = false;
 
   constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer,
-  private router: Router, private _apiService: ApiService) { }
+  private router: Router, private _apiService: ApiService, private _userService: UserService) { }
 
   ngOnInit() {
     const username = this.route.snapshot.paramMap.get('username');
     this.profile = new User({});
     this.currentUser = new User({});
     this._apiService.getProfile(username);
-    this._apiService.getUserInfo();
     this._apiService.getLikedByUsers();
 
     this._apiService.profile.subscribe(data => {
@@ -55,7 +55,7 @@ export class SearchComponent implements OnInit {
       }
     })
 
-    this._apiService.userInfo.subscribe(data => {
+    this._userService.getUserInfo().subscribe(data => {
       if (data.user) {
         this.currentUser = data.user;
         if (this.currentUser['liked'].includes(this.profile.username)) {
@@ -71,7 +71,6 @@ export class SearchComponent implements OnInit {
 
   reportUser(event: Event) {
     event.stopPropagation();
-    // event.preventDefault();
     if (confirm('Are you sure you want to report this user as a fake account?')) {
       this._apiService.reportUser(this.profile.username)
     }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user'
 import { ApiService } from '../../services/api.service'
+import { UserService } from '../../services/user.service'
 import { Router } from '@angular/router'
 import { DomSanitizer } from '@angular/platform-browser';
 import { log } from 'util';
@@ -17,13 +18,13 @@ export class ProfileComponent implements OnInit {
   likeBy = [];
   viewedBy = [];
 
-  constructor(private _apiService: ApiService, private router: Router, private sanitizer: DomSanitizer) {
+  constructor(private _apiService: ApiService, private _userService: UserService, private router: Router, private sanitizer: DomSanitizer) {
     this.user = new User({ firstname: '', lastname: '', email: '', username: '', password: '',
         lastconnected: Date.now(), description: '', dobday: '01', dobmonth: 'January', gender: 'Female', profilepicture: ''})
   }
 
   ngOnInit() {
-    this._apiService.userInfo.subscribe(data => {
+    this._userService.getUserInfo().subscribe(data => {
     if (data.success === true) {
       const table = [data.user.profilepicture, data.user.picture1, data.user.picture2, data.user.picture3, data.user.picture4];
       const table2 = [this.user.profilepicture, this.user.picture1, this.user.picture2, this.user.picture3, this.user.picture4];
@@ -36,7 +37,6 @@ export class ProfileComponent implements OnInit {
     }
   })
 
-    this._apiService.getUserInfo();
     this._apiService.getLikedByUsers();
     this._apiService.getVisitedByUsers();
 

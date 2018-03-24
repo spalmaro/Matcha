@@ -38,6 +38,13 @@ export class UserService {
     return (sessionStorage.getItem('currentUser'));
   }
 
+  getUserInfo() {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.get(this.API_URL + '/getUserInfo?username=' + sessionStorage.getItem('currentUser'), { headers: headers })
+      .map(res => res.json())
+  }
+
   getLocation(latitude, longitude) {
     const headers = new Headers()
     headers.append('Content-Type', 'application/json')

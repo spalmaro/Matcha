@@ -44,18 +44,16 @@ const addUser = (item, res) => {
 
 const updateUser = (item, socket) => {
 
-    let mf = Object.values(item)
-    mf[26] = item.location.x;
-    mf[27] = item.location.y;
-    console.log("UPDATING PROFILE", mf);
+    let mf = Object.values(item);
+    mf.splice(13, 1);
+    mf.push(`(${item.location.x}, ${item.location.y})`)
     for (let x in mf) {
-        let l = x + 1;
-        console.log( l , mf[x])
+        console.log( x , mf[x])
 
     }
     
     const userUpdate = {
-        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1",
+        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $26 ::point, address = $14, lastconnected = $15, profilepicture= $16, score = $17, blocked = ARRAY $18 ::text[], reportedby = ARRAY $19 ::text[], firstconnection = $20, interests = ARRAY $21 ::text[],  picture1 = $22, picture2 = $23, picture3 = $24, picture4 = $25 WHERE user_uuid=$1",
         values: mf
     };
 
@@ -70,11 +68,12 @@ const updateUser = (item, socket) => {
         }
     })
     .catch(err => {
+        console.log('ERROR', err)
         socket.emit({ success: false, error: err });
     })
 }
 
-const getUserInfo = (username, socket) => {
+const getUserInfo = (username, res) => {
     const getInfo = {
         text: "SELECT * FROM users WHERE username=$1",
         values: [username]
@@ -100,11 +99,11 @@ const getUserInfo = (username, socket) => {
                 // }
                 // result.rows[0]['liked'] = array;
                 // result.rows[0]['dislike'] = dis;
-                socket.emit('userInfo:sent', { success: true, user: result.rows[0] })
+                res.json({ success: true, user: result.rows[0] })
             })
         }
         else {
-            socket.emit('userInfo:sent', { success: false, error: 'An error has occurred' })
+            req.json({ success: false, error: 'An error has occurred' })
         }
     })).catch((err) => console.log('NON'));
 }

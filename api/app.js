@@ -21,10 +21,6 @@ const socketio = require("socket.io");
 var io = socketio()
 app.io = io;
 
-io.on("connection", function(socket) {
-  console.log("A user is connected");
-});
-
 require('./socket')(io)
 
 // uncomment after placing your favicon in /public

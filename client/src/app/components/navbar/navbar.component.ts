@@ -18,8 +18,7 @@ export class NavbarComponent implements OnInit {
     private _apiService: ApiService, private _notificationService: NotificationService, private router: Router) { }
 
   ngOnInit() {
-    this._apiService.getUserInfo();
-    this._apiService.userInfo.subscribe(data => {
+    this._userService.getUserInfo().subscribe(data => {
       if (data.success === true) {
         this._notificationService.getNotifications(data.user);
       }

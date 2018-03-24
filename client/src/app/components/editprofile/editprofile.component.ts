@@ -38,9 +38,8 @@ export class EditprofileComponent implements OnInit {
       this.user = new User({ firstname: '', lastname: '', email: '', username: '', password: '',
         lastconnected: Date.now(), description: '', dobday: 'Day', dobmonth: 'Month', gender: 'Gender', profilepicture: ''
       })
-      this._apiService.getUserInfo();
 
-      this._apiService.userInfo.subscribe(data => {
+      this._userService.getUserInfo().subscribe(data => {
         console.log('USER', data)
         if (data.success === true) {
           if (data.user.profilepicture != null) {

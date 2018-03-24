@@ -48,4 +48,8 @@ router.post('/login', async (req, res, next) => {
 
 })
 
+router.get('/getUserInfo', (req, res, next) => {
+  User.getUserInfo(req.query.username, res)
+})
+
 module.exports = router;
