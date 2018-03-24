@@ -4,7 +4,8 @@ const assert = require('assert');
 // const url = 'mongodb://localhost:27017/Matcha_DB';
 const { Pool, Client } = require('pg')
 const env = require('../config/environment')
-const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`
+const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`;
+const jwt = require('jsonwebtoken');
 
 const pool = new Pool({
     connectionString: connectionString,
@@ -29,9 +30,14 @@ const addUser = (item, res) => {
         } else {
             pool.query(insertUser)
             .then(resu => {
-                console.log('response -->', resu)
+                console.log('AVANT')
                 if (resu.rowCount == 1) {
-                    res.json({success: true, msg: 'User was successfully created. You can now log in.'})
+                    console.log('APRES', item)
+                    const token = jwt.sign({ username: item[1], email: item[0] }, env.secret, {
+                        expiresIn: 604800 // 1 week
+                    });
+                    res.json({ success: true, token: token, user: { username: item[1], email: item[0] } })
+                    // res.json({success: true, msg: 'User was successfully created. You can now log in.'})
                 } else {
                     res.json({success: false, msg: 'An error has occurred. Please try again'})
                 }
@@ -44,22 +50,21 @@ const addUser = (item, res) => {
 
 const updateUser = (item, socket) => {
 
-    let mf = Object.values(item);
-    mf.splice(13, 1);
-    mf.push(`(${item.location.x}, ${item.location.y})`)
-    for (let x in mf) {
-        console.log( x , mf[x])
+    let nex = [],
+    e;
 
-    }
-    
+    item['location'] = `(${item['location'].x}, ${item['location'].y})`;
+    for (e in item)
+        nex.push(item[e])
+
+
     const userUpdate = {
-        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $26 ::point, address = $14, lastconnected = $15, profilepicture= $16, score = $17, blocked = ARRAY $18 ::text[], reportedby = ARRAY $19 ::text[], firstconnection = $20, interests = ARRAY $21 ::text[],  picture1 = $22, picture2 = $23, picture3 = $24, picture4 = $25 WHERE user_uuid=$1",
-        values: mf
+        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = $16, profilepicture = $17, score = $18, blocked = $19, reportedby = $20, firstconnection = $21, interests = $22, picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1",
+        values: nex
     };
 
     pool.query(userUpdate).then(result => {
-            console.log('cdddhfgghnfhcghnould not update')
-            if (result.rowCount == 1) {
+        if (result.rowCount == 1) {
             socket.emit('updateProfile:done', { success: true, message: "Your profile has successfully been updated" });
             console.log(item.username + "s profile has been updated")
         } else {
@@ -88,7 +93,7 @@ const getUserInfo = (username, res) => {
         if (result.rows[0]) {
             pool.query(getViews)
             .then(status => {
-                console.log('STATUS', status.rows[0])
+                // console.log('STATUS', status.rows[0])
                 let array = []
                 let dis = []
                 // for (const iliked of status) {
@@ -109,28 +114,44 @@ const getUserInfo = (username, res) => {
 }
 
 const reportUser = (data) => {
-    mongodb.connect(url, (err, db) => {
-        if (err) {
-            throw err;
-        }
-        db.collection('users').update({'username': data.userToReport}, {$push: {reportedBy: data.currentUser}}, (err, result) => {
-            if (err) {
-              throw err;
-            } 
-        })
+    const report = {
+        text : "UPDATE users SET reportedBy = array_append(reportedBy, $1) WHERE username = $2",
+        values : [data.currentUser, data.userToReport]
+    }
+    
+    pool.query(report).then(result => {
+        if (result.rowCount == 1) {
+        socket.emit('report:post', { success: true });
+        console.log("User was successfully reported")
+    } else {
+        console.log('could not update')
+        socket.emit('report:post', { success: false, error: err });
+    }
+    })
+    .catch(err => {
+        console.log('ERROR', err)
+        socket.emit({ success: false, error: err });
     })
 }
 
 const blockUser = (data) => {
-        mongodb.connect(url, (err, db) => {
-        if (err) {
-            throw err;
-        }
-        db.collection('users').update({'username': data.currentUser}, {$push: {blocked: data.blockedUser}}, (err, result) => {
-            if (err) {
-              throw err;
-            } 
-        })
+    const block = {
+        text : "UPDATE users SET blocked = array_append(blocked, $1) WHERE username = $2",
+        values : [data.blockedUser, data.currentUser]
+    }
+    
+    pool.query(block).then(result => {
+        if (result.rowCount == 1) {
+        socket.emit('block:post', { success: true });
+        console.log("User was successfully blocked")
+    } else {
+        console.log('could not update')
+        socket.emit('block:post', { success: false, error: err });
+    }
+    })
+    .catch(err => {
+        console.log('ERROR', err)
+        socket.emit({ success: false, error: err });
     })
 }
 

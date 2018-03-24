@@ -30,7 +30,8 @@ router.post('/login', async (req, res, next) => {
   try {
     let result = await pool.query(checkPassword)
     if (result.rows[0] && bcrypt.compareSync(req.body.password, result.rows[0]['password'])) {
-      const token = jwt.sign({ result }, env.secret, {
+
+      const token = jwt.sign({username: result.rows[0].username, email: result.rows[0].email}, env.secret, {
         expiresIn: 604800 // 1 week
       });
       console.log("connect", result.rows);

@@ -42,11 +42,7 @@ export class IndexComponent implements OnInit {
     this._userService.authenticateUser(this.login).subscribe(data => {
       if (data.success) {
         this._userService.storeUserData(data.token, data.user.username);
-        if (data.firstconnection === true) {
-          this.router.navigate(['/editprofile']);
-        } else {
-          this.router.navigate(['/home']);
-        }
+        this.router.navigate(['/home']);
       } else {
         console.log('Unsuccessful login');
         this.error = data.msg;
@@ -60,8 +56,8 @@ export class IndexComponent implements OnInit {
     this._userService.signUpUser(this.user).subscribe(data => {
       if (data.success) {
         console.log('Successful signup')
-        this.isSuccess = true;
-        this.message = data.msg;
+        this._userService.storeUserData(data.token, data.user.username);
+        this.router.navigate(['/editprofile']);
       } else {
         console.log('Unsuccessful signup')
         this.error = data.msg
