@@ -1,7 +1,5 @@
-// const mongodb = require('mongodb').MongoClient;
 const assert = require('assert');
 
-// const url = 'mongodb://localhost:27017/Matcha_DB';
 const { Pool, Client } = require('pg')
 const env = require('../config/environment')
 const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`;
@@ -30,14 +28,11 @@ const addUser = (item, res) => {
         } else {
             pool.query(insertUser)
             .then(resu => {
-                console.log('AVANT')
                 if (resu.rowCount == 1) {
-                    console.log('APRES', item)
                     const token = jwt.sign({ username: item[1], email: item[0] }, env.secret, {
                         expiresIn: 604800 // 1 week
                     });
                     res.json({ success: true, token: token, user: { username: item[1], email: item[0] } })
-                    // res.json({success: true, msg: 'User was successfully created. You can now log in.'})
                 } else {
                     res.json({success: false, msg: 'An error has occurred. Please try again'})
                 }
@@ -56,7 +51,6 @@ const updateUser = (item, socket) => {
     item['location'] = `(${item['location'].x}, ${item['location'].y})`;
     for (e in item)
         nex.push(item[e])
-
 
     const userUpdate = {
         text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = $16, profilepicture = $17, score = $18, blocked = $19, reportedby = $20, firstconnection = $21, interests = $22, picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1",
@@ -124,7 +118,7 @@ const reportUser = (data) => {
         socket.emit('report:post', { success: true });
         console.log("User was successfully reported")
     } else {
-        console.log('could not update')
+        console.log('could not report')
         socket.emit('report:post', { success: false, error: err });
     }
     })
@@ -145,7 +139,7 @@ const blockUser = (data) => {
         socket.emit('block:post', { success: true });
         console.log("User was successfully blocked")
     } else {
-        console.log('could not update')
+        console.log('could not block')
         socket.emit('block:post', { success: false, error: err });
     }
     })

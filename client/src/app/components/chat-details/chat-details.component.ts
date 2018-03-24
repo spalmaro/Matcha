@@ -45,17 +45,13 @@ export class ChatDetailsComponent implements OnInit {
     this._userService.getUserInfo().subscribe(data => {
       if (data.user) {
         this.currentUser = data.user;
-        this._apiService.getMessages(this.currentUser);
+        this._apiService.getMessages(this.currentUser, this.chatBuddy.username);
       }
     })
 
      this._apiService.messages.subscribe(list => {
-       console.log('LIST', list)
-       for (const item of list) {
-         if (item.users.includes(username)) {
-            this.messages = item.messages;
-         }
-       }
+       console.log('LIST OF MESSAGES', list)
+       
      });
   }
 

@@ -14,6 +14,7 @@ export class ApiService {
   @Output() profile: EventEmitter<any> = new EventEmitter();
   @Output() likedBy: EventEmitter<any> = new EventEmitter();
   @Output() viewedBy: EventEmitter<any> = new EventEmitter();
+  @Output() convos: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private socketService: SocketService,
@@ -35,6 +36,10 @@ export class ApiService {
 
     this.socket.on('messages:post', data => {
       this.messages.emit(data);
+    })
+
+    this.socket.on('conversations:post', data => {
+      this.convos.emit(data);
     })
 
     this.socket.on('search:post', data => {
@@ -87,8 +92,12 @@ export class ApiService {
     this.socket.emit('message:set', {message: message, to: to, from: this._userService.getCurrentUser, timestamp: timestamp});
   }
 
-  getMessages(user) {
-    this.socket.emit('messages:get', user)
+  getConversations() {
+    this.socket.emit('conversations:get', {username: this._userService.getCurrentUser()})
+  }
+
+  getMessages(from, to) {
+    this.socket.emit('messages:get', {from: from, to: to})
   }
 
   setVisit(username) {

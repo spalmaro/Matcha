@@ -74,6 +74,11 @@ module.exports = (io) => {
             notificationCtrl.getMessages(data, socket);
         })
 
+        socket.on('conversations:get', data => {
+            console.log('getting conversations');
+            notificationCtrl.getConversations(data, socket);
+        })
+
         socket.on('message:set', data => {
             console.log('sending message');
             notificationCtrl.sendMessage(data, socket);
