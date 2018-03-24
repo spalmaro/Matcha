@@ -1,0 +1,21 @@
+2018-03-24 18:01:21.451 CET [35864] LOG:  could not bind IPv6 address "::1": Address already in use
+2018-03-24 18:01:21.451 CET [35864] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-24 18:01:21.451 CET [35864] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2018-03-24 18:01:21.451 CET [35864] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-24 18:01:21.451 CET [35864] WARNING:  could not create listen socket for "localhost"
+2018-03-24 18:01:21.451 CET [35864] FATAL:  could not create any TCP/IP sockets
+2018-03-24 18:01:21.451 CET [35864] LOG:  database system is shut down
+2018-03-24 18:02:13.655 CET [35988] LOG:  could not bind IPv6 address "::1": Address already in use
+2018-03-24 18:02:13.655 CET [35988] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-24 18:02:13.655 CET [35988] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2018-03-24 18:02:13.655 CET [35988] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-24 18:02:13.655 CET [35988] WARNING:  could not create listen socket for "localhost"
+2018-03-24 18:02:13.655 CET [35988] FATAL:  could not create any TCP/IP sockets
+2018-03-24 18:02:13.655 CET [35988] LOG:  database system is shut down
+2018-03-24 18:02:43.718 CET [36081] LOG:  could not bind IPv6 address "::1": Address already in use
+2018-03-24 18:02:43.718 CET [36081] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-24 18:02:43.718 CET [36081] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2018-03-24 18:02:43.718 CET [36081] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-24 18:02:43.718 CET [36081] WARNING:  could not create listen socket for "localhost"
+2018-03-24 18:02:43.718 CET [36081] FATAL:  could not create any TCP/IP sockets
+2018-03-24 18:02:43.718 CET [36081] LOG:  database system is shut down

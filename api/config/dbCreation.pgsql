@@ -46,6 +46,7 @@ CREATE TABLE users(
     PRIMARY KEY (user_uuid)
 );
 
+
 CREATE TABLE notifications(
     notif_uuid uuid DEFAULT uuid_generate_v4 (),
     notif_type text NOT NULL,
@@ -88,6 +89,13 @@ CREATE TABLE password_reset(
     activation_uuid uuid DEFAULT uuid_generate_v4 (),
     expiration_ts timestamp DEFAULT current_timestamp,
     PRIMARY KEY (user_uuid)
-)
+);
 
+
+CREATE TABLE visit(
+   visit_uuid uuid DEFAULT uuid_generate_v4 (),
+   visit_current_user text NOT NULL,
+   visit_subject text NOT NULL,
+   PRIMARY KEY (visit_uuid)
+);
 
