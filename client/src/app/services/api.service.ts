@@ -1,24 +1,25 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { SocketService } from './socket.service';
 import { UserService } from './user.service';
+import { Http, Headers } from '@angular/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ApiService {
-  // private apiUrl = environment.API_URL;
+  private API_URL = environment.API_URL;
   private socket: any;
 
   @Output() userInfo: EventEmitter<any> = new EventEmitter();
   @Output() updateInfo: EventEmitter<any> = new EventEmitter();
   @Output() list: EventEmitter<any> = new EventEmitter();
   @Output() messages: EventEmitter<any> = new EventEmitter();
-  @Output() profile: EventEmitter<any> = new EventEmitter();
   @Output() likedBy: EventEmitter<any> = new EventEmitter();
   @Output() viewedBy: EventEmitter<any> = new EventEmitter();
   @Output() convos: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private socketService: SocketService,
-    private _userService: UserService
+    private _userService: UserService, private http: Http
   ) {
     this.socket = socketService.socketConnect();
 
@@ -46,10 +47,6 @@ export class ApiService {
       this.list.emit(data)
     })
 
-    this.socket.on('profile:post', data => {
-      this.profile.emit(data);
-    })
-
     this.socket.on('likeby:post', data => {
       this.likedBy.emit(data);
     })
@@ -64,7 +61,10 @@ export class ApiService {
   }
 
   getProfile(username) {
-    this.socket.emit('profile:get', username);
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.get(this.API_URL + '/getProfile?username=' + username, { headers: headers })
+      .map(res => res.json())
   }
 
   updateUserProfile(user) {

@@ -1,5 +1,3 @@
-const mongodb = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/Matcha_DB';
 const moment = require('moment');
 const { Pool, Client } = require('pg')
 const env = require('../config/environment')
@@ -23,8 +21,8 @@ module.exports = {
         }
 
         const setNotification = {
-            text: "INSERT INTO notifications(notif_type, notif_who, notif_from, notif_read, notif_date) VALUES($1, $2, $3, $4, $5)",
-            values: ['visit', data.username, data.currentUser, false, new Date().getTime()]
+            text: "INSERT INTO notifications(notif_type, notif_who, notif_from, notif_read, notif_date) VALUES($1, $2, $3, $4, current_timestamp)",
+            values: ['visit', data.username, data.currentUser, false]
         }
 
         pool.query(searchVisit).then(result => {
@@ -46,15 +44,14 @@ module.exports = {
         }
 
         pool.query(getNotif).then(result => {
-            console.log(result, '--- Original mongodb needs array ---')
             if (result.rowCount)
-                socket.emit('notifications:post', result.rows[0]);
+                socket.emit('notifications:post', result.rows);
         }).catch(err => console.log(err))
     },
 
     readNotifications(data, socket) {
         const markRead = {
-            text: "UPDATE notifications SET read = true WHERE notif_who = $1",
+            text: "UPDATE notifications SET notif_read = true WHERE notif_who = $1",
             values: [data]
         }
 

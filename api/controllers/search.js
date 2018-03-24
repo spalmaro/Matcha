@@ -1,5 +1,12 @@
 const mongodb = require("mongodb").MongoClient;
 const url = "mongodb://localhost:27017/Matcha_DB";
+const { Pool, Client } = require('pg')
+const env = require('../config/environment')
+const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`;
+
+const pool = new Pool({
+    connectionString: connectionString,
+})
 
 module.exports = {
     search(data, socket) {
@@ -86,18 +93,19 @@ module.exports = {
       })
     },
 
-    getProfile(username, socket) {
-      mongodb.connect(url, (err, db) => {
-        if (err)
-          throw err;
-        db.collection('users').findOne({'username': username}, (err, result) => {
-          if (err) throw err;
-          if (result) {
-            socket.emit('profile:post', result)
-          } else {
-            socket.emit('profile:post', {});
-          }
-        })
+    getProfile(username, res) {
+      const findUser = {
+        text: "SELECT * FROM users WHERE username = $1",
+        values: [username]
+      }
+
+      pool.query(findUser).then(result => {
+        if (result.rowCount) {
+          res.json(result.rows[0]);
+        } else {
+          res.json({});
+        }
       })
+
     }
 }

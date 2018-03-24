@@ -29,24 +29,19 @@ module.exports = (io) => {
             searchCtrl.search(data, socket);
         });
 
-        // socket.on('notifications:get', (data) => {
-        //     console.log('getting notifications')
-        //     notificationCtrl.getNotifications(data, socket);
-        // })
+        socket.on('notifications:get', (data) => {
+            console.log('getting notifications')
+            notificationCtrl.getNotifications(data, socket);
+        })
 
-        // socket.on('notifications:set', data => {
-        //     console.log('mark notifications as read');
-        //     notificationCtrl.readNotifications(data)
-        // })
+        socket.on('notifications:set', data => {
+            console.log('mark notifications as read');
+            notificationCtrl.readNotifications(data)
+        })
 
         socket.on('visit:set', data => {
             console.log('visiting user');
             notificationCtrl.setVisit(data)
-        })
-
-        socket.on('profile:get', username => {
-            console.log('searching for user');
-            searchCtrl.getProfile(username, socket);
         })
 
         socket.on('report:set', data => {

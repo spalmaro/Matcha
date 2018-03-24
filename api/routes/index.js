@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../controllers/User');
+const Search = require('../controllers/search');
 const getAge = require('get-age')
 const jwt = require('jsonwebtoken')
 const { Pool, Client } = require('pg')
@@ -51,6 +52,10 @@ router.post('/login', async (req, res, next) => {
 
 router.get('/getUserInfo', (req, res, next) => {
   User.getUserInfo(req.query.username, res)
+})
+
+router.get('/getProfile', (req, res, next) => {
+  Search.getProfile(req.query.username, res)
 })
 
 module.exports = router;

@@ -25,10 +25,9 @@ export class SearchComponent implements OnInit {
     const username = this.route.snapshot.paramMap.get('username');
     this.profile = new User({});
     this.currentUser = new User({});
-    this._apiService.getProfile(username);
     this._apiService.getLikedByUsers();
 
-    this._apiService.profile.subscribe(data => {
+    this._apiService.getProfile(username).subscribe(data => {
       if (data.username) {
           this._apiService.setVisit(username);
           const table = [data.profilepicture, data.picture1, data.picture2, data.picture3, data.picture4];
@@ -41,8 +40,8 @@ export class SearchComponent implements OnInit {
             }
           }
         this.profile = data;
+
         this._apiService.likedBy.subscribe((likes) => {
-          console.log('PROFIL', likes)
           for (const d of likes) {
             if (d.subject === this.profile.username) {
               this.likesme = true

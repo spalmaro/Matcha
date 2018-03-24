@@ -1,5 +1,3 @@
-const mongodb = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017/Matcha_DB';
 const { Pool, Client } = require('pg')
 const env = require('../config/environment')
 const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`;
@@ -18,11 +16,9 @@ module.exports = {
 
         pool.query(scoreAdd).then(result => {
             if (result.rowCount == 1) {
-                // socket.emit('updateProfile:done', { success: true, message: "Your profile has successfully been updated" });
                 console.log("score incremented")
             } else {
                 console.log('could not increment score')
-                // socket.emit('updateProfile:done', { success: false, error: err });
             }
         })
         .catch(err => console.log(err))

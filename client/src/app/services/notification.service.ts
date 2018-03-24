@@ -18,11 +18,11 @@ export class NotificationService {
     this.socket.on('notifications:post', data => {
       let unread = 0;
       for (const notif of data) {
-        if (notif.read === false) {
+        if (notif.notif_read === false) {
           unread += 1;
         }
-        notif.date = moment(notif.date).fromNow()
-        notif['message'] = notif.type === 'match' ? `New ${notif.type} with ` : `New ${notif.type} from `
+        notif.notif_date = moment(notif.notif_date).fromNow()
+        notif['message'] = notif.notif_type === 'match' ? `New match with ` : `New ${notif.notif_type} from `
       }
       this.notifications.emit(data);
       this.unreadnotifs.emit(unread);

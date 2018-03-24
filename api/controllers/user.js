@@ -47,7 +47,8 @@ const updateUser = (item, socket) => {
 
     let nex = [],
     e;
-
+    if (item.liked) delete item.liked
+    if (item.dislike) delete item.dislike
     item['location'] = `(${item['location'].x}, ${item['location'].y})`;
     for (e in item)
         nex.push(item[e])
@@ -79,32 +80,32 @@ const getUserInfo = (username, res) => {
     }
 
     const getViews = {
-        text: "SELECT * FROM views WHERE views_current_user=$1",
+        text: "SELECT * FROM views WHERE views_current_user = $1",
         values: [username]
     }
 
     pool.query(getInfo).then((result => {
         if (result.rows[0]) {
-            pool.query(getViews)
-            .then(status => {
-                // console.log('STATUS', status.rows[0])
+            pool.query(getViews).then(status => {
                 let array = []
                 let dis = []
-                // for (const iliked of status) {
-                //     if (iliked.status === 'like')
-                //         array.push(iliked.subject)
-                //     else if (iliked.status === 'dislike')
-                //         dis.push(iliked.subject);
-                // }
-                // result.rows[0]['liked'] = array;
-                // result.rows[0]['dislike'] = dis;
+                if (status.rowCount) {
+                    for (const iliked of status.rows) {
+                        if (iliked.views_status === 'like')
+                            array.push(iliked.views_subject)
+                        else if (iliked.views_status === 'dislike')
+                            dis.push(iliked.views_subject);
+                    }
+                } 
+                result.rows[0]['liked'] = array;
+                result.rows[0]['dislike'] = dis;
                 res.json({ success: true, user: result.rows[0] })
-            })
+            }).catch((err) => console.log(err));
         }
         else {
-            req.json({ success: false, error: 'An error has occurred' })
+            res.json({ success: false, error: 'An error has occurred' })
         }
-    })).catch((err) => console.log('NON'));
+    })).catch((err) => console.log(err));
 }
 
 const reportUser = (data) => {

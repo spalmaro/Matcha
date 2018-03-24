@@ -22,9 +22,8 @@ export class ChatDetailsComponent implements OnInit {
 
   ngOnInit() {
     const username = this.route.snapshot.paramMap.get('username');
-    this._apiService.getProfile(username);
 
-    this._apiService.profile.subscribe(data => {
+    this._apiService.getProfile(username).subscribe(data => {
       if (data.username) {
           this._apiService.setVisit(username);
           const table = [data.profilepicture, data.picture1, data.picture2, data.picture3, data.picture4];
