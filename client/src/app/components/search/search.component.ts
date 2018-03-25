@@ -23,6 +23,9 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     const username = this.route.snapshot.paramMap.get('username');
+    if (username === this._userService.getCurrentUser()) {
+      this.router.navigateByUrl('/profile');
+    }
     this.profile = new User({});
     this.currentUser = new User({});
     this._apiService.getLikedByUsers();

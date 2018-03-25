@@ -10,10 +10,6 @@
 -- ==> Summary
 --  /usr/local/Cellar/postgresql/10.3: 3,383 files, 39.2MB
 
-CREATE DATABASE IF NOT EXISTS Test_DB;
-
-\connect Test_DB;
-
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE users(

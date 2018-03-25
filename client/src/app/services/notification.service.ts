@@ -16,9 +16,10 @@ export class NotificationService {
     this.socket = socketService.socketConnect();
 
     this.socket.on('notifications:post', data => {
+      console.log('TEST 123',data)
       let unread = 0;
       for (const notif of data) {
-        if (notif.notif_read === false) {
+        if (notif.notif_read === "false") {
           unread += 1;
         }
         notif.notif_date = moment(notif.notif_date).fromNow()

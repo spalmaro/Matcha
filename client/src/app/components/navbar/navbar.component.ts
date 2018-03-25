@@ -48,4 +48,8 @@ export class NavbarComponent implements OnInit {
     this._userService.logout();
     this.router.navigate(['/']);
   }
+  
+  stop(event) {
+    event.stopPropagation();
+  }
 }

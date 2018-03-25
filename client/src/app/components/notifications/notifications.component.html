@@ -12,6 +12,9 @@
             <i id='timestamp'>{{ msg.notif_date }}</i>
           </div>
       </li>
+      <div *ngIf='!notifications.length' style="text-align: center;">
+        <h4><i>No notifications yet</i></h4>
+    </div>
     </ul>
   </div>
 </div>

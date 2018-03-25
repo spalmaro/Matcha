@@ -25,49 +25,23 @@
       <li class="search">
         <a class="fa-search" href="#search">Search</a>
         <form style="margin-right: 10px">
-          <input [(ngModel)]='search' (keydown)='searchUser($event)' type="text" name="query" placeholder="Search" />
+              <input [(ngModel)]='search' (keydown)='searchUser($event)' type="text" name="query" placeholder="Search" />
         </form>
       </li>
-      <!-- <li class="menu">
-        <a class="fa-bars" href="#menu">Menu</a>
-      </li> -->
+      <li class="menu">
+        <a class="fa-bars" id='burger' [matMenuTriggerFor]="menu" >Menu</a>
+
+        <mat-menu #menu="matMenu">
+            <div class="ui left icon input" style="padding: 2px 8px 2px 8px;"> 
+              <input style='height:2em; background-color: transparent; border:none; font-size: 14px; width: 260px;' (click)="stop($event)" [(ngModel)]='search' (keydown)='searchUser($event)' type="text" name="query" placeholder="Search" />
+              <i class="search icon"></i>
+            </div>
+          <button mat-menu-item routerLink='/profile'><i class='user icon'></i> Profile</button>
+          <button mat-menu-item routerLink='/chat'><i class='chat basic icon'> </i>Chat</button>
+          <button mat-menu-item routerLink='/notifications'><i class='bell outline icon'></i> Notifications</button>
+          <button mat-menu-item (click)='logout()'><i class='sign out icon'></i> Logout</button>
+        </mat-menu>
+      </li>
     </ul>
   </nav>
 </header>
-<!-- <section id="menu">
-
-  <section>
-    <form class="search" method="get" action="#">
-      <input type="text" name="query" placeholder="Search" />
-    </form>
-  </section>
-
-  <section>
-    <ul class="links">
-      <li>
-        <a href="#">
-          <h3>Profile</h3>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <h3>Chat</h3>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <h3>Notifications</h3>
-        </a>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <ul class="actions vertical">
-      <li>
-        <a href="#" class="button big fit">Logout</a>
-      </li>
-    </ul>
-  </section>
-
-</section> -->

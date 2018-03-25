@@ -56,7 +56,7 @@
         <h1>Advanced Search</h1>
         <!-- <form #searchForm="ngForm"> -->
           <div>
-            <h3>Age Interval: {{ageInterval[0]}} - {{ageInterval[1]}}<span *ngIf='ageInterval[1] === 55'>+</span></h3>
+            <h3>Age Interval: {{ageInterval[0]}} - {{ageInterval[1]}}<span *ngIf='ageInterval[1] === 65'>+</span></h3>
             <p-slider [(ngModel)]='ageInterval' name="ageInterval" [range]="true" [min]="18" [max]="65"></p-slider>
           </div><br>
           <div>

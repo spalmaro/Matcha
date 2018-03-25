@@ -4,26 +4,10 @@ const { Pool, Client } = require('pg')
 const env = require('../config/environment')
 const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`;
 const jwt = require('jsonwebtoken');
-var faker = require('faker');
 
 const pool = new Pool({
     connectionString: connectionString,
 })
-
-const createSeed= () => {
-    let gender = ['Male', 'Female'];
-    let orientation = ['Both', 'Guys', 'Girls']
-    let birthday = (faker.date.between('1950-01-01', '2000-03-31')).toISOString();
-    let x = {
-        email: faker.internet.email,
-        username: faker.internet.userName(), firstname: faker.name.firstName(), lastname: faker.name.lastName(),
-        age: getAge(birthday.slice(0, 4) + '-' + birthday.slice(5, 7) + '-' + birthday.slice(8, 10)),
-        dobday: birthday.slice(8, 10), dobmonth: birthday.slice(5, 7), dobyear: birthday.slice(0, 4), password: faker.internet.password(),
-        gender: gender[Math.floor(Math.random() * gender.length)], orientation: orientation[Math.floor(Math.random() * orientation.length)],
-        description: faker.lorem.paragraph(), location: `(${faker.address.longitude()}, ${faker.address.latitude()})`,
-        address: `${faker.address.city()}, ${faker.address.zipCode()}`, profilepicture: '', score: 10, blocked: [],
-        reportedby: [], firstconnection: false, interests: [], picture1: '', picture2: '', picture3: '', picture4: '' };
-}
 
 const addUser = (item, res) => {
     console.log("ITEM", item);
@@ -70,7 +54,7 @@ const updateUser = (item, socket) => {
         nex.push(item[e])
 
     const userUpdate = {
-        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = $16, profilepicture = $17, score = $18, blocked = $19, reportedby = $20, firstconnection = $21, interests = $22, picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1",
+        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = current_timestamp, profilepicture = $17, score = $18, blocked = $19, reportedby = $20, firstconnection = $21, interests = $22, picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1",
         values: nex
     };
 

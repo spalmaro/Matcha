@@ -25,6 +25,8 @@ import { SearchComponent } from './components/search/search.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ChatDetailsComponent } from './components/chat-details/chat-details.component';
 import { SliderModule } from 'primeng/slider';
+import { MatMenuModule } from '@angular/material/menu';
+import {MatInputModule } from '@angular/material/input';
 
 const appRoutes: Routes = [
   { path: 'search/:username', component: SearchComponent, canActivate: [AuthGuardService]},
@@ -61,7 +63,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     Ng4GeoautocompleteModule.forRoot(),
     ReactiveFormsModule,
-    SliderModule
+    SliderModule,
+    MatMenuModule
   ],
   providers: [
     UserService,
