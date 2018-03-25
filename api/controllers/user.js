@@ -4,10 +4,26 @@ const { Pool, Client } = require('pg')
 const env = require('../config/environment')
 const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`;
 const jwt = require('jsonwebtoken');
+var faker = require('faker');
 
 const pool = new Pool({
     connectionString: connectionString,
 })
+
+const createSeed= () => {
+    let gender = ['Male', 'Female'];
+    let orientation = ['Both', 'Guys', 'Girls']
+    let birthday = (faker.date.between('1950-01-01', '2000-03-31')).toISOString();
+    let x = {
+        email: faker.internet.email,
+        username: faker.internet.userName(), firstname: faker.name.firstName(), lastname: faker.name.lastName(),
+        age: getAge(birthday.slice(0, 4) + '-' + birthday.slice(5, 7) + '-' + birthday.slice(8, 10)),
+        dobday: birthday.slice(8, 10), dobmonth: birthday.slice(5, 7), dobyear: birthday.slice(0, 4), password: faker.internet.password(),
+        gender: gender[Math.floor(Math.random() * gender.length)], orientation: orientation[Math.floor(Math.random() * orientation.length)],
+        description: faker.lorem.paragraph(), location: `(${faker.address.longitude()}, ${faker.address.latitude()})`,
+        address: `${faker.address.city()}, ${faker.address.zipCode()}`, profilepicture: '', score: 10, blocked: [],
+        reportedby: [], firstconnection: false, interests: [], picture1: '', picture2: '', picture3: '', picture4: '' };
+}
 
 const addUser = (item, res) => {
     console.log("ITEM", item);
