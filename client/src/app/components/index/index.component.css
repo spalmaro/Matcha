@@ -16,10 +16,31 @@ img {
   img {
     display: none;
   }
-  #test {
-    width: 0%;
+}
+
+@media (max-width:970px){
+	#signin {
     display: none;
-  }
+	}
+
+	.burgermenu {
+		display: block;
+		float: right;
+		margin-right: 50px;
+		padding-top: 25px;
+		font-weight:500;
+	}
+	
+}
+
+@media (min-width:971px){
+  #signin{
+		display: inline;
+	}
+
+	.burgermenu {
+		display: none;
+	}
 }
 /* h1, label { color: white; } */
 
@@ -28,26 +49,27 @@ img {
 }
 
 #header{
-	border-bottom: 1px solid rgba(0,0,0,.0975);
+	/* border-bottom: 1px solid rgba(0,0,0,.0975); */
   display: block;
   background-color: white;
 	/* background-color: #ffffff; */
 }
 
 #bg {
+	border-top: 1px solid rgba(0,0,0,.0975);
   background-color: white;
   height: 88%;
 }
 
-#logo, #signin{
-	display: inline;
+#logo {
 	padding: .92857143em 1.14285714em;
+	display: inline;
 }
 
 #signin{
 	float: right;
 	margin-right: 50px;
-	padding-top: 30px;
+	padding-top: 20px;
 	font-weight:700;
 }
 

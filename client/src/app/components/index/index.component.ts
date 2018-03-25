@@ -67,4 +67,8 @@ export class IndexComponent implements OnInit {
     })
   }
 
+  stop(event: Event) {
+    event.stopPropagation();
+  }
+
 }

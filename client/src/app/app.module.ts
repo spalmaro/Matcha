@@ -26,13 +26,16 @@ import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.co
 import { ChatDetailsComponent } from './components/chat-details/chat-details.component';
 import { SliderModule } from 'primeng/slider';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { ChangepwdComponent } from './components/changepwd/changepwd.component';
 import { ForgotpwdComponent } from './components/forgotpwd/forgotpwd.component';
 
 const appRoutes: Routes = [
   { path: 'search/:username', component: SearchComponent, canActivate: [AuthGuardService]},
   { path: 'chat/:username', component: ChatDetailsComponent, canActivate: [AuthGuardService]},
+  { path: 'changepassword/:id', component: NotificationsComponent},
   { path: 'search', redirectTo: '', canActivate: [AuthGuardService]},
   { path: '', component: IndexComponent, canActivate: [AuthGuardService2] },
   { path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuardService] },
@@ -40,6 +43,8 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]},
   { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService]},
+  { path: 'forgotpassword', component: ForgotpwdComponent},
+  { path: 'changepassword', component: NotificationsComponent, canActivate: [AuthGuardService]},
   { path: '**', component: PagenotfoundComponent}
 ]
 
@@ -68,7 +73,9 @@ const appRoutes: Routes = [
     Ng4GeoautocompleteModule.forRoot(),
     ReactiveFormsModule,
     SliderModule,
-    MatMenuModule
+    MatMenuModule,
+    MatButtonModule,
+    MatCardModule,
   ],
   providers: [
     UserService,

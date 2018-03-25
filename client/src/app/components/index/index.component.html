@@ -10,8 +10,25 @@
       <input class='textbox' type='password' [(ngModel)]='login.password' name='password' placeholder='Password'>
       <i class="lock icon"></i>
     </div>
-    <input class='textbox' id='login' [disabled]='!loginForm.form.valid' type='submit' name='submit' value='Sign in'>
+    <input class='textbox' id='login' [disabled]='!loginForm.form.valid' type='submit' name='submit' value='Sign in'><br>
+    <a style="color:grey; font-weight: 100; float: right;padding-right: 160px; font-size: 12px;" routerLink='/forgotpassword'>Forgot password?</a>
   </form>
+  <div class="burgermenu">
+      <button mat-button style="color: #fd5068; border: 1px solid #fd5068" [matMenuTriggerFor]="menu" >Sign In</button>
+
+      <mat-menu #menu="matMenu">
+          <div class="ui left icon input" style="padding: 2px 8px 2px 8px;">
+            <input style='height:2em; background-color: transparent; border:none; font-size: 16px; width: 260px;' (click)="stop($event)" type='text' [(ngModel)]='login.username' name='login.username' placeholder='Username'>
+            <i class="user icon"></i>
+          </div>
+          <div class="ui left icon input" style="padding: 2px 8px 2px 8px;">
+            <input style='height:2em; background-color: transparent; border:none; font-size: 16px; width: 260px;' (click)="stop($event)" type='password' [(ngModel)]='login.password' name='password' placeholder='Password'>
+            <i class="lock icon"></i>
+          </div>
+        <button mat-menu-item (click)="onLoginSubmit()" style="text-align: center; font-size: 14px; color: #fd5068">Sign In</button>
+        <button mat-menu-item routerLink='/forgotpassword' style="text-align: center; font-size: 14px; color: #fd5068">Forgot password?</button>
+      </mat-menu>
+  </div>
 </div>
 <div id='bg'>
 <div *ngIf="isSuccess == true" class="ui success message">{{message}}</div>
@@ -65,5 +82,6 @@
         </form>
       </div>
     </div>
+  </div>
   </div>
   </div>

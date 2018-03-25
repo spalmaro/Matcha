@@ -1,0 +1,45 @@
+label{
+	font-size: 14px;
+	line-height: 14px;
+	padding: 0 15px 0 10px;
+	font-family: Helvetica, Arial, sans-serif;
+	cursor: pointer;
+}
+
+span{margin-right: 25px;}
+
+img {
+  max-width: 90%;
+}
+
+#header{
+    border-bottom: 1px solid rgba(0,0,0,.0975);
+    display: block;
+    background-color: white;
+	/* background-color: #ffffff; */
+}
+
+#logo {
+	padding: .92857143em 1.14285714em;
+	display: inline;
+	cursor: pointer;
+	outline: none;
+}
+
+#logo{
+	margin-left: 3%;
+	width: auto;
+	height: 80px;
+}
+
+mat-card {
+	max-width: 450px;
+	min-height: 340px;
+	margin: auto;
+	margin-top: 50px;
+	/* margin-right: auto; */
+}
+
+/* .content { */
+	/* position: relative; */
+/* } */
