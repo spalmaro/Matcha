@@ -121,7 +121,7 @@ module.exports = {
       // }
 
       const checkUserExists = {
-        text: `SELECT (username, gender, orientation) FROM users WHERE gender = ANY('{${queryGender.join(',')}}') AND orientation = ANY('{${queryOrientation.join(',')}}') AND user_uuid != $1`,
+        text: `SELECT (username, gender, orientation) FROM users WHERE St_Collect(0.0, 0.0) AND gender = ANY('{${queryGender.join(',')}}') AND orientation = ANY('{${queryOrientation.join(',')}}') AND user_uuid != $1`,
         values: [user_uuid]
       };
 

@@ -249,3 +249,1068 @@
 2018-03-21 17:56:33.347 CET [54382] ERROR:  syntax error at or near "$19" at character 315
 2018-03-21 17:56:33.347 CET [54382] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1
 2018-03-21 17:59:14.477 CET [48828] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-24 17:46:10.221 CET [33279] LOG:  listening on IPv6 address "::1", port 5432
+2018-03-24 17:46:10.221 CET [33279] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-03-24 17:46:10.223 CET [33279] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-03-24 17:46:10.236 CET [33280] LOG:  database system was shut down at 2018-03-24 17:45:59 CET
+2018-03-24 17:46:10.240 CET [33279] LOG:  database system is ready to accept connections
+2018-03-24 18:02:52.613 CET [36131] FATAL:  lock file "postmaster.pid" already exists
+2018-03-24 18:02:52.613 CET [36131] HINT:  Is another postmaster (PID 33279) running in data directory "/Users/kacoulib/Matcha/api/db"?
+2018-03-24 18:04:07.854 CET [37004] FATAL:  lock file "postmaster.pid" already exists
+2018-03-24 18:04:07.854 CET [37004] HINT:  Is another postmaster (PID 33279) running in data directory "/Users/kacoulib/Matcha/api/db"?
+2018-03-24 18:05:03.700 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:04.394 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:04.394 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:05.085 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:05.085 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:05.780 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:05.780 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:06.471 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:06.471 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:07.161 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:07.161 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:07.823 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:07.823 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:08.486 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:08.486 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:09.153 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:09.153 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:09.847 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:09.847 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:10.540 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:10.540 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:11.227 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:11.227 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:11.882 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:11.882 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:11.951 CET [37222] LOG:  could not bind IPv6 address "::1": Address already in use
+2018-03-24 18:05:11.951 CET [37222] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-24 18:05:11.951 CET [37222] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2018-03-24 18:05:11.951 CET [37222] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-24 18:05:11.951 CET [37222] WARNING:  could not create listen socket for "localhost"
+2018-03-24 18:05:11.951 CET [37222] FATAL:  could not create any TCP/IP sockets
+2018-03-24 18:05:11.951 CET [37222] LOG:  database system is shut down
+2018-03-24 18:05:12.158 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:12.158 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:12.562 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:12.562 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:12.853 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:12.853 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:13.255 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:13.255 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:13.547 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:13.547 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:13.947 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:13.947 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:14.240 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:14.240 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:14.380 CET [35968] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-24 18:05:14.380 CET [35968] STATEMENT:  SELECT
+	   (SELECT sum(xact_commit) + sum(xact_rollback) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Transactions",
+	   (SELECT sum(xact_commit) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Commits",
+	   (SELECT sum(xact_rollback) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Rollbacks"
+2018-03-24 18:05:14.380 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:14.380 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:14.380 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:14.381 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:14.381 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:14.928 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:14.928 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:15.067 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:15.067 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:15.614 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:15.614 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:15.751 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:15.752 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:16.299 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:16.299 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:16.437 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:16.437 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:16.981 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:16.981 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:17.123 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:17.123 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:17.670 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:17.670 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:17.811 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:17.811 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:18.355 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:18.355 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:18.494 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:18.494 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:19.037 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:19.037 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:19.177 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:19.177 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:19.726 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:19.726 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:19.862 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:19.862 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:20.411 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:20.411 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:20.548 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:20.548 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:21.095 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:21.095 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:21.235 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:21.235 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:21.785 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:21.785 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:21.924 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:21.924 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:22.469 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:22.469 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:22.609 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:22.609 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:22.900 CET [33284] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-24 18:05:22.900 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:22.900 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:23.300 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:23.300 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:23.589 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:23.589 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:23.989 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:23.989 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:24.278 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:24.278 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:24.670 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:24.670 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:24.956 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:24.956 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:25.095 CET [35968] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-24 18:05:25.095 CET [35968] STATEMENT:  SELECT
+	   (SELECT sum(blks_read) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Reads",
+	   (SELECT sum(blks_hit) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Hits"
+2018-03-24 18:05:25.096 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:25.097 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:25.097 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:25.097 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:25.097 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:25.639 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:25.639 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:25.784 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:25.784 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:26.325 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:26.325 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:26.468 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:26.468 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:27.014 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:27.014 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:27.156 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:27.156 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:27.697 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:27.697 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:27.846 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:27.846 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:28.379 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:28.379 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:28.528 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:28.528 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:29.061 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:29.061 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:29.213 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:29.213 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:29.742 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:29.742 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:29.888 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:29.888 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:30.420 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:30.420 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:30.570 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:30.570 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:31.103 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:31.103 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:31.254 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:31.254 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:31.774 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:31.774 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:31.925 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:31.925 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:32.436 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:32.436 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:32.591 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:32.591 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:33.112 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:33.112 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:33.274 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:33.274 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:33.540 CET [33284] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-24 18:05:33.541 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:33.541 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:33.958 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:33.958 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:34.226 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:34.226 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:34.646 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:34.646 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:34.914 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:34.914 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:35.329 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:35.329 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:35.596 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:35.596 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:35.757 CET [35968] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-24 18:05:35.757 CET [35968] STATEMENT:  SELECT
+	   (SELECT sum(tup_fetched) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Fetched",
+	   (SELECT sum(tup_returned) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Returned"
+2018-03-24 18:05:35.757 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:35.757 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:35.757 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:35.758 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:35.758 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:36.278 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:36.278 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:36.433 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:36.433 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:36.938 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:36.938 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:37.092 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:37.092 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:37.600 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:37.600 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:37.759 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:37.759 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:38.282 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:38.282 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:38.445 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:38.445 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:38.961 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:38.961 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:39.119 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:39.119 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:39.625 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:39.625 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:39.786 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:39.786 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:40.309 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:40.309 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:40.480 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:40.480 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:41.003 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:41.004 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:41.168 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:41.169 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:41.679 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:41.679 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:41.836 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:41.836 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:42.356 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:42.356 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:42.515 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:42.515 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:43.047 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:43.047 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:43.203 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:43.203 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:43.711 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:43.711 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:43.870 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:43.871 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:44.137 CET [33284] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-24 18:05:44.558 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:44.558 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:45.242 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:45.242 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:45.904 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:45.904 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:46.330 CET [35968] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-24 18:05:46.330 CET [35968] STATEMENT:  SELECT
+	   (SELECT sum(tup_inserted) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Inserts",
+	   (SELECT sum(tup_updated) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Updates",
+	   (SELECT sum(tup_deleted) FROM pg_stat_database WHERE datname = (SELECT datname FROM pg_database WHERE oid = 16460)) AS "Deletes"
+2018-03-24 18:05:46.330 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:46.330 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:46.330 CET [33285] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-24 18:05:46.332 CET [33279] LOG:  could not open file "postmaster.pid": No such file or directory
+2018-03-24 18:05:46.332 CET [33279] LOG:  performing immediate shutdown because data directory lock file is invalid
+2018-03-24 18:05:46.332 CET [33279] LOG:  received immediate shutdown request
+2018-03-24 18:05:46.332 CET [33279] LOG:  could not open file "postmaster.pid": No such file or directory
+2018-03-24 18:05:46.333 CET [33284] WARNING:  terminating connection because of crash of another server process
+2018-03-24 18:05:46.333 CET [33284] DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2018-03-24 18:05:46.333 CET [33284] HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2018-03-24 18:05:46.333 CET [33285] LOG:  could not open temporary statistics file "pg_stat/global.tmp": No such file or directory
+2018-03-24 18:05:46.335 CET [33279] LOG:  database system is shut down
+2018-03-24 18:08:08.632 CET [37591] LOG:  listening on IPv6 address "::1", port 5432
+2018-03-24 18:08:08.633 CET [37591] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-03-24 18:08:08.634 CET [37591] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-03-24 18:08:08.647 CET [37592] LOG:  database system was shut down at 2018-03-24 18:05:08 CET
+2018-03-24 18:08:08.650 CET [37591] LOG:  database system is ready to accept connections
+2018-03-24 18:09:25.181 CET [37748] ERROR:  syntax error at or near "REATE" at character 1
+2018-03-24 18:09:25.181 CET [37748] STATEMENT:  REATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	
+	CREATE TABLE users(
+	    user_uuid uuid DEFAULT uuid_generate_v4 (),
+	    email text NOT NULL,
+	    username text NOT NULL,
+	    firstname text NOT NULL,
+	    lastname text NOT NULL,
+	    age integer NOT NULL,
+	    dobday integer NOT NULL,
+	    dobmonth integer NOT NULL,
+	    dobyear integer NOT NULL,
+	    password text NOT NULL,
+	    gender text NOT NULL,
+	    orientation text NOT NULL DEFAULT 'Both',
+	    description text,
+	    location point,
+	    address text,
+	    lastconnected timestamp DEFAULT CURRENT_TIMESTAMP,
+	    profilepicture text,
+	    score integer NOT NULL DEFAULT 10,
+	    blocked text[],
+	    reportedBy text[], 
+	    firstconnection boolean DEFAULT TRUE,
+	    interests text[],
+	    picture1 text,
+	    picture2 text,
+	    picture3 text,
+	    picture4 text,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE visit(
+	   visit_uuid uuid DEFAULT uuid_generate_v4 (),
+	   visit_current_user text NOT NULL,
+	   visit_subject text NOT NULL,
+	   PRIMARY KEY (visit_uuid)
+	)
+	
+	
+	CREATE TABLE notifications(
+	    notif_uuid uuid DEFAULT uuid_generate_v4 (),
+	    notif_type text NOT NULL,
+	    notif_who text NOT NULL,
+	    notif_from text NOT NULL,
+	    notif_read text NOT NULL,
+	    notif_date timestamp NOT NULL,
+	    PRIMARY KEY (notif_uuid)
+	);
+	
+	CREATE TABLE match(
+	    match_uuid uuid DEFAULT uuid_generate_v4 (),
+	    users text[] NOT NULL,
+	    match_ts timestamp default current_timestamp,
+	    match_read boolean DEFAULT FALSE,
+	    PRIMARY KEY (match_uuid)
+	);
+	
+	CREATE TABLE messages(
+	    msg_uuid uuid DEFAULT uuid_generate_v4 (),
+	    match_uuid uuid NOT NULL,
+	    msg_from text NOT NULL,
+	    msg_to text NOT NULL,
+	    msg_msg text NOT NULL,
+	    msg_ts timestamp default current_timestamp,
+	    PRIMARY KEY (msg_uuid),
+	    FOREIGN KEY (match_uuid) REFERENCES match (match_uuid) ON DELETE CASCADE
+	);
+	
+	CREATE TABLE views(
+	    views_uuid uuid DEFAULT uuid_generate_v4 (),
+	    views_current_user text NOT NULL,
+	    views_subject text NOT NULL,
+	    views_status text NOT NULL,
+	    PRIMARY KEY (views_uuid)
+	);
+	
+	CREATE TABLE password_reset(
+	    user_uuid uuid,
+	    activation_uuid uuid DEFAULT uuid_generate_v4 (),
+	    expiration_ts timestamp DEFAULT current_timestamp,
+	    PRIMARY KEY (user_uuid)
+	)
+	
+	
+	
+2018-03-24 18:09:39.419 CET [37748] ERROR:  syntax error at or near "NOT" at character 21
+2018-03-24 18:09:39.419 CET [37748] STATEMENT:  
+	CREATE DATABASE IF NOT EXISTS Test_DB;
+	
+	\connect Test_DB;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	
+	CREATE TABLE users(
+	    user_uuid uuid DEFAULT uuid_generate_v4 (),
+	    email text NOT NULL,
+	    username text NOT NULL,
+	    firstname text NOT NULL,
+	    lastname text NOT NULL,
+	    age integer NOT NULL,
+	    dobday integer NOT NULL,
+	    dobmonth integer NOT NULL,
+	    dobyear integer NOT NULL,
+	    password text NOT NULL,
+	    gender text NOT NULL,
+	    orientation text NOT NULL DEFAULT 'Both',
+	    description text,
+	    location point,
+	    address text,
+	    lastconnected timestamp DEFAULT CURRENT_TIMESTAMP,
+	    profilepicture text,
+	    score integer NOT NULL DEFAULT 10,
+	    blocked text[],
+	    reportedBy text[], 
+	    firstconnection boolean DEFAULT TRUE,
+	    interests text[],
+	    picture1 text,
+	    picture2 text,
+	    picture3 text,
+	    picture4 text,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE visit(
+	   visit_uuid uuid DEFAULT uuid_generate_v4 (),
+	   visit_current_user text NOT NULL,
+	   visit_subject text NOT NULL,
+	   PRIMARY KEY (visit_uuid)
+	)
+	
+	
+	CREATE TABLE notifications(
+	    notif_uuid uuid DEFAULT uuid_generate_v4 (),
+	    notif_type text NOT NULL,
+	    notif_who text NOT NULL,
+	    notif_from text NOT NULL,
+	    notif_read text NOT NULL,
+	    notif_date timestamp NOT NULL,
+	    PRIMARY KEY (notif_uuid)
+	);
+	
+	CREATE TABLE match(
+	    match_uuid uuid DEFAULT uuid_generate_v4 (),
+	    users text[] NOT NULL,
+	    match_ts timestamp default current_timestamp,
+	    match_read boolean DEFAULT FALSE,
+	    PRIMARY KEY (match_uuid)
+	);
+	
+	CREATE TABLE messages(
+	    msg_uuid uuid DEFAULT uuid_generate_v4 (),
+	    match_uuid uuid NOT NULL,
+	    msg_from text NOT NULL,
+	    msg_to text NOT NULL,
+	    msg_msg text NOT NULL,
+	    msg_ts timestamp default current_timestamp,
+	    PRIMARY KEY (msg_uuid),
+	    FOREIGN KEY (match_uuid) REFERENCES match (match_uuid) ON DELETE CASCADE
+	);
+	
+	CREATE TABLE views(
+	    views_uuid uuid DEFAULT uuid_generate_v4 (),
+	    views_current_user text NOT NULL,
+	    views_subject text NOT NULL,
+	    views_status text NOT NULL,
+	    PRIMARY KEY (views_uuid)
+	);
+	
+	CREATE TABLE password_reset(
+	    user_uuid uuid,
+	    activation_uuid uuid DEFAULT uuid_generate_v4 (),
+	    expiration_ts timestamp DEFAULT current_timestamp,
+	    PRIMARY KEY (user_uuid)
+	)
+	
+	
+	
+2018-03-24 18:10:09.296 CET [37748] ERROR:  syntax error at or near "NOT" at character 21
+2018-03-24 18:10:09.296 CET [37748] STATEMENT:  
+	CREATE DATABASE IF NOT EXISTS Test_DB;
+	
+	\connect Test_DB;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	
+	CREATE TABLE users(
+	    user_uuid uuid DEFAULT uuid_generate_v4 (),
+	    email text NOT NULL,
+	    username text NOT NULL,
+	    firstname text NOT NULL,
+	    lastname text NOT NULL,
+	    age integer NOT NULL,
+	    dobday integer NOT NULL,
+	    dobmonth integer NOT NULL,
+	    dobyear integer NOT NULL,
+	    password text NOT NULL,
+	    gender text NOT NULL,
+	    orientation text NOT NULL DEFAULT 'Both',
+	    description text,
+	    location point,
+	    address text,
+	    lastconnected timestamp DEFAULT CURRENT_TIMESTAMP,
+	    profilepicture text,
+	    score integer NOT NULL DEFAULT 10,
+	    blocked text[],
+	    reportedBy text[], 
+	    firstconnection boolean DEFAULT TRUE,
+	    interests text[],
+	    picture1 text,
+	    picture2 text,
+	    picture3 text,
+	    picture4 text,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE notifications(
+	    notif_uuid uuid DEFAULT uuid_generate_v4 (),
+	    notif_type text NOT NULL,
+	    notif_who text NOT NULL,
+	    notif_from text NOT NULL,
+	    notif_read text NOT NULL,
+	    notif_date timestamp NOT NULL,
+	    PRIMARY KEY (notif_uuid)
+	);
+	
+	CREATE TABLE match(
+	    match_uuid uuid DEFAULT uuid_generate_v4 (),
+	    users text[] NOT NULL,
+	    match_ts timestamp default current_timestamp,
+	    match_read boolean DEFAULT FALSE,
+	    PRIMARY KEY (match_uuid)
+	);
+	
+	CREATE TABLE messages(
+	    msg_uuid uuid DEFAULT uuid_generate_v4 (),
+	    match_uuid uuid NOT NULL,
+	    msg_from text NOT NULL,
+	    msg_to text NOT NULL,
+	    msg_msg text NOT NULL,
+	    msg_ts timestamp default current_timestamp,
+	    PRIMARY KEY (msg_uuid),
+	    FOREIGN KEY (match_uuid) REFERENCES match (match_uuid) ON DELETE CASCADE
+	);
+	
+	CREATE TABLE views(
+	    views_uuid uuid DEFAULT uuid_generate_v4 (),
+	    views_current_user text NOT NULL,
+	    views_subject text NOT NULL,
+	    views_status text NOT NULL,
+	    PRIMARY KEY (views_uuid)
+	);
+	
+	CREATE TABLE password_reset(
+	    user_uuid uuid,
+	    activation_uuid uuid DEFAULT uuid_generate_v4 (),
+	    expiration_ts timestamp DEFAULT current_timestamp,
+	    PRIMARY KEY (user_uuid)
+	)
+	
+	
+	CREATE TABLE visit(
+	   visit_uuid uuid DEFAULT uuid_generate_v4 (),
+	   visit_current_user text NOT NULL,
+	   visit_subject text NOT NULL,
+	   PRIMARY KEY (visit_uuid)
+	);
+	
+	
+2018-03-24 18:10:19.974 CET [37748] ERROR:  syntax error at or near "CREATE" at character 2006
+2018-03-24 18:10:19.974 CET [37748] STATEMENT:  
+	CREATE TABLE users(
+	    user_uuid uuid DEFAULT uuid_generate_v4 (),
+	    email text NOT NULL,
+	    username text NOT NULL,
+	    firstname text NOT NULL,
+	    lastname text NOT NULL,
+	    age integer NOT NULL,
+	    dobday integer NOT NULL,
+	    dobmonth integer NOT NULL,
+	    dobyear integer NOT NULL,
+	    password text NOT NULL,
+	    gender text NOT NULL,
+	    orientation text NOT NULL DEFAULT 'Both',
+	    description text,
+	    location point,
+	    address text,
+	    lastconnected timestamp DEFAULT CURRENT_TIMESTAMP,
+	    profilepicture text,
+	    score integer NOT NULL DEFAULT 10,
+	    blocked text[],
+	    reportedBy text[], 
+	    firstconnection boolean DEFAULT TRUE,
+	    interests text[],
+	    picture1 text,
+	    picture2 text,
+	    picture3 text,
+	    picture4 text,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE notifications(
+	    notif_uuid uuid DEFAULT uuid_generate_v4 (),
+	    notif_type text NOT NULL,
+	    notif_who text NOT NULL,
+	    notif_from text NOT NULL,
+	    notif_read text NOT NULL,
+	    notif_date timestamp NOT NULL,
+	    PRIMARY KEY (notif_uuid)
+	);
+	
+	CREATE TABLE match(
+	    match_uuid uuid DEFAULT uuid_generate_v4 (),
+	    users text[] NOT NULL,
+	    match_ts timestamp default current_timestamp,
+	    match_read boolean DEFAULT FALSE,
+	    PRIMARY KEY (match_uuid)
+	);
+	
+	CREATE TABLE messages(
+	    msg_uuid uuid DEFAULT uuid_generate_v4 (),
+	    match_uuid uuid NOT NULL,
+	    msg_from text NOT NULL,
+	    msg_to text NOT NULL,
+	    msg_msg text NOT NULL,
+	    msg_ts timestamp default current_timestamp,
+	    PRIMARY KEY (msg_uuid),
+	    FOREIGN KEY (match_uuid) REFERENCES match (match_uuid) ON DELETE CASCADE
+	);
+	
+	CREATE TABLE views(
+	    views_uuid uuid DEFAULT uuid_generate_v4 (),
+	    views_current_user text NOT NULL,
+	    views_subject text NOT NULL,
+	    views_status text NOT NULL,
+	    PRIMARY KEY (views_uuid)
+	);
+	
+	CREATE TABLE password_reset(
+	    user_uuid uuid,
+	    activation_uuid uuid DEFAULT uuid_generate_v4 (),
+	    expiration_ts timestamp DEFAULT current_timestamp,
+	    PRIMARY KEY (user_uuid)
+	)
+	
+	
+	CREATE TABLE visit(
+	   visit_uuid uuid DEFAULT uuid_generate_v4 (),
+	   visit_current_user text NOT NULL,
+	   visit_subject text NOT NULL,
+	   PRIMARY KEY (visit_uuid)
+	);
+	
+	
+2018-03-24 18:10:37.008 CET [37748] ERROR:  function uuid_generate_v4() does not exist
+2018-03-24 18:10:37.008 CET [37748] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2018-03-24 18:10:37.008 CET [37748] STATEMENT:  
+	CREATE TABLE users(
+	    user_uuid uuid DEFAULT uuid_generate_v4 (),
+	    email text NOT NULL,
+	    username text NOT NULL,
+	    firstname text NOT NULL,
+	    lastname text NOT NULL,
+	    age integer NOT NULL,
+	    dobday integer NOT NULL,
+	    dobmonth integer NOT NULL,
+	    dobyear integer NOT NULL,
+	    password text NOT NULL,
+	    gender text NOT NULL,
+	    orientation text NOT NULL DEFAULT 'Both',
+	    description text,
+	    location point,
+	    address text,
+	    lastconnected timestamp DEFAULT CURRENT_TIMESTAMP,
+	    profilepicture text,
+	    score integer NOT NULL DEFAULT 10,
+	    blocked text[],
+	    reportedBy text[], 
+	    firstconnection boolean DEFAULT TRUE,
+	    interests text[],
+	    picture1 text,
+	    picture2 text,
+	    picture3 text,
+	    picture4 text,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE notifications(
+	    notif_uuid uuid DEFAULT uuid_generate_v4 (),
+	    notif_type text NOT NULL,
+	    notif_who text NOT NULL,
+	    notif_from text NOT NULL,
+	    notif_read text NOT NULL,
+	    notif_date timestamp NOT NULL,
+	    PRIMARY KEY (notif_uuid)
+	);
+	
+	CREATE TABLE match(
+	    match_uuid uuid DEFAULT uuid_generate_v4 (),
+	    users text[] NOT NULL,
+	    match_ts timestamp default current_timestamp,
+	    match_read boolean DEFAULT FALSE,
+	    PRIMARY KEY (match_uuid)
+	);
+	
+	CREATE TABLE messages(
+	    msg_uuid uuid DEFAULT uuid_generate_v4 (),
+	    match_uuid uuid NOT NULL,
+	    msg_from text NOT NULL,
+	    msg_to text NOT NULL,
+	    msg_msg text NOT NULL,
+	    msg_ts timestamp default current_timestamp,
+	    PRIMARY KEY (msg_uuid),
+	    FOREIGN KEY (match_uuid) REFERENCES match (match_uuid) ON DELETE CASCADE
+	);
+	
+	CREATE TABLE views(
+	    views_uuid uuid DEFAULT uuid_generate_v4 (),
+	    views_current_user text NOT NULL,
+	    views_subject text NOT NULL,
+	    views_status text NOT NULL,
+	    PRIMARY KEY (views_uuid)
+	);
+	
+	CREATE TABLE password_reset(
+	    user_uuid uuid,
+	    activation_uuid uuid DEFAULT uuid_generate_v4 (),
+	    expiration_ts timestamp DEFAULT current_timestamp,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE visit(
+	   visit_uuid uuid DEFAULT uuid_generate_v4 (),
+	   visit_current_user text NOT NULL,
+	   visit_subject text NOT NULL,
+	   PRIMARY KEY (visit_uuid)
+	);
+	
+	
+2018-03-24 18:18:38.424 CET [39722] LOG:  unexpected EOF on client connection with an open transaction
+2018-03-24 19:55:06.839 CET [57828] ERROR:  syntax error at or near "test" at character 62
+2018-03-24 19:55:06.839 CET [57828] STATEMENT:  SELECT * FROM users WHERE orientation = $1 AND gender IN($2) test and email=$2
+2018-03-24 19:58:19.700 CET [59007] ERROR:  syntax error at or near "," at character 59
+2018-03-24 19:58:19.700 CET [59007] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1, gender = $2
+2018-03-24 20:03:16.748 CET [59685] ERROR:  bind message supplies 2 parameters, but prepared statement "" requires 3
+2018-03-24 20:03:16.748 CET [59685] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender IN($2, $3)
+2018-03-24 20:18:26.742 CET [62355] LOG:  unexpected EOF on client connection with an open transaction
+2018-03-24 20:40:27.636 CET [67359] ERROR:  syntax error at or near "ANY" at character 71
+2018-03-24 20:40:27.636 CET [67359] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender ANY($2)
+2018-03-24 20:43:21.196 CET [67728] ERROR:  syntax error at or near "IN" at character 73
+2018-03-24 20:43:21.196 CET [67728] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = IN({'Male,Female'})
+2018-03-24 20:44:04.603 CET [67829] ERROR:  syntax error at or near "IN" at character 73
+2018-03-24 20:44:04.603 CET [67829] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = IN({'Male,Female'} ::INT)
+2018-03-24 20:44:45.088 CET [67932] ERROR:  syntax error at or near "IN" at character 73
+2018-03-24 20:44:45.088 CET [67932] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = IN({'Male,Female'} ::STRING)
+2018-03-24 20:45:05.623 CET [67983] ERROR:  syntax error at or near "{" at character 77
+2018-03-24 20:45:05.623 CET [67983] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = ANY({'Male,Female'} ::STRING)
+2018-03-24 20:45:29.307 CET [68047] ERROR:  type "string" does not exist at character 95
+2018-03-24 20:45:29.307 CET [68047] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = ANY('{Male,Female}' ::STRING)
+2018-03-24 20:45:42.649 CET [68100] ERROR:  bind message supplies 2 parameters, but prepared statement "" requires 1
+2018-03-24 20:45:42.649 CET [68100] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = ANY('{Male,Female}')
+2018-03-24 20:46:25.899 CET [68198] ERROR:  bind message supplies 2 parameters, but prepared statement "" requires 1
+2018-03-24 20:46:25.899 CET [68198] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = ANY('{Male,Female}')
+2018-03-24 20:48:55.557 CET [68547] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 2
+2018-03-24 20:48:55.557 CET [68547] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = ANY($2)
+2018-03-24 20:49:13.602 CET [68591] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 2
+2018-03-24 20:49:13.602 CET [68591] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = ANY($2)
+2018-03-24 20:51:22.352 CET [69630] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 2
+2018-03-24 20:51:22.352 CET [69630] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = $2
+2018-03-24 20:52:19.556 CET [69810] ERROR:  malformed array literal: "'{Male,Female}'"
+2018-03-24 20:52:19.556 CET [69810] DETAIL:  Array value must start with "{" or dimension information.
+2018-03-24 20:52:19.556 CET [69810] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = ANY($2)
+2018-03-24 20:53:04.594 CET [69938] ERROR:  bind message supplies 2 parameters, but prepared statement "" requires 1
+2018-03-24 20:53:04.594 CET [69938] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = ANY('{$2}')
+2018-03-24 20:53:52.480 CET [70074] ERROR:  syntax error at or near "{" at character 77
+2018-03-24 20:53:52.480 CET [70074] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = $1 AND gender = ANY({$2})
+2018-03-24 20:59:34.125 CET [70849] ERROR:  column "female" does not exist at character 57
+2018-03-24 20:59:34.125 CET [70849] HINT:  Perhaps you meant to reference the column "users.email".
+2018-03-24 20:59:34.125 CET [70849] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = Female AND gender = ANY('{Male,Female}')
+2018-03-24 21:19:06.769 CET [74782] ERROR:  syntax error at or near "," at character 61
+2018-03-24 21:19:06.769 CET [74782] STATEMENT:  SELECT (username, email) FROM users WHERE orientation = Male,Other AND gender = ANY('{Male,Other}')
+2018-03-24 22:19:26.406 CET [87034] ERROR:  syntax error at or near "ae" at character 153
+2018-03-24 22:19:26.406 CET [87034] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE gender = ANY('{Female}') AND orientation = ANY('{Girls,Both}') AND user_uuid != c1e59a4e-feed-43ae-9564-5b82a575648c
+2018-03-24 22:20:42.364 CET [87209] ERROR:  syntax error at or near "ae" at character 153
+2018-03-24 22:20:42.364 CET [87209] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE gender = ANY('{Female}') AND orientation = ANY('{Girls,Both}') AND user_uuid != c1e59a4e-feed-43ae-9564-5b82a575648c
+2018-03-24 22:26:59.128 CET [88941] ERROR:  syntax error at or near "ae" at character 152
+2018-03-24 22:26:59.128 CET [88941] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE gender = ANY('{Female}') AND orientation = ANY('{Girls,Both}') AND user_uuid = c1e59a4e-feed-43ae-9564-5b82a575648c
+2018-03-24 22:27:07.289 CET [88962] ERROR:  syntax error at or near "ae" at character 152
+2018-03-24 22:27:07.289 CET [88962] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE gender = ANY('{Female}') AND orientation = ANY('{Girls,Both}') AND user_uuid = c1e59a4e-feed-43ae-9564-5b82a575648c
+2018-03-24 22:29:39.764 CET [89242] ERROR:  syntax error at or near "ae" at character 152
+2018-03-24 22:29:39.764 CET [89242] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE gender = ANY('{Female}') AND orientation = ANY('{Girls,Both}') AND user_uuid = c1e59a4e-feed-43ae-9564-5b82a575648c
+2018-03-24 22:29:49.109 CET [89293] ERROR:  syntax error at or near "ae" at character 152
+2018-03-24 22:29:49.109 CET [89293] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE gender = ANY('{Female}') AND orientation = ANY('{Girls,Both}') AND user_uuid = c1e59a4e-feed-43ae-9564-5b82a575648c
+2018-03-25 00:21:27.028 CET [37591] LOG:  received smart shutdown request
+2018-03-25 00:21:27.043 CET [37591] LOG:  worker process: logical replication launcher (PID 37598) exited with exit code 1
+2018-03-25 00:21:27.076 CET [37593] LOG:  shutting down
+2018-03-25 00:21:27.451 CET [37591] LOG:  database system is shut down
+2018-03-25 00:33:21.720 CET [13852] LOG:  listening on IPv6 address "::1", port 5432
+2018-03-25 00:33:21.720 CET [13852] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-03-25 00:33:21.722 CET [13852] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-03-25 00:33:21.742 CET [13853] LOG:  database system was shut down at 2018-03-25 00:21:27 CET
+2018-03-25 00:33:21.762 CET [13852] LOG:  database system is ready to accept connections
+2018-03-25 00:33:24.701 CET [13876] FATAL:  role "postgres" does not exist
+2018-03-25 00:36:06.614 CET [14193] FATAL:  role "postgres" does not exist
+2018-03-25 00:36:12.125 CET [14203] FATAL:  role "postgres" does not exist
+2018-03-25 00:36:22.073 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:22.767 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:22.767 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:23.464 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:23.464 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:24.161 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:24.161 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:24.853 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:24.853 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:25.517 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:25.517 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:26.168 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:26.168 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:26.832 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:26.832 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:27.489 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:27.489 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:28.187 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:28.187 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:28.884 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:28.884 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:29.579 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:29.579 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:30.278 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:30.278 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:30.394 CET [14261] LOG:  could not bind IPv6 address "::1": Address already in use
+2018-03-25 00:36:30.394 CET [14261] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-25 00:36:30.394 CET [14261] LOG:  could not bind IPv4 address "127.0.0.1": Address already in use
+2018-03-25 00:36:30.394 CET [14261] HINT:  Is another postmaster already running on port 5432? If not, wait a few seconds and retry.
+2018-03-25 00:36:30.394 CET [14261] WARNING:  could not create listen socket for "localhost"
+2018-03-25 00:36:30.394 CET [14261] FATAL:  could not create any TCP/IP sockets
+2018-03-25 00:36:30.394 CET [14261] LOG:  database system is shut down
+2018-03-25 00:36:30.973 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:30.973 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:31.669 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:31.669 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:32.365 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:32.365 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:32.801 CET [13857] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-25 00:36:32.802 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:32.802 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:33.493 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:33.493 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:34.177 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:34.177 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:34.859 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:34.859 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:35.539 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:35.539 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:36.227 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:36.227 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:36.884 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:36.884 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:37.548 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:37.548 CET [13858] LOG:  could not open temporary statistics file "pg_stat_tmp/global.tmp": No such file or directory
+2018-03-25 00:36:38.003 CET [13852] LOG:  could not open file "postmaster.pid": No such file or directory
+2018-03-25 00:36:38.003 CET [13852] LOG:  performing immediate shutdown because data directory lock file is invalid
+2018-03-25 00:36:38.003 CET [13852] LOG:  received immediate shutdown request
+2018-03-25 00:36:38.003 CET [13852] LOG:  could not open file "postmaster.pid": No such file or directory
+2018-03-25 00:36:38.004 CET [13857] WARNING:  terminating connection because of crash of another server process
+2018-03-25 00:36:38.004 CET [13857] DETAIL:  The postmaster has commanded this server process to roll back the current transaction and exit, because another server process exited abnormally and possibly corrupted shared memory.
+2018-03-25 00:36:38.004 CET [13857] HINT:  In a moment you should be able to reconnect to the database and repeat your command.
+2018-03-25 00:36:38.004 CET [13858] LOG:  could not open temporary statistics file "pg_stat/global.tmp": No such file or directory
+2018-03-25 00:36:38.006 CET [13852] LOG:  database system is shut down
+2018-03-25 00:36:50.713 CET [15055] LOG:  listening on IPv6 address "::1", port 5432
+2018-03-25 00:36:50.713 CET [15055] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-03-25 00:36:50.714 CET [15055] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-03-25 00:36:50.728 CET [15056] LOG:  database system was shut down at 2018-03-25 00:36:27 CET
+2018-03-25 00:36:50.732 CET [15055] LOG:  database system is ready to accept connections
+2018-03-25 00:39:42.835 CET [15424] FATAL:  role "postgres" does not exist
+2018-03-25 00:43:22.290 CET [15852] ERROR:  syntax error at or near "NOT" at character 21
+2018-03-25 00:43:22.290 CET [15852] STATEMENT:  
+	CREATE DATABASE IF NOT EXISTS Test_DB;
+	
+	\connect Test_DB;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	
+	CREATE TABLE users(
+	    user_uuid uuid DEFAULT uuid_generate_v4 (),
+	    email text NOT NULL,
+	    username text NOT NULL,
+	    firstname text NOT NULL,
+	    lastname text NOT NULL,
+	    age integer NOT NULL,
+	    dobday integer NOT NULL,
+	    dobmonth integer NOT NULL,
+	    dobyear integer NOT NULL,
+	    password text NOT NULL,
+	    gender text NOT NULL,
+	    orientation text NOT NULL DEFAULT 'Both',
+	    description text,
+	    location point,
+	    address text,
+	    lastconnected timestamp DEFAULT CURRENT_TIMESTAMP,
+	    profilepicture text,
+	    score integer NOT NULL DEFAULT 10,
+	    blocked text[],
+	    reportedBy text[], 
+	    firstconnection boolean DEFAULT TRUE,
+	    interests text[],
+	    picture1 text,
+	    picture2 text,
+	    picture3 text,
+	    picture4 text,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE notifications(
+	    notif_uuid uuid DEFAULT uuid_generate_v4 (),
+	    notif_type text NOT NULL,
+	    notif_who text NOT NULL,
+	    notif_from text NOT NULL,
+	    notif_read text NOT NULL,
+	    notif_date timestamp NOT NULL,
+	    PRIMARY KEY (notif_uuid)
+	);
+	
+	CREATE TABLE match(
+	    match_uuid uuid DEFAULT uuid_generate_v4 (),
+	    users text[] NOT NULL,
+	    match_ts timestamp default current_timestamp,
+	    match_read boolean DEFAULT FALSE,
+	    PRIMARY KEY (match_uuid)
+	);
+	
+	CREATE TABLE messages(
+	    msg_uuid uuid DEFAULT uuid_generate_v4 (),
+	    match_uuid uuid NOT NULL,
+	    msg_from text NOT NULL,
+	    msg_to text NOT NULL,
+	    msg_msg text NOT NULL,
+	    msg_ts timestamp default current_timestamp,
+	    PRIMARY KEY (msg_uuid),
+	    FOREIGN KEY (match_uuid) REFERENCES match (match_uuid) ON DELETE CASCADE
+	);
+	
+	CREATE TABLE views(
+	    views_uuid uuid DEFAULT uuid_generate_v4 (),
+	    views_current_user text NOT NULL,
+	    views_subject text NOT NULL,
+	    views_status text NOT NULL,
+	    PRIMARY KEY (views_uuid)
+	);
+	
+	CREATE TABLE password_reset(
+	    user_uuid uuid,
+	    activation_uuid uuid DEFAULT uuid_generate_v4 (),
+	    expiration_ts timestamp DEFAULT current_timestamp,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE visit(
+	   visit_uuid uuid DEFAULT uuid_generate_v4 (),
+	   visit_current_user text NOT NULL,
+	   visit_subject text NOT NULL,
+	   PRIMARY KEY (visit_uuid)
+	);
+	
+	
+2018-03-25 00:43:37.903 CET [15852] ERROR:  syntax error at or near "\" at character 2
+2018-03-25 00:43:37.903 CET [15852] STATEMENT:  
+	\connect Test_DB;
+	
+	CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+	
+	CREATE TABLE users(
+	    user_uuid uuid DEFAULT uuid_generate_v4 (),
+	    email text NOT NULL,
+	    username text NOT NULL,
+	    firstname text NOT NULL,
+	    lastname text NOT NULL,
+	    age integer NOT NULL,
+	    dobday integer NOT NULL,
+	    dobmonth integer NOT NULL,
+	    dobyear integer NOT NULL,
+	    password text NOT NULL,
+	    gender text NOT NULL,
+	    orientation text NOT NULL DEFAULT 'Both',
+	    description text,
+	    location point,
+	    address text,
+	    lastconnected timestamp DEFAULT CURRENT_TIMESTAMP,
+	    profilepicture text,
+	    score integer NOT NULL DEFAULT 10,
+	    blocked text[],
+	    reportedBy text[], 
+	    firstconnection boolean DEFAULT TRUE,
+	    interests text[],
+	    picture1 text,
+	    picture2 text,
+	    picture3 text,
+	    picture4 text,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE notifications(
+	    notif_uuid uuid DEFAULT uuid_generate_v4 (),
+	    notif_type text NOT NULL,
+	    notif_who text NOT NULL,
+	    notif_from text NOT NULL,
+	    notif_read text NOT NULL,
+	    notif_date timestamp NOT NULL,
+	    PRIMARY KEY (notif_uuid)
+	);
+	
+	CREATE TABLE match(
+	    match_uuid uuid DEFAULT uuid_generate_v4 (),
+	    users text[] NOT NULL,
+	    match_ts timestamp default current_timestamp,
+	    match_read boolean DEFAULT FALSE,
+	    PRIMARY KEY (match_uuid)
+	);
+	
+	CREATE TABLE messages(
+	    msg_uuid uuid DEFAULT uuid_generate_v4 (),
+	    match_uuid uuid NOT NULL,
+	    msg_from text NOT NULL,
+	    msg_to text NOT NULL,
+	    msg_msg text NOT NULL,
+	    msg_ts timestamp default current_timestamp,
+	    PRIMARY KEY (msg_uuid),
+	    FOREIGN KEY (match_uuid) REFERENCES match (match_uuid) ON DELETE CASCADE
+	);
+	
+	CREATE TABLE views(
+	    views_uuid uuid DEFAULT uuid_generate_v4 (),
+	    views_current_user text NOT NULL,
+	    views_subject text NOT NULL,
+	    views_status text NOT NULL,
+	    PRIMARY KEY (views_uuid)
+	);
+	
+	CREATE TABLE password_reset(
+	    user_uuid uuid,
+	    activation_uuid uuid DEFAULT uuid_generate_v4 (),
+	    expiration_ts timestamp DEFAULT current_timestamp,
+	    PRIMARY KEY (user_uuid)
+	);
+	
+	
+	CREATE TABLE visit(
+	   visit_uuid uuid DEFAULT uuid_generate_v4 (),
+	   visit_current_user text NOT NULL,
+	   visit_subject text NOT NULL,
+	   PRIMARY KEY (visit_uuid)
+	);
+	
+	
+2018-03-25 01:48:47.725 CET [29041] ERROR:  bind message supplies 1 parameters, but prepared statement "" requires 0
+2018-03-25 01:48:47.725 CET [29041] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE gender = ANY('{Male,Female,Other}') AND orientation = ANY('{Guys,Girls,Both}') 
+2018-03-25 04:15:22.466 CEST [45461] ERROR:  function st_distance(numeric, numeric) does not exist at character 57
+2018-03-25 04:15:22.466 CEST [45461] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2018-03-25 04:15:22.466 CEST [45461] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE ST_Distance(0.0, 0.0) AND gender = ANY('{Female}') AND orientation = ANY('{Guys,Both}') AND user_uuid != $1
+2018-03-25 04:16:42.536 CEST [45614] ERROR:  function st_dwithin(numeric, numeric) does not exist at character 57
+2018-03-25 04:16:42.536 CEST [45614] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2018-03-25 04:16:42.536 CEST [45614] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE ST_DWithin(0.0, 0.0) AND gender = ANY('{Female}') AND orientation = ANY('{Guys,Both}') AND user_uuid != $1
+2018-03-25 04:17:56.458 CEST [45757] ERROR:  function st_collect(numeric, numeric) does not exist at character 57
+2018-03-25 04:17:56.458 CEST [45757] HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+2018-03-25 04:17:56.458 CEST [45757] STATEMENT:  SELECT (username, gender, orientation) FROM users WHERE St_Collect(0.0, 0.0) AND gender = ANY('{Female}') AND orientation = ANY('{Guys,Both}') AND user_uuid != $1
+2018-03-25 05:21:34.242 CEST [15055] LOG:  received smart shutdown request
+2018-03-25 05:21:34.254 CEST [15055] LOG:  worker process: logical replication launcher (PID 15062) exited with exit code 1
+2018-03-25 05:21:34.277 CEST [15057] LOG:  shutting down
+2018-03-25 05:21:34.302 CEST [15055] LOG:  database system is shut down
