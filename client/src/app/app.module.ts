@@ -25,6 +25,8 @@ import { SearchComponent } from './components/search/search.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ChatDetailsComponent } from './components/chat-details/chat-details.component';
 import { SliderModule } from 'primeng/slider';
+import { ChangepwdComponent } from './components/changepwd/changepwd.component';
+import { ForgotpwdComponent } from './components/forgotpwd/forgotpwd.component';
 
 const appRoutes: Routes = [
   { path: 'search/:username', component: SearchComponent, canActivate: [AuthGuardService]},
@@ -51,7 +53,9 @@ const appRoutes: Routes = [
     NotificationsComponent,
     SearchComponent,
     PagenotfoundComponent,
-    ChatDetailsComponent
+    ChatDetailsComponent,
+    ChangepwdComponent,
+    ForgotpwdComponent
   ],
   imports: [
     BrowserModule,
