@@ -27,6 +27,8 @@ import { ChatDetailsComponent } from './components/chat-details/chat-details.com
 import { SliderModule } from 'primeng/slider';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatInputModule } from '@angular/material/input';
+import { ChangepwdComponent } from './components/changepwd/changepwd.component';
+import { ForgotpwdComponent } from './components/forgotpwd/forgotpwd.component';
 
 const appRoutes: Routes = [
   { path: 'search/:username', component: SearchComponent, canActivate: [AuthGuardService]},
@@ -53,7 +55,9 @@ const appRoutes: Routes = [
     NotificationsComponent,
     SearchComponent,
     PagenotfoundComponent,
-    ChatDetailsComponent
+    ChatDetailsComponent,
+    ChangepwdComponent,
+    ForgotpwdComponent
   ],
   imports: [
     BrowserModule,

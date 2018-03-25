@@ -26,7 +26,7 @@ module.exports = {
         }
 
         pool.query(searchVisit).then(result => {
-            if (result.rowCount == 1) return
+            if (result.rowCount) return
             else {
                 pool.query(insertVisit).then(row => {
                     pool.query(setNotification).then(
