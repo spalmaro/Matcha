@@ -60,68 +60,69 @@ module.exports = {
 
     getList(user, socket)
     {
-      let orientation = [],
-          otherOrientation = [],
-          gender = [];
+      let currentUserGender = ucfirst(user.gender),
+          currentUserOrientation = ucfirst(user.orientation),
+          queryOrientation = [],
+          queryGender = [],
+          user_uuid = user.user_uuid;
 
-          user.gender = 'male';
-          user.orientation = 'Guys';
+          // user.queryGender = 'male';
+          // user.queryOrientation = 'Guys';
 
-      if (user.gender == 'male')
+      if (currentUserGender === 'Male')
       {
-        if (user.orientation == 'Girls')
+        if (currentUserOrientation === 'Girls')
         {
-          orientation.push(['Guys']);
-          gender.push(['Female']);
+          queryGender.push(['Female']);
+          queryOrientation.push(['Guys', 'Both']);
         }
-        else if(user.orientation == 'Guys')
+        else if (currentUserOrientation === 'Guys')
         {
-          orientation.push(['Guys']);
-          gender.push(['Male']); 
+          queryGender.push(['Male']); 
+          queryOrientation.push(['Guys', 'Both']);
         }
-        else if(user.orientation == 'Both')
+        else if (currentUserOrientation === 'Both')
         {
-          orientation.push(['Guys', 'Girls', 'Both']);
-          gender.push(['Male', 'Female', 'Other']); 
+          queryGender.push(['Male', 'Female']); 
+          queryOrientation.push(['Guys', 'Both']);
         }
       }
-      else if (user.gender == 'Female')
+      else if (currentUserGender === 'Female')
       {
 
-        if (user.orientation == 'Girls')
+        if (currentUserOrientation === 'Girls')
         {
-          orientation.push(['Girls']);
-          gender.push(['Female']);
+          queryGender.push(['Female']);
+          queryOrientation.push(['Girls', 'Both']);
         }
-        else if(user.orientation == 'Guys')
+        else if (currentUserOrientation === 'Guys')
         {
-          orientation.push(['Girls']);
-          gender.push(['Male']); 
+          queryGender.push(['Male']); 
+          queryOrientation.push(['Girls', 'Both']);
         }
-        else if(user.orientation == 'Both')
+        else if (currentUserOrientation === 'Both')
         {
-          orientation.push(['Guys', 'Girls', 'Both']);
-          gender.push(['Male', 'Female', 'Other']); 
+          queryGender.push(['Male', 'Female']); 
+          queryOrientation.push(['Girls', 'Both']);
         }
       }
-      else if (user.gender == 'other')
-        gender.push(['Male', 'Female', 'Other']);
       else
-        gender = null;
+        queryGender = null;
 
 
-      if (!gender || !orientation)
+      console.log('current =', user.gender, user.orientation)
+      console.log(queryGender, queryOrientation)
+      if (!queryGender || !queryOrientation)
         return false;
 
 
       // for(var i = 1; i <= data.length; i++) {
       //   data.push('$' + i);
       // }
-      console.log(user.gender, user.orientation)
-      console.log(gender, orientation)
 
       const checkUserExists = {
-        text: `SELECT (username, email) FROM users WHERE gender = ANY('{${gender.join(',')}}') AND orientation = ANY('{${orientation.join(',')}}')`
+        text: `SELECT (username, gender, orientation) FROM users WHERE gender = ANY('{${queryGender.join(',')}}') AND orientation = ANY('{${queryOrientation.join(',')}}') AND user_uuid != $1`,
+        values: [user_uuid]
       };
 
       pool.query(checkUserExists)
@@ -144,7 +145,7 @@ module.exports = {
       //       if (user.interests.length){
       //         query.interests = {$in: user.interests}
       //       }
-      //       if (user.orientation !== 'Both') {
+      //       if (user.orientation !=== 'Both') {
       //         query.gender = user.orientation == 'Guys' ? 'Male' : 'Female'
       //       } else {
       //         query.gender =  {$in: ['Male', 'Female']}
