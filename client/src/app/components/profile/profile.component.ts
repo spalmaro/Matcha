@@ -54,7 +54,8 @@ export class ProfileComponent implements OnInit {
     const marker = ';base64,';
     const base64Index = base64.indexOf(marker) + marker.length;
     const base64string = base64.substring(base64Index);
-    return (base64string);
+    const test = 'url(data:image/jpeg;base64,' + base64string + ')'; // added this for faker image urls to work
+    return (test);
   }
 
   uploadPicture(event: any) {

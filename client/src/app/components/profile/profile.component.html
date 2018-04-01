@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="item">
-        <div class="profile-pic" (click)="showPopup(true, 0)" *ngIf="user.profilepicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.profilepicture +')'">
+        <div class="profile-pic" (click)="showPopup(true, 0)" *ngIf="user.profilepicture" [style.backgroundImage]="user.profilepicture">
           <span><i class="camera icon"></i>Change Image</span>
         </div>
         <div class="profile-pic" (click)="showPopup(true, 0)" *ngIf="!user.profilepicture || user.profilepicture == ''" style="background-image: url('https://scontent.cdninstagram.com/t51.2885-19/11906329_960233084022564_1448528159_a.jpg')">
@@ -56,7 +56,7 @@
           </div>
           <div class="column" *ngIf="user.picture1">
             <span class="remove-picture" (click)="removePicture(1)">x</span>
-            <div #pic1 class="picture" (click)="showPopup(true, 1)" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.picture1 +')'">
+            <div #pic1 class="picture" (click)="showPopup(true, 1)" [style.backgroundImage]="user.picture1">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
           </div>
@@ -67,7 +67,7 @@
           </div>
           <div class="column" *ngIf="user.picture2">
             <span class="remove-picture" (click)="removePicture(2)">x</span>
-            <div #pic2 class="picture" (click)="showPopup(true, 2)" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.picture2 +')'">
+            <div #pic2 class="picture" (click)="showPopup(true, 2)" [style.backgroundImage]="user.picture2">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
           </div>
@@ -78,7 +78,7 @@
           </div>
           <div class="column" *ngIf="user.picture3">
             <span class="remove-picture" (click)="removePicture(3)">x</span>
-            <div #pic3 class="picture" (click)="showPopup(true, 3)" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.picture3 +')'">
+            <div #pic3 class="picture" (click)="showPopup(true, 3)" [style.backgroundImage]="user.picture3">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
           </div>
@@ -89,7 +89,7 @@
           </div>
           <div class="column" *ngIf="user.picture4">
             <span class="remove-picture" (click)="removePicture(4)">x</span>
-            <div #pic4 class="picture" (click)="showPopup(true, 4)" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.picture4 +')'">
+            <div #pic4 class="picture" (click)="showPopup(true, 4)" [style.backgroundImage]="user.picture4">
               <span><i class="camera icon"></i>Change Image</span>
             </div>
           </div>

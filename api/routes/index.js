@@ -55,7 +55,7 @@ router.get('/getUserInfo', (req, res, next) => {
 })
 
 router.get('/getProfile', (req, res, next) => {
-  Search.getProfile(req.query.username.toLowerCase(), res)
+  Search.getProfile(req.query.username, res)
 })
 
 router.post('/forgotpassword', (req, res, next) => {
