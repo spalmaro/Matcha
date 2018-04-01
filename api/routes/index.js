@@ -16,7 +16,7 @@ const pool = new Pool({
 router.post('/signup', (req, res, next) => {
 
   let item = [
-    req.body.email, req.body.username, req.body.firstname, req.body.lastname, getAge(req.body.dobyear + '-' + req.body.dobmonth + '-' + req.body.dobday), req.body.dobday,
+    req.body.email.toLowerCase(), req.body.username.toLowerCase(), req.body.firstname, req.body.lastname, getAge(req.body.dobyear + '-' + req.body.dobmonth + '-' + req.body.dobday), req.body.dobday,
     req.body.dobmonth, req.body.dobyear, bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)), req.body.gender,
     'Both', '', '(0, 0)', '', '', 10, [], [], true, [], '', '', '', ''
   ]
@@ -26,7 +26,7 @@ router.post('/signup', (req, res, next) => {
 router.post('/login', async (req, res, next) => {
   let checkPassword = {
     text: "SELECT username, email, password, firstconnection FROM users WHERE username=$1",
-    values: [req.body.username]
+    values: [req.body.username.toLowerCase()]
   }
   try {
     let result = await pool.query(checkPassword)
@@ -51,15 +51,26 @@ router.post('/login', async (req, res, next) => {
 })
 
 router.get('/getUserInfo', (req, res, next) => {
-  User.getUserInfo(req.query.username, res)
+  User.getUserInfo(req.query.username.toLowerCase(), res)
 })
 
 router.get('/getProfile', (req, res, next) => {
-  Search.getProfile(req.query.username, res)
+  Search.getProfile(req.query.username.toLowerCase(), res)
 })
 
 router.post('/forgotpassword', (req, res, next) => {
-  User.forgotPassword(req.body.email, res)
+  User.forgotPassword(req.body.email.toLowerCase(), res)
 })
 
+router.post('/checkActivation', (req, res, next) => {
+  User.checkActivation(req.body.activation_uuid, res);
+})
+
+router.post('/changePassword', (req, res, next) => {
+  User.changePassword(bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)), req.body.username, res);
+})
+
+router.post('/changePasswordForgot', (req, res, next) => {
+  User.changePasswordForgot(req.body.activation_uuid, bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)), res);
+})
 module.exports = router;

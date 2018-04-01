@@ -158,8 +158,6 @@ const forgotPassword = (email, res) => {
         values: [email]
     }
 
-
-
     pool.query(checkEmail).then(row => {
         if (row.rowCount === 1) {
             let user_uuid = row.rows[0].user_uuid;
@@ -231,11 +229,111 @@ const forgotPassword = (email, res) => {
     })
 }
 
+const checkActivation = (activation_uuid, res) => {
+    const check = {
+        text: "SELECT * FROM password_reset NATURAL JOIN users WHERE activation_uuid = $1",
+        values: [activation_uuid]
+    }
+
+    pool.query(check).then(row => {
+        if (row.rowCount === 0) {
+            res.json({success: false})
+        } else {
+            let now = Date.now();
+            let user_uuid = row.rows[0].user_uuid;
+            let email = row.rows[0].email;
+            if (row.rows[0].expiration_ts > now){
+                res.json({status: 'valid'})
+            } else if (row.rows[0].expiration_ts < now) {
+                const delResend = {
+                    text: "DELETE FROM password_reset WHERE user_uuid = $1",
+                    values: [user_uuid]
+                }
+                pool.query(delResend).then(delSuccess => {
+                    if (delSuccess.rowCount === 1) {
+                        const getActivationUuid = {
+                            text: "INSERT INTO password_reset(user_uuid) VALUES($1) RETURNING activation_uuid",
+                            values: [user_uuid]
+                        }
+                        pool.query(getActivationUuid).then(result => {
+                            if (result.rowCount === 1) {
+                                emailCtrl.sendMail(email, result.rows[0].activation_uuid, (success => {
+                                    if (success) res.json({ status: 'resent' })
+                                    else res.json({ success: false, msg: 'activation uuid failed'})
+                                }))
+                            } else res.json({ success: false, error: 'email not sent' })
+                        }).catch(err => {
+                            console.log('ERROR', err);
+                            res.json({ success: false, error: err })
+                        })
+                    } else {
+                        res.json({ success: false, error: 'email not sent' })
+                    }
+                }).catch(err => {
+                    console.log('ERROR', err);
+                    res.json({ success: false, error: err })
+                })
+            }
+        }
+    }).catch(err => {
+        console.log('Error ',err)
+    })
+}
+
+const changePassword = (password, username, res) => {
+    const change = {
+        text: "UPDATE users SET password = $1 WHERE username = $2",
+        values: [password, username]
+    }
+
+    pool.query(change).then(row => {
+        if (row.rowCount === 1) {
+            res.json({success: true})
+        } else {
+            res.json({success: false})
+        }
+    }).catch(err => {
+        console.log(err);
+        res.json({ success: false })
+    })
+}
+
+const changePasswordForgot = (activation_uuid, password, res) => {
+    const change = {
+        text: "UPDATE users SET password= $2 WHERE user_uuid = (SELECT user_uuid FROM password_reset NATURAL JOIN users WHERE activation_uuid = $1) RETURNING username, email",
+        values: [activation_uuid, password]
+    }
+
+    const deleteEntry = {
+        text: "DELETE FROM password_reset WHERE activation_uuid = $1",
+        values: [activation_uuid]
+    }
+
+    pool.query(change).then(row => {
+        if (row.rowCount === 1) {
+            const token = jwt.sign({ username: row.rows[0].username, email: row.rows[0].email }, env.secret, {
+                expiresIn: 604800 // 1 week
+            });
+            res.json({ success: true, token: token, username: row.rows[0].username })
+            pool.query(deleteEntry).then(result => {
+            }).catch(err => console.log(err))
+        } else {
+            res.json({ success: false })
+        }
+    }).catch(err => {
+        console.log(err);
+        res.json({ success: false })
+    })
+}
+
 module.exports = {
     'addUser': addUser,
     'updateUser': updateUser,
     'getUserInfo': getUserInfo,
     'reportUser': reportUser,
     'blockUser': blockUser,
-    'forgotPassword': forgotPassword
+    'forgotPassword': forgotPassword,
+    'checkActivation': checkActivation,
+    'changePassword': changePassword,
+    'changePasswordForgot': changePasswordForgot
 };

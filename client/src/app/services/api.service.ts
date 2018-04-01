@@ -126,4 +126,25 @@ export class ApiService {
     return this.http.post(this.API_URL + '/forgotpassword', {email: email}, { headers: headers })
       .map(res => res.json())
   }
+
+  checkActivation(activation_uuid) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(this.API_URL + '/checkActivation', { activation_uuid: activation_uuid }, { headers: headers })
+      .map(res => res.json())
+  }
+
+  changePassword(password, username) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(this.API_URL + '/changePassword', { password: password, username: username }, { headers: headers })
+      .map(res => res.json())
+  }
+
+  changePasswordForgot(activation_uuid, password) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(this.API_URL + '/changePasswordForgot', { activation_uuid: activation_uuid, password: password }, { headers: headers })
+      .map(res => res.json())
+  }
 }

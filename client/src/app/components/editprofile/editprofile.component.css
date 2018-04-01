@@ -70,6 +70,19 @@
   /* max-width: 300px; */
 }
 
+#submit2{
+  /* margin-top: 20px; */
+  background-color: orange;
+  color: white;
+  font-size: 14px;
+	padding:9px 8px 7px;
+	border:1px solid #dbdbdb;
+  border-radius: 3px;
+  display: block;
+  margin: 20px auto;
+  /* max-width: 300px; */
+}
+
 form div{
 	display: flex;
 	vertical-align: middle;

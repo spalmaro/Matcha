@@ -37,7 +37,7 @@ import { MatCardModule } from '@angular/material/card';
 const appRoutes: Routes = [
   { path: 'search/:username', component: SearchComponent, canActivate: [AuthGuardService]},
   { path: 'chat/:username', component: ChatDetailsComponent, canActivate: [AuthGuardService]},
-  { path: 'changepassword/:id', component: NotificationsComponent},
+  { path: 'changepassword/:id', component: ChangepwdComponent, canActivate: [AuthGuardService2] },
   { path: 'search', redirectTo: '', canActivate: [AuthGuardService]},
   { path: '', component: IndexComponent, canActivate: [AuthGuardService2] },
   { path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuardService] },
@@ -46,7 +46,7 @@ const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]},
   { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService]},
   { path: 'forgotpassword', component: ForgotpwdComponent},
-  { path: 'changepassword', component: NotificationsComponent, canActivate: [AuthGuardService]},
+  { path: 'changepassword', component: ChangepwdComponent, canActivate: [AuthGuardService]},
   { path: '**', component: PagenotfoundComponent}
 ]
 

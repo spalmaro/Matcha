@@ -83,7 +83,7 @@ CREATE TABLE views(
 CREATE TABLE password_reset(
     user_uuid uuid,
     activation_uuid uuid DEFAULT uuid_generate_v4 (),
-    expiration_ts timestamp DEFAULT current_timestamp,
+    expiration_ts timestamp DEFAULT current_timestamp + interval '1' day,
     PRIMARY KEY (user_uuid)
 );
 
