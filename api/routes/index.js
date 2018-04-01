@@ -58,4 +58,8 @@ router.get('/getProfile', (req, res, next) => {
   Search.getProfile(req.query.username, res)
 })
 
+router.post('/forgotpassword', (req, res, next) => {
+  User.forgotPassword(req.body.email, res)
+})
+
 module.exports = router;

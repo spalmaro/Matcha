@@ -2,7 +2,15 @@
     <img class="header item" id='logo' routerLink='/' src='/assets/images/logo.png'>
 </div>
 <div class="content">
-    <mat-card>
-
+    <mat-card style="text-align: center">
+    <h2 class="title">Forgot your password?</h2>
+      <p style='color:green' *ngIf="isSuccess === true">An reset link was sent to your email address</p>
+      <mat-form-field>
+        <input matInput #mail='ngModel' placeholder="Enter E-mail" [(ngModel)]="email" required>
+        <mat-hint *ngIf="invalidEmail === true" class='mat-error'>
+          The e-mail you entered does not belong to any account.
+        </mat-hint>
+      </mat-form-field> <br>
+      <button [disabled]="mail.invalid" (click)="sendLink()" mat-raised-button>Send reset link</button>
     </mat-card>
 </div>

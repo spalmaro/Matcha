@@ -119,4 +119,11 @@ export class ApiService {
   getVisitedByUsers() {
     this.socket.emit('viewedby:get', this._userService.getCurrentUser())
   }
+
+  forgotpassword(email) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(this.API_URL + '/forgotpassword', {email: email}, { headers: headers })
+      .map(res => res.json())
+  }
 }
