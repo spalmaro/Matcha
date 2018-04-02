@@ -89,7 +89,7 @@ export class ApiService {
   }
 
   sendMessage(message, to, timestamp) {
-    this.socket.emit('message:set', {message: message, to: to, from: this._userService.getCurrentUser, timestamp: timestamp});
+    this.socket.emit('message:set', {message: message, to: to, from: this._userService.getCurrentUser(), timestamp: timestamp});
   }
 
   getConversations() {

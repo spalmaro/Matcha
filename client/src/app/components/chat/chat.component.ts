@@ -25,16 +25,8 @@ export class ChatComponent implements OnInit {
     })
 
     this._apiService.convos.subscribe(list => {
-      for (const item of list) {
-        if (item.users[0] !== this._userService.getCurrentUser()) {
-          if (!this.people.includes(item.users[0])){
-            this.people.push(item.users[0]);
-          }
-        } else {
-          if (!this.people.includes(item.users[1])) {
-            this.people.push(item.users[1]);
-          }
-        }
+      if (list.result) {
+        this.people = list.result;
       }
     })
 

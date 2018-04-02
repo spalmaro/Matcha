@@ -31,8 +31,8 @@ module.exports = {
                 pool.query(insertVisit).then(row => {
                     pool.query(setNotification).then(
                         console.log('notification sent')
-                    ).catch(err => console.log(err))
-                }).catch(err => console.log(err))
+                    ).catch(err => console.log('setVisit Error', err))
+                }).catch(err => console.log('Set visit error 2', err))
             }
         }).catch(err => console.log(err))
     },
@@ -46,7 +46,7 @@ module.exports = {
         pool.query(getNotif).then(result => {
             if (result.rowCount)
                 socket.emit('notifications:post', result.rows);
-        }).catch(err => console.log(err))
+        }).catch(err => console.log('get notifications error ',err))
     },
 
     readNotifications(data, socket) {
@@ -62,6 +62,7 @@ module.exports = {
     },
 
     sendMessage(data, socket) {
+        console.log('Send message ==>', data)
         const findConversation = {
             text: "SELECT * FROM match WHERE ($1 = ANY (users)) AND ($2 = ANY (users)) ",
             values: [data.to, data.from]
@@ -79,44 +80,40 @@ module.exports = {
                 }).catch(err => console.log(err))
             }
         }).catch(err => console.log(err))
-
-        // mongodb.connect(url, (err, db) => {
-        //     if (err) throw err;
-        //     console.log('lakdjflaksjdf', data)
-        //     db.collection('match').findOne({users: {$all: [data.to, data.from]}}, (err, result) => {
-        //         if (err) throw err;
-        //         if (result) {
-        //             let message = {};
-        //             messsage['to'] = data.to;
-        //             message['from'] = data.from;
-        //             message['message'] = data.message;
-        //             message['timestamp'] = data.timestamp;
-        //             let msg = result.messages.push(message);
-        //             db.collection('match').update({'users': {$all: [data.to, data.from]}}, {$set:  {'messages': msg, 'read': false}}, (err, result) => {
-        //                 if (err) throw err;
-        //             })
-        //         }
-        //     })
-        // })
     },
 
     getConversations(data, socket) {
         //NEED TO ORDER BY TIMESTAMP OF LAST MESSAGES IF EXISTS ELSE BY TIMESTAMP OF MATCH
         const findConversations = {
-            text: "SELECT * FROM match WHERE ($1 = ANY (users)) ORDER BY match_ts DESC, ",
+            text: "SELECT * FROM match WHERE ($1 = ANY (users)) ORDER BY match_ts DESC",
             values: [data.username]
         }
 
         pool.query(findConversations).then(result => {
             if (result.rowCount) {
-                socket.emit("conversations:post", {result: result.rows[0]})
+                let people = result.rows;
+                let arr = [];
+                for (let x of people) {
+                    if (x.users[0] != data.username)
+                        arr.push(x.users[0]);
+                    else
+                        arr.push(x.users[1]);
+                }
+                const getPeople = {
+                    text: "SELECT username, firstname, lastname, profilepicture FROM users WHERE username IN ($1)",
+                    values: [arr.toString()]
+                }
+                pool.query(getPeople).then(row => {
+                    if (row.rows) {
+                        socket.emit("conversations:post", {result: row.rows})
+                    }
+                }).catch(err => console.log('People Error', err))
             }
-        }).catch(err => console.log(err))
+        }).catch(err => console.log('get convo errorr', err))
     },
 
     getMessages(data, socket) {
         //toArray
-        console.log('MESSAGE GET', data)
         const findConversation = {
             text: "SELECT * FROM match WHERE ($1 = ANY (users)) AND ($2 = ANY (users)) ",
             values: [data.to, data.from]

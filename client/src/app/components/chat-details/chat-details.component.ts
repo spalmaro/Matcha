@@ -55,7 +55,7 @@ export class ChatDetailsComponent implements OnInit {
   }
 
   sendMessage() {
-    this._apiService.sendMessage('message', this.chatBuddy.username, new Date().getTime())
+    this._apiService.sendMessage(this.message, this.chatBuddy.username, new Date().getTime())
     this.message = '';
   }
 

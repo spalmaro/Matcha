@@ -1,16 +1,14 @@
 -- brew update
 -- brew install postgresql
 -- mkdir db && chmod 0700 db || directory of DATABASE
--- initdb ~/Desktop/Matcha/api/db
--- postgres -D api/db
+-- initdb api/db
 -- pg_ctl -D api/db/ -l logfile start
 -- psql -d matcha (server)
 -- Or, if you don't want/need a background service you can just run:
 --   pg_ctl -D /usr/local/var/postgres start
--- ==> Summary
---  /usr/local/Cellar/postgresql/10.3: 3,383 files, 39.2MB
 
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "postgis";
 
 CREATE TABLE users(
     user_uuid uuid DEFAULT uuid_generate_v4 (),
@@ -39,7 +37,7 @@ CREATE TABLE users(
     picture2 text,
     picture3 text,
     picture4 text,
-    online DEFAULT true,
+    online boolean DEFAULT true,
     PRIMARY KEY (user_uuid)
 );
 
@@ -57,7 +55,7 @@ CREATE TABLE match(
     match_uuid uuid DEFAULT uuid_generate_v4 (),
     users text[] NOT NULL,
     match_ts timestamp default current_timestamp,
-    match_read boolean DEFAULT FALSE,
+    match_read boolean DEFAULT true,
     PRIMARY KEY (match_uuid)
 );
 

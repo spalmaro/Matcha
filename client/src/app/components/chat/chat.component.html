@@ -1,21 +1,12 @@
 <app-navbar></app-navbar>
-<div class='ui centered grid'>
-  <div class='column notifications'>
-	<ul class="discussions-list">
-		<!-- <li class="current-discussion"> -->
-			<div *ngFor='let x of people' class="target-user-info current-discussion">
-				<div class="target-user-pic-box">
-					<img src="/assets/images/left.svg" alt="Target user" class="target-user-pic">
-				</div>
-				<div [routerLink]="'/chat/' + people" class="target-user-firstname" style='cursor: pointer'>
-					<h2>{{people}}</h2>
-				</div>
-				<div class="target-user-connexion-status"></div>
-			</div>
-			<div *ngIf='!people.length' style="text-align: center;">
-					<h4><i>No available conversations yet</i></h4>
-			</div>
-		<!-- </li> -->
-  </ul>
-  </div>
+<div class="ui text container chatbox">
+	<div class="ui segments" style="overflow-y: scroll;">
+		<div class="ui segment" style="text-align: center"><h2>Chat</h2></div>
+		<div class="ui segment" *ngFor='let x of people'>
+			<div style="display: flex; flex-direction: row; cursor: pointer;" [routerLink]="'/chat/' + x.username">
+					<div class="pict" [style.backgroundImage]="x.profilepicture"></div>
+					<h4>{{x.firstname}} {{x.lastname}}</h4>
+			</div>	
+		</div>
+	</div>
 </div>

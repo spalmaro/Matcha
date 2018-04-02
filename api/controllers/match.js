@@ -74,7 +74,7 @@ module.exports = {
         }
 
         const insertNotif = {
-            text: "INSERT INTO notifications(notif_type, notif_who, notif_from, notif_read, notif_date) VALUES('match', $1, $2, false, current_timestamp)",
+            text: "INSERT INTO notifications(notif_type, notif_who, notif_from, notif_read, notif_date) VALUES ('match', $1, $2, false, current_timestamp), ('match', $2, $1, false, current_timestamp)",
             values: [data.subject, data.currentUser]
         }
 
