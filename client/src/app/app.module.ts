@@ -17,18 +17,27 @@ import { AuthGuardService2 } from './services/auth-guard2.service'
 import { UserService } from './services/user.service';
 import { ApiService } from 'app/services/api.service';
 import { SocketService } from './services/socket.service';
-import { NotificationService } from './services/notification.service'
-import { SliderModule } from 'primeng/slider';
+import { NotificationService } from './services/notification.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChatComponent } from './components/chat/chat.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { SearchComponent } from './components/search/search.component';
 import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 import { ChatDetailsComponent } from './components/chat-details/chat-details.component';
+import { ChangepwdComponent } from './components/changepwd/changepwd.component';
+import { ForgotpwdComponent } from './components/forgotpwd/forgotpwd.component';
+
+import { SliderModule } from 'primeng/slider';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
 
 const appRoutes: Routes = [
   { path: 'search/:username', component: SearchComponent, canActivate: [AuthGuardService]},
   { path: 'chat/:username', component: ChatDetailsComponent, canActivate: [AuthGuardService]},
+  { path: 'changepassword/:id', component: ChangepwdComponent, canActivate: [AuthGuardService2] },
   { path: 'search', redirectTo: '', canActivate: [AuthGuardService]},
   { path: '', component: IndexComponent, canActivate: [AuthGuardService2] },
   { path: 'editprofile', component: EditprofileComponent, canActivate: [AuthGuardService] },
@@ -36,6 +45,8 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]},
   { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuardService]},
+  { path: 'forgotpassword', component: ForgotpwdComponent},
+  { path: 'changepassword', component: ChangepwdComponent, canActivate: [AuthGuardService]},
   { path: '**', component: PagenotfoundComponent}
 ]
 
@@ -51,7 +62,9 @@ const appRoutes: Routes = [
     NotificationsComponent,
     SearchComponent,
     PagenotfoundComponent,
-    ChatDetailsComponent
+    ChatDetailsComponent,
+    ChangepwdComponent,
+    ForgotpwdComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +74,11 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     Ng4GeoautocompleteModule.forRoot(),
     ReactiveFormsModule,
-    SliderModule
+    SliderModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule
   ],
   providers: [
     UserService,

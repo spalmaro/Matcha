@@ -16,16 +16,15 @@ export class ChatComponent implements OnInit {
   private _userService: UserService) { }
 
   ngOnInit() {
-    this._apiService.getUserInfo();
 
-    this._apiService.userInfo.subscribe(data => {
+    this._userService.getUserInfo().subscribe(data => {
       if (data.user) {
         this.user = data.user;
-        this._apiService.getMessages(this.user)
+        this._apiService.getConversations();
       }
     })
 
-    this._apiService.messages.subscribe(list => {
+    this._apiService.convos.subscribe(list => {
       for (const item of list) {
         if (item.users[0] !== this._userService.getCurrentUser()) {
           if (!this.people.includes(item.users[0])){

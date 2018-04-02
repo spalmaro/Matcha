@@ -10,11 +10,11 @@
         </ul>
       </div>
     </div>
-      <div id='smallprofile' (click)='showPopup(true)' *ngIf="user.profilePicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.profilePicture +')'">
+      <div id='smallprofile' (click)='showPopup(true)' *ngIf="user.profilepicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ user.profilepicture +')'">
         <span>
           <i class="camera icon"></i></span>
       </div>
-      <div id='smallprofile' (click)='showPopup(true)' *ngIf="!user.profilePicture || user.profilePicture == ''" style="background-image: url('https://scontent.cdninstagram.com/t51.2885-19/11906329_960233084022564_1448528159_a.jpg')">
+      <div id='smallprofile' (click)='showPopup(true)' *ngIf="!user.profilepicture || user.profilepicture == ''" style="background-image: url('https://scontent.cdninstagram.com/t51.2885-19/11906329_960233084022564_1448528159_a.jpg')">
         <span>
           <i class="camera icon"></i></span>
       </div>
@@ -76,7 +76,7 @@
         <label>Bio</label>
         <textarea name=description id='description' [(ngModel)]='user.description' >{{user.description}}</textarea>
       </div>
-      <button id='submit' type='submit'>Submit Changes</button>
+      <button id='submit' type='submit'>Submit Changes</button><button id='submit2' routerLink='/changepassword'>Change Password</button>
     </form>
   </section>
 </div>

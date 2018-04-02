@@ -12,10 +12,6 @@ module.exports = (io) => {
         timeout: 15000 // 15 seconds to send the authentication message
     })).on('authenticated', (socket) => {
 
-        socket.on('userInfo:get', (username) => {
-            userCtrl.getUserInfo(username, socket);
-        })
-
         socket.on('updateProfile:set', (user) => {
             userCtrl.updateUser(user, socket);
         })
@@ -48,11 +44,6 @@ module.exports = (io) => {
             notificationCtrl.setVisit(data)
         })
 
-        socket.on('profile:get', username => {
-            console.log('searching for user');
-            searchCtrl.getProfile(username, socket);
-        })
-
         socket.on('report:set', data => {
             console.log('reporting user');
             userCtrl.reportUser(data);
@@ -76,6 +67,11 @@ module.exports = (io) => {
         socket.on('messages:get', data => {
             console.log('getting messages');
             notificationCtrl.getMessages(data, socket);
+        })
+
+        socket.on('conversations:get', data => {
+            console.log('getting conversations');
+            notificationCtrl.getConversations(data, socket);
         })
 
         socket.on('message:set', data => {

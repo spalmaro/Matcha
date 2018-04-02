@@ -1,115 +1,328 @@
-const mongodb = require('mongodb').MongoClient;
 const assert = require('assert');
 
-const url = 'mongodb://localhost:27017/Matcha_DB';
+const { Pool, Client } = require('pg')
+const env = require('../config/environment')
+const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`;
+const jwt = require('jsonwebtoken');
+const emailCtrl = require('./email');
 
+const pool = new Pool({
+    connectionString: connectionString,
+})
 
 const addUser = (item, res) => {
-    mongodb.connect(url, (err, db) => {
-        assert.equal(null, err)
-        db.collection('users').findOne({$or: [{'username' : item.username}, {'email': item.email}]}, (err, result) => {
-            if (err) {
-                console.log(err)
-                res.json({
-                  success: false,
-                  msg: err
-                });
-            }
-            if (result){
-                res.json({success: false, msg: 'Email or username already exists'})
-            } else {
-                db.collection('users').insertOne(item, (err, result) => {
-                    assert.equal(null, err)
-                    console.log('User Inserted')
-                    res.json({success: true, msg: 'User was successfully created. You can now log in.'})
-                    db.close()
-                })
-            }
-        })
+    console.log("ITEM", item);
+
+    const insertUser = {
+        text: 'INSERT INTO users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24)',
+        values: item
+    }
+    const checkUserExists = {
+        text: 'SELECT (username, email) FROM users WHERE username=$1 OR email=$2',
+        values: [item[1], item[0]]
+    };
+
+    pool.query(checkUserExists)
+    .then(result => {
+        if (result.rowCount == 1) {
+            res.json({success: false, msg: 'Email or username already exists'})
+        } else {
+            pool.query(insertUser)
+            .then(resu => {
+                if (resu.rowCount == 1) {
+                    const token = jwt.sign({ username: item[1], email: item[0] }, env.secret, {
+                        expiresIn: 604800 // 1 week
+                    });
+                    res.json({ success: true, token: token, user: { username: item[1], email: item[0] } })
+                } else {
+                    res.json({success: false, msg: 'An error has occurred. Please try again'})
+                }
+            })
+            .catch(e => console.error("user", e.stack))
+        }
     })
+    .catch(e => console.error("nope", e.stack))
 }
 
 const updateUser = (item, socket) => {
-    console.log('updating...')
-    delete item._id;
-    mongodb.connect(url, (err, db) => {
-        if (err) {
-          socket.emit({ success: false, error: err });
-          return ;
+
+    let nex = [],
+    e;
+    if (item.liked) delete item.liked
+    if (item.dislike) delete item.dislike
+    if (item.lastconnected) delete item.lastconnected
+    item['location'] = `(${item['location'].x}, ${item['location'].y})`;
+    for (e in item)
+        nex.push(item[e])
+
+    const userUpdate = {
+        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = current_timestamp, profilepicture = $16, score = $17, blocked = $18, reportedby = $19, firstconnection = $20, interests = $21, picture1 = $22, picture2 = $23, picture3 = $24, picture4 = $25 WHERE user_uuid=$1",
+        values: nex
+    };
+
+    pool.query(userUpdate).then(result => {
+        if (result.rowCount == 1) {
+            socket.emit('updateProfile:done', { success: true, message: "Your profile has successfully been updated" });
+            console.log(item.username + "s profile has been updated")
+        } else {
+            console.log('could not update')
+            socket.emit('updateProfile:done', { success: false, error: err });
         }
-        db.collection('users').update({ 'username': item.username }, { $set: item }, (err, result) => {
-            if (err) {
-              socket.emit('updateProfile:done', { success: false, error: err });
-              return ;
-            } 
-            if (result) {
-                socket.emit('updateProfile:done', { success: true, message: "Your profile has successfully been updated" });
-                console.log(item.username + "s profile has been updated")
-            } else {
-                socket.emit('updateProfile:done', { success: false, error: err });
-            }
-            db.close()
-        })
+    })
+    .catch(err => {
+        console.log('ERROR UPDATE', err)
+        socket.emit({ success: false, error: err });
     })
 }
 
-const getUserInfo = (username, socket) => {
-    mongodb.connect(url, (err, db) => {
-        if (err) {
-            socket.emit({success: false, error: err})
-            return ;
+const getUserInfo = (username, res) => {
+    const getInfo = {
+        text: "SELECT * FROM users WHERE username=$1",
+        values: [username]
+    }
+
+    const getViews = {
+        text: "SELECT * FROM views WHERE views_current_user = $1",
+        values: [username]
+    }
+
+    pool.query(getInfo).then((result => {
+        if (result.rows[0]) {
+            pool.query(getViews).then(status => {
+                let array = []
+                let dis = []
+                if (status.rowCount) {
+                    for (const iliked of status.rows) {
+                        if (iliked.views_status === 'like')
+                            array.push(iliked.views_subject)
+                        else if (iliked.views_status === 'dislike')
+                            dis.push(iliked.views_subject);
+                    }
+                } 
+                result.rows[0]['liked'] = array;
+                result.rows[0]['dislike'] = dis;
+                res.json({ success: true, user: result.rows[0] })
+            }).catch((err) => console.log(err));
         }
-        db.collection('users').findOne({'username': username}, (err, result) => {
-            if (err) {
-              socket.emit('userInfo:sent', { success: false, error: err });
-            } else {
-                if (result) {
-                    db.collection('views').find({'currentUser': username}).toArray((err, status) => {
-                        let array = []
-                        let dis = []
-                        for (const iliked of status) {
-                            if (iliked.status === 'like')
-                                array.push(iliked.subject)
-                            else if (iliked.status === 'dislike')
-                                dis.push(iliked.subject);
-                        }
-                        result['liked'] = array;
-                        result['dislike'] = dis;
-                        socket.emit('userInfo:sent', { success: true, user: result })
-                        console.log(result.liked);
-                    })
-                }
-                else {
-                    socket.emit('userInfo:sent', { success: false, error: 'An error has occurred' })
-                }
-            }
-        })
-    })
+        else {
+            res.json({ success: false, error: 'An error has occurred' })
+        }
+    })).catch((err) => console.log(err));
 }
 
 const reportUser = (data) => {
-    mongodb.connect(url, (err, db) => {
-        if (err) {
-            throw err;
-        }
-        db.collection('users').update({'username': data.userToReport}, {$push: {reportedBy: data.currentUser}}, (err, result) => {
-            if (err) {
-              throw err;
-            } 
-        })
+    const report = {
+        text : "UPDATE users SET reportedBy = array_append(reportedBy, $1) WHERE username = $2",
+        values : [data.currentUser, data.userToReport]
+    }
+    
+    pool.query(report).then(result => {
+        if (result.rowCount == 1) {
+        socket.emit('report:post', { success: true });
+        console.log("User was successfully reported")
+    } else {
+        console.log('could not report')
+        socket.emit('report:post', { success: false, error: err });
+    }
+    })
+    .catch(err => {
+        console.log('ERROR', err)
+        socket.emit({ success: false, error: err });
     })
 }
 
 const blockUser = (data) => {
-        mongodb.connect(url, (err, db) => {
-        if (err) {
-            throw err;
+    const block = {
+        text : "UPDATE users SET blocked = array_append(blocked, $1) WHERE username = $2",
+        values : [data.blockedUser, data.currentUser]
+    }
+    
+    pool.query(block).then(result => {
+        if (result.rowCount == 1) {
+        socket.emit('block:post', { success: true });
+        console.log("User was successfully blocked")
+    } else {
+        console.log('could not block')
+        socket.emit('block:post', { success: false, error: err });
+    }
+    })
+    .catch(err => {
+        console.log('ERROR', err)
+        socket.emit({ success: false, error: err });
+    })
+}
+
+const forgotPassword = (email, res) => {
+    const checkEmail = {
+        text: "SELECT * FROM users WHERE email = $1",
+        values: [email]
+    }
+
+    pool.query(checkEmail).then(row => {
+        if (row.rowCount === 1) {
+            let user_uuid = row.rows[0].user_uuid;
+            const checkReset = {
+                text: "SELECT * FROM password_reset WHERE user_uuid = $1",
+                values: [user_uuid]
+            }
+            pool.query(checkReset).then(suc => {
+                if (suc.rowCount !== 0) {
+                    const delResend = {
+                        text: "DELETE FROM password_reset WHERE user_uuid = $1",
+                        values: [user_uuid]
+                    }
+                    pool.query(delResend).then(delSuccess => {
+                        if (delSuccess.rowCount === 1) {
+                            const getActivationUuid = {
+                                text: "INSERT INTO password_reset(user_uuid) VALUES($1) RETURNING activation_uuid",
+                                values: [user_uuid]
+                            }
+                            pool.query(getActivationUuid).then(result => {
+                            if (result.rowCount === 1) {
+                                emailCtrl.sendMail(email, result.rows[0].activation_uuid, (success => {
+                                    if (success) res.json({success: true})
+                                    else res.json({success: false, error: 'email not sent'})
+                                }))
+                            } else {
+                                res.json({success: false, error: 'email not sent'})
+                            }
+                            }).catch(err => {
+                                console.log('ERROR', err);
+                                res.json({success: false, error: err})
+                            })
+                        } else {
+                            res.json({success: false, error: 'email not sent'})
+                        }
+                    }).catch(err => {
+                        console.log('ERROR', err);
+                        res.json({success: false, error: err})
+                    })
+                } else {
+                    const getActivationUuid = {
+                        text: "INSERT INTO password_reset(user_uuid) VALUES($1) RETURNING activation_uuid",
+                        values: [user_uuid]
+                    }
+                    pool.query(getActivationUuid).then(result => {
+                        if (result.rowCount === 1) {
+                            emailCtrl.sendMail(email, result.rows[0].activation_uuid, (success => {
+                                if (success) res.json({success: true})
+                                else res.json({success: false, error: 'email not sent'})
+                            }))
+                        } else {
+                            res.json({success: false, error: 'email not sent'})
+                        }
+                    }).catch(err => {
+                        console.log('ERROR', err);
+                        res.json({success: false, error: err})
+                    })
+                }
+            }).catch(err => {
+                console.log('ERROR', err);
+                res.json({success: false, error: err})
+            })
+        } else {
+            res.json({success: false, error: 'invalid'})
         }
-        db.collection('users').update({'username': data.currentUser}, {$push: {blocked: data.blockedUser}}, (err, result) => {
-            if (err) {
-              throw err;
-            } 
-        })
+    }).catch(err => {
+        console.log('ERROR', err)
+        res.json({success: false, error: err})
+    })
+}
+
+const checkActivation = (activation_uuid, res) => {
+    const check = {
+        text: "SELECT * FROM password_reset NATURAL JOIN users WHERE activation_uuid = $1",
+        values: [activation_uuid]
+    }
+
+    pool.query(check).then(row => {
+        if (row.rowCount === 0) {
+            res.json({success: false})
+        } else {
+            let now = Date.now();
+            let user_uuid = row.rows[0].user_uuid;
+            let email = row.rows[0].email;
+            if (row.rows[0].expiration_ts > now){
+                res.json({status: 'valid'})
+            } else if (row.rows[0].expiration_ts < now) {
+                const delResend = {
+                    text: "DELETE FROM password_reset WHERE user_uuid = $1",
+                    values: [user_uuid]
+                }
+                pool.query(delResend).then(delSuccess => {
+                    if (delSuccess.rowCount === 1) {
+                        const getActivationUuid = {
+                            text: "INSERT INTO password_reset(user_uuid) VALUES($1) RETURNING activation_uuid",
+                            values: [user_uuid]
+                        }
+                        pool.query(getActivationUuid).then(result => {
+                            if (result.rowCount === 1) {
+                                emailCtrl.sendMail(email, result.rows[0].activation_uuid, (success => {
+                                    if (success) res.json({ status: 'resent' })
+                                    else res.json({ success: false, msg: 'activation uuid failed'})
+                                }))
+                            } else res.json({ success: false, error: 'email not sent' })
+                        }).catch(err => {
+                            console.log('ERROR', err);
+                            res.json({ success: false, error: err })
+                        })
+                    } else {
+                        res.json({ success: false, error: 'email not sent' })
+                    }
+                }).catch(err => {
+                    console.log('ERROR', err);
+                    res.json({ success: false, error: err })
+                })
+            }
+        }
+    }).catch(err => {
+        console.log('Error ',err)
+    })
+}
+
+const changePassword = (password, username, res) => {
+    const change = {
+        text: "UPDATE users SET password = $1 WHERE username = $2",
+        values: [password, username]
+    }
+
+    pool.query(change).then(row => {
+        if (row.rowCount === 1) {
+            res.json({success: true})
+        } else {
+            res.json({success: false})
+        }
+    }).catch(err => {
+        console.log(err);
+        res.json({ success: false })
+    })
+}
+
+const changePasswordForgot = (activation_uuid, password, res) => {
+    const change = {
+        text: "UPDATE users SET password= $2 WHERE user_uuid = (SELECT user_uuid FROM password_reset NATURAL JOIN users WHERE activation_uuid = $1) RETURNING username, email",
+        values: [activation_uuid, password]
+    }
+
+    const deleteEntry = {
+        text: "DELETE FROM password_reset WHERE activation_uuid = $1",
+        values: [activation_uuid]
+    }
+
+    pool.query(change).then(row => {
+        if (row.rowCount === 1) {
+            const token = jwt.sign({ username: row.rows[0].username, email: row.rows[0].email }, env.secret, {
+                expiresIn: 604800 // 1 week
+            });
+            res.json({ success: true, token: token, username: row.rows[0].username })
+            pool.query(deleteEntry).then(result => {
+            }).catch(err => console.log(err))
+        } else {
+            res.json({ success: false })
+        }
+    }).catch(err => {
+        console.log(err);
+        res.json({ success: false })
     })
 }
 
@@ -118,5 +331,9 @@ module.exports = {
     'updateUser': updateUser,
     'getUserInfo': getUserInfo,
     'reportUser': reportUser,
-    'blockUser': blockUser
+    'blockUser': blockUser,
+    'forgotPassword': forgotPassword,
+    'checkActivation': checkActivation,
+    'changePassword': changePassword,
+    'changePasswordForgot': changePasswordForgot
 };

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user'
 import { ApiService } from '../../services/api.service'
+import { UserService } from '../../services/user.service'
 import { Router } from '@angular/router'
 import { DomSanitizer } from '@angular/platform-browser';
 import { log } from 'util';
@@ -17,16 +18,16 @@ export class ProfileComponent implements OnInit {
   likeBy = [];
   viewedBy = [];
 
-  constructor(private _apiService: ApiService, private router: Router, private sanitizer: DomSanitizer) {
+  constructor(private _apiService: ApiService, private _userService: UserService, private router: Router, private sanitizer: DomSanitizer) {
     this.user = new User({ firstname: '', lastname: '', email: '', username: '', password: '',
-        lastConnected: Date.now(), description: '', dobday: '01', dobmonth: 'January', gender: 'Female', profilePicture: ''})
+        lastconnected: Date.now(), description: '', dobday: '01', dobmonth: 'January', gender: 'Female', profilepicture: ''})
   }
 
   ngOnInit() {
-    this._apiService.userInfo.subscribe(data => {
+    this._userService.getUserInfo().subscribe(data => {
     if (data.success === true) {
-      const table = [data.user.profilePicture, data.user.picture1, data.user.picture2, data.user.picture3, data.user.picture4];
-      const table2 = [this.user.profilePicture, this.user.picture1, this.user.picture2, this.user.picture3, this.user.picture4];
+      const table = [data.user.profilepicture, data.user.picture1, data.user.picture2, data.user.picture3, data.user.picture4];
+      const table2 = [this.user.profilepicture, this.user.picture1, this.user.picture2, this.user.picture3, this.user.picture4];
       for (const i in table) {
         if (table[i] !== null || table[i] !== '') {
           table2[i] = this.sanitizer.bypassSecurityTrustUrl(table[i]);
@@ -36,7 +37,6 @@ export class ProfileComponent implements OnInit {
     }
   })
 
-    this._apiService.getUserInfo();
     this._apiService.getLikedByUsers();
     this._apiService.getVisitedByUsers();
 
@@ -54,7 +54,8 @@ export class ProfileComponent implements OnInit {
     const marker = ';base64,';
     const base64Index = base64.indexOf(marker) + marker.length;
     const base64string = base64.substring(base64Index);
-    return (base64string);
+    const test = 'url(data:image/jpeg;base64,' + base64string + ')'; // added this for faker image urls to work
+    return (test);
   }
 
   uploadPicture(event: any) {
@@ -65,10 +66,10 @@ export class ProfileComponent implements OnInit {
     myReader.readAsDataURL(pictureFile.files.item(0));
     const that = this;
     myReader.onloadend = function(loadEvent: any) {
-      const table = [that.user.profilePicture, that.user.picture1, that.user.picture2, that.user.picture3, that.user.picture4];
+      const table = [that.user.profilepicture, that.user.picture1, that.user.picture2, that.user.picture3, that.user.picture4];
       toclean = loadEvent.target.result;
       if (that.picture === 0) {
-        that.user.profilePicture = that.base64Clean(toclean);
+        that.user.profilepicture = that.base64Clean(toclean);
       } else {
         const index = 'picture' + that.picture;
         that.user[index] = that.base64Clean(toclean);

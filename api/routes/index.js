@@ -2,71 +2,75 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const User = require('../controllers/User');
-const database = require('../config/database')
+const Search = require('../controllers/search');
 const getAge = require('get-age')
 const jwt = require('jsonwebtoken')
+const { Pool, Client } = require('pg')
 const env = require('../config/environment')
+const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`
 
-/* GET home page. */
-// router.get('/', function (req, res, next) {
-//   if (req.session.error) {
-//     res.locals.error = req.session.error;
-//     req.session.error = undefined;
-//   }
-//   res.render('index');
-// });
+const pool = new Pool({
+    connectionString: connectionString,
+})
 
 router.post('/signup', (req, res, next) => {
-  let item = {
-    email: req.body.email,
-    username: req.body.username,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    age: getAge(req.body.dobyear + '-' + req.body.dobmonth + '-' + req.body.dobday),
-    dobday: req.body.dobday,
-    dobmonth: req.body.dobmonth,
-    dobyear: req.body.dobyear,
-    password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)),
-    gender: req.body.gender,
-    orientation: 'Both',
-    description: '',
-    location: [0, 0],
-    address: '',
-    lastConnected: '',
-    profilePicture: '',
-    score: 10,
-    interests: [],
-    blocked: [],
-    reportedBy: [], 
-    firstConnection: true,
-    picture1: '',
-    picture2: '',
-    picture3: '',
-    picture4: ''
-  }
+
+  let item = [
+    req.body.email.toLowerCase(), req.body.username.toLowerCase(), req.body.firstname, req.body.lastname, getAge(req.body.dobyear + '-' + req.body.dobmonth + '-' + req.body.dobday), req.body.dobday,
+    req.body.dobmonth, req.body.dobyear, bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)), req.body.gender,
+    'Both', '', '(0, 0)', '', '', 10, [], [], true, [], '', '', '', ''
+  ]
   User.addUser(item, res);
-  
-  // req.session.user = req.body.login;
-  // res.redirect('/edit');
 })
 
 router.post('/login', async (req, res, next) => {
-  let db = await database.connect();
-  let result = await db.collection('users').findOne({ $or: [{ 'email': req.body.email }, { 'username': req.body.username }] })
+  let checkPassword = {
+    text: "SELECT username, email, password, firstconnection FROM users WHERE username=$1",
+    values: [req.body.username.toLowerCase()]
+  }
+  try {
+    let result = await pool.query(checkPassword)
+    if (result.rows[0] && bcrypt.compareSync(req.body.password, result.rows[0]['password'])) {
 
-  if (result && bcrypt.compareSync(req.body.password, result['password'])) {
-    const token = jwt.sign({ result }, env.secret, {
-      expiresIn: 604800 // 1 week
-    });
-    res.json({ success: true, token: token, user: { username: result.username, email: result.email }, firstConnection: result.firstConnection })
-    //should send userid and location as well
+      const token = jwt.sign({username: result.rows[0].username, email: result.rows[0].email}, env.secret, {
+        expiresIn: 604800 // 1 week
+      });
+      console.log("connect", result.rows);
+      res.json({ success: true, token: token, user: { username: result.rows[0].username, email: result.rows[0].email }, firstconnection: result.rows[0].firstconnection })
+    }
+    else if (result.rows[0]) {
+      res.json({ success: false, msg: 'Wrong Password' })
+    }
+    else {
+      res.json({success: false, msg: 'Login was not found'})
+    }
+  } catch(err) {
+    console.log(err.stack)
   }
-  else if (result) {
-    res.json({ success: false, msg: 'Wrong Password' })
-  }
-  else {
-    res.json({success: false, msg: 'Login was not found'})
-  }
+
 })
 
+router.get('/getUserInfo', (req, res, next) => {
+  User.getUserInfo(req.query.username.toLowerCase(), res)
+})
+
+router.get('/getProfile', (req, res, next) => {
+  Search.getProfile(req.query.username, res)
+})
+
+router.post('/forgotpassword', (req, res, next) => {
+  User.forgotPassword(req.body.email.toLowerCase(), res)
+})
+
+router.post('/checkActivation', (req, res, next) => {
+  User.checkActivation(req.body.activation_uuid, res);
+})
+
+router.post('/changePassword', (req, res, next) => {
+  User.changePassword(bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)), req.body.username, res);
+})
+
+router.post('/changePasswordForgot', (req, res, next) => {
+  User.changePasswordForgot(req.body.activation_uuid, bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)), res);
+})
 module.exports = router;

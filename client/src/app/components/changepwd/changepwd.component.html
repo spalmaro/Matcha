@@ -1,0 +1,30 @@
+<app-navbar *ngIf="isLogged === true"></app-navbar>
+<div id='header' *ngIf="isLogged === false">
+  <img class="header item" id='logo' routerLink='/' src='/assets/images/logo.png'>
+</div>
+
+<div [ngClass]="isLogged === true ? 'content' : ''">
+  <mat-card style="text-align: center">
+    <h2 class="title">Change Password</h2>
+    <p style='color:green' *ngIf="status === 'changed'">Your password was successfully changed</p>
+    <p style='color:orange' *ngIf="status === 'resent'">The link was expired but a new reset link was sent to your email</p>
+    <p style='color:red' *ngIf="isError === true">The link is not valid</p>
+    <p style='color:red' *ngIf="status === 'error'">An error has occurred, please try again</p>
+    <form #changeForm='ngForm' (submit)="changePassword()" *ngIf="status === 'valid' || isLogged === true">
+      <mat-form-field>
+        <input type="password" matInput placeholder="New password" #pwd='ngModel' minlength='6' [(ngModel)]='password' name="pwd" required pattern="(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)">
+        <mat-error *ngIf='pwd.invalid'>
+          Password must contain at least 6 characters, with at least one letter and one number
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type="password" matInput placeholder="Repeat password" #repeat='ngModel' [(ngModel)]='repeatpwd' name="repeat" required (keyup)="passwordMatch()">
+        <mat-hint *ngIf="notMatch === true && repeat.dirty" class='mat-error'>
+          The passwords do not match
+        </mat-hint>
+      </mat-form-field>
+      <br>
+      <button [disabled]="changeForm.invalid || notMatch === true" type="submit" mat-raised-button>Change Password</button>
+    </form>
+  </mat-card>
+</div>

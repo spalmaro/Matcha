@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { SliderModule } from 'primeng/slider';
 import { User } from '../../models/user'
 import { ApiService } from 'app/services/api.service';
+import { UserService } from 'app/services/user.service'
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -20,14 +21,14 @@ export class HomeComponent implements OnInit {
   scoreInterval = [0, 100];
 
 
-  constructor(private _apiService: ApiService, private sanitizer: DomSanitizer) {
+  constructor(private _apiService: ApiService, private _userService: UserService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
     this.ageInterval = [18, 65];
     this.scoreInterval = [0, 100];
-    this._apiService.getUserInfo();
-    this._apiService.userInfo.subscribe(data => {
+
+    this._userService.getUserInfo().subscribe(data => {
       if (data.success === true) {
         this.user = data.user;
         this._apiService.getList(this.user);

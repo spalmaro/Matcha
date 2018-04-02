@@ -1,0 +1,251 @@
+2018-03-20 00:14:05.454 CET [48823] LOG:  listening on IPv6 address "::1", port 5432
+2018-03-20 00:14:05.454 CET [48823] LOG:  listening on IPv6 address "fe80::1%lo0", port 5432
+2018-03-20 00:14:05.454 CET [48823] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2018-03-20 00:14:05.455 CET [48823] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2018-03-20 00:14:05.519 CET [48824] LOG:  database system was shut down at 2018-03-20 00:13:34 CET
+2018-03-20 00:14:05.525 CET [48823] LOG:  database system is ready to accept connections
+2018-03-20 00:15:14.968 CET [48850] FATAL:  database "matcha" does not exist
+2018-03-20 00:15:14.989 CET [48851] FATAL:  database "matcha" does not exist
+2018-03-20 00:15:15.676 CET [48853] FATAL:  database "matcha" does not exist
+2018-03-21 11:47:00.905 CET [49262] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-21 11:47:22.114 CET [49271] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-21 11:47:50.716 CET [48828] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-21 11:48:01.676 CET [49289] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-21 11:48:25.015 CET [48828] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-21 11:48:41.462 CET [49292] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-21 11:48:59.948 CET [49306] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-21 12:13:56.028 CET [50064] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 12:13:56.028 CET [50064] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 12:13:56.086 CET [50065] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 12:13:56.086 CET [50065] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 14:41:39.588 CET [48828] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-21 14:41:43.222 CET [50260] LOG:  using stale statistics instead of current ones because stats collector is not responding
+2018-03-21 14:49:03.369 CET [50823] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 14:49:03.369 CET [50823] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 14:49:03.395 CET [50824] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 14:49:03.395 CET [50824] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 14:49:32.680 CET [50831] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 14:49:32.680 CET [50831] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 14:49:32.802 CET [50832] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 14:49:32.802 CET [50832] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 14:49:44.623 CET [50835] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 14:49:44.623 CET [50835] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 14:49:44.723 CET [50836] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 14:49:44.723 CET [50836] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 14:56:02.220 CET [51000] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 14:56:02.220 CET [51000] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 14:56:02.236 CET [50999] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 14:56:02.236 CET [50999] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:01:56.546 CET [51147] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:01:56.546 CET [51147] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:01:56.561 CET [51146] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:01:56.561 CET [51146] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:02:45.494 CET [51173] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:02:45.494 CET [51173] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:02:45.560 CET [51174] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:02:45.560 CET [51174] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:03:05.239 CET [51178] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:03:05.239 CET [51178] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:03:05.333 CET [51180] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:03:05.333 CET [51180] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:07:50.640 CET [51297] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:07:50.640 CET [51297] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:07:50.658 CET [51296] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:07:50.658 CET [51296] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:07:51.528 CET [51299] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:07:51.528 CET [51299] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:07:51.541 CET [51298] ERROR:  syntax error at or near "(" at character 13
+2018-03-21 15:07:51.541 CET [51298] STATEMENT:  UPDATE users(email, username, firstname, lastname, age, dobday, dobmonth, dobyear, password, gender, orientation, description, location, address, lastconnected, profilepicture, score, blocked, reportedby, firstconnection, interests,  picture1, picture2, picture3, picture4) VALUES ($2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, ARRAY($19), ARRAY($20), $21, ARRAY($22), $23, $24, $25, $26) WHERE user_uuid=$1
+2018-03-21 15:18:39.307 CET [51561] ERROR:  syntax error at or near "$19" at character 298
+2018-03-21 15:18:39.307 CET [51561] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY($19), reportedby = ARRAY($20), firstconnection = $21, interests = ARRAY($22),  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26) WHERE user_uuid=$1
+2018-03-21 15:18:39.333 CET [51560] ERROR:  syntax error at or near "$19" at character 298
+2018-03-21 15:18:39.333 CET [51560] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY($19), reportedby = ARRAY($20), firstconnection = $21, interests = ARRAY($22),  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26) WHERE user_uuid=$1
+2018-03-21 15:26:49.519 CET [51679] ERROR:  syntax error at or near "[" at character 308
+2018-03-21 15:26:49.519 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = $13, location = [ 2.3255684, 48.8314408 ], address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY([]), reportedby = ARRAY([]),
+	firstconnection = false, interests = ARRAY([]),  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:30:56.833 CET [51817] ERROR:  syntax error at or near "$19" at character 298
+2018-03-21 15:30:56.833 CET [51817] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY($19), reportedby = ARRAY($20), firstconnection = $21, interests = ARRAY($22),  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26) WHERE user_uuid=$1
+2018-03-21 15:30:56.845 CET [51818] ERROR:  syntax error at or near "$19" at character 298
+2018-03-21 15:30:56.845 CET [51818] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY($19), reportedby = ARRAY($20), firstconnection = $21, interests = ARRAY($22),  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26) WHERE user_uuid=$1
+2018-03-21 15:32:19.920 CET [51679] ERROR:  syntax error at or near "2.3255684" at character 2
+2018-03-21 15:32:19.920 CET [51679] STATEMENT:  (2.3255684, 48.8314408)
+2018-03-21 15:32:43.000 CET [51679] ERROR:  syntax error at or near "[" at character 468
+2018-03-21 15:32:43.000 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = $13, location = '(2.3255684, 48.8314408)'::points, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY([]), reportedby = ARRAY([]),
+	firstconnection = false, interests = ARRAY([]),  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:35:20.513 CET [51679] ERROR:  syntax error at or near "[" at character 462
+2018-03-21 15:35:20.513 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = $13, location = '(2.3255684, 48.8314408)'::points, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = [], reportedby = [],
+	firstconnection = false, interests = ARRAY([]),  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:37:00.379 CET [51679] ERROR:  invalid input syntax for type boolean: "b88d1cc2-9c0c-4d3a-b907-7300fa3a5338" at character 608
+2018-03-21 15:37:00.379 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = $13, location = '(2.3255684, 48.8314408)'::points, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY [], reportedby = ARRAY [],
+	firstconnection = false, interests = ARRAY [],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:37:17.600 CET [51679] ERROR:  there is no parameter $13 at character 292
+2018-03-21 15:37:17.600 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = $13, location = '(2.3255684, 48.8314408)'::points, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY [], reportedby = ARRAY [],
+	firstconnection = false, interests = ARRAY [],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:37:25.939 CET [51679] ERROR:  type "points" does not exist at character 334
+2018-03-21 15:37:25.939 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location = '(2.3255684, 48.8314408)'::points, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY [], reportedby = ARRAY [],
+	firstconnection = false, interests = ARRAY [],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:37:38.042 CET [51679] ERROR:  cannot determine type of empty array at character 460
+2018-03-21 15:37:38.042 CET [51679] HINT:  Explicitly cast to the desired type, for example ARRAY[]::integer[].
+2018-03-21 15:37:38.042 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location = '(2.3255684, 48.8314408)'::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY [], reportedby = ARRAY [],
+	firstconnection = false, interests = ARRAY [],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:38:06.976 CET [51679] ERROR:  cannot determine type of empty array at character 460
+2018-03-21 15:38:06.976 CET [51679] HINT:  Explicitly cast to the desired type, for example ARRAY[]::integer[].
+2018-03-21 15:38:06.976 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location = '(2.3255684, 48.8314408)'::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY [] ::text, reportedby = ARRAY [] ::text,
+	firstconnection = false, interests = ARRAY []::text,  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:41:33.896 CET [51679] ERROR:  syntax error at or near "::" at character 465
+2018-03-21 15:41:33.896 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location = '(2.3255684, 48.8314408)'::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY::text [], reportedby = ARRAY::text [],
+	firstconnection = false, interests = ARRAY::text [],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:41:50.308 CET [51679] ERROR:  syntax error at or near "::" at character 466
+2018-03-21 15:41:50.308 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location = '(2.3255684, 48.8314408)'::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY ::text [], reportedby = ARRAY ::text [],
+	firstconnection = false, interests = ARRAY ::text [],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:41:57.702 CET [51679] ERROR:  syntax error at or near "::" at character 489
+2018-03-21 15:41:57.702 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location = '(2.3255684, 48.8314408)'::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY [], reportedby = ARRAY ::text [],
+	firstconnection = false, interests = ARRAY ::text [],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 15:57:28.632 CET [51679] ERROR:  cannot determine type of empty array at character 460
+2018-03-21 15:57:28.632 CET [51679] HINT:  Explicitly cast to the desired type, for example ARRAY[]::integer[].
+2018-03-21 15:57:28.632 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'valenti',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location = '(2.3255684, 48.8314408)'::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY [], reportedby = ARRAY [],
+	firstconnection = false, interests = ARRAY [],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 16:03:41.755 CET [52225] ERROR:  syntax error at or near "$19" at character 306
+2018-03-21 16:03:41.755 CET [52225] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14 ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1
+2018-03-21 16:03:41.952 CET [52224] LOG:  could not receive data from client: Connection reset by peer
+2018-03-21 16:03:41.952 CET [52227] LOG:  incomplete startup packet
+2018-03-21 16:32:37.062 CET [51679] ERROR:  syntax error at or near "{" at character 305
+2018-03-21 16:32:37.062 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'caca',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location =  { x: 15.3255684, y: 48.8314408 }::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY[] ::text[], reportedby = ARRAY[] ::text[],
+	firstconnection = false, interests = ARRAY[]::text[],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 16:32:47.440 CET [51679] ERROR:  syntax error at or near "{" at character 305
+2018-03-21 16:32:47.440 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'caca',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location =  {x: 15.3255684, y: 48.8314408}::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY[] ::text[], reportedby = ARRAY[] ::text[],
+	firstconnection = false, interests = ARRAY[]::text[],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 16:32:53.014 CET [51679] ERROR:  syntax error at or near "{" at character 1
+2018-03-21 16:32:53.014 CET [51679] STATEMENT:  {x: 15.3255684, y: 48.8314408}
+2018-03-21 16:41:55.325 CET [51679] ERROR:  syntax error at or near "{" at character 305
+2018-03-21 16:41:55.325 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'lvalenti@gmail.com', username = 'lvalenti', firstname = 'lu', lastname = 'caca',
+	age = 21, dobday = 25, dobmonth = 9, dobyear = 1996, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Male', orientation = 'Both', description = '', location =  { x: 15.3255684, y: 48.8314408 }::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY[] ::text[], reportedby = ARRAY[] ::text[],
+	firstconnection = false, interests = ARRAY[]::text[],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = 'b88d1cc2-9c0c-4d3a-b907-7300fa3a5338'
+2018-03-21 17:30:08.408 CET [53551] LOG:  could not receive data from client: Connection reset by peer
+2018-03-21 17:30:44.831 CET [53567] ERROR:  syntax error at or near "$19" at character 315
+2018-03-21 17:30:44.831 CET [53567] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1
+2018-03-21 17:30:45.110 CET [53568] LOG:  incomplete startup packet
+2018-03-21 17:30:45.111 CET [53566] LOG:  could not receive data from client: Connection reset by peer
+2018-03-21 17:32:43.407 CET [53606] ERROR:  syntax error at or near "$19" at character 315
+2018-03-21 17:32:43.407 CET [53606] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1
+2018-03-21 17:32:43.424 CET [53605] ERROR:  syntax error at or near "$19" at character 315
+2018-03-21 17:32:43.424 CET [53605] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1
+2018-03-21 17:36:25.552 CET [51679] ERROR:  syntax error at or near "," at character 694
+2018-03-21 17:36:25.552 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'fml@fml.com', username = 'spalmaro', firstname = 'Stanya', lastname = 'Palmaro',
+	age = 23, dobday = 15, dobmonth = 4, dobyear = 1994, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Female', orientation = 'Both', description = '', location =  '(2.3255684, 48.8314408)'::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY [] ::text[], reportedby = ARRAY [] ::text[],
+	firstconnection = false, interests = ARRAY []::text[],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = '76c4e5ea-f5c1-46f4-bbba-c69275adde9e'
+	
+	  'Female',
+	  'Both',
+	  '',
+	  { x: 2.3255684, y: 48.8314408 },
+	  '75014 Paris, France',
+	  '2018-03-21T16:32:24.985Z',
+	  '',
+	  10,
+	  [],
+	  [],
+	  false,
+	  [],
+	  '',
+	  '',
+	  '',
+	  '',
+	  2.3255684,
+	  48.8314408
+2018-03-21 17:48:14.131 CET [54213] ERROR:  syntax error at or near "$19" at character 315
+2018-03-21 17:48:14.131 CET [54213] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1
+2018-03-21 17:48:14.218 CET [54212] ERROR:  syntax error at or near "$19" at character 315
+2018-03-21 17:48:14.218 CET [54212] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1
+2018-03-21 17:51:46.125 CET [51679] ERROR:  cannot cast type record to point at character 330
+2018-03-21 17:51:46.125 CET [51679] STATEMENT:  UPDATE users SET
+	email = 'fml@fml.com', username = 'spalmaro', firstname = 'Stanya', lastname = 'Palmaro',
+	age = 23, dobday = 15, dobmonth = 4, dobyear = 1994, password = '$2a$08$HhmkZ.qGgYyDoFw5yugFYuHBJQ5/BSnNzA1Cz2nwpVanAMVqLn7o.',
+	gender = 'Female', orientation = 'Both', description = '', location =  (2.3255684, 48.8314408)::point, address = '75014 Paris, France',
+	lastconnected = '2018-03-21T11:03:41.316Z', profilepicture= '', score = 10, blocked = ARRAY [] ::text[], reportedby = ARRAY [] ::text[],
+	firstconnection = false, interests = ARRAY []::text[],  picture1 = '', picture2 = '', picture3 = '', picture4 = ''
+	WHERE user_uuid = '76c4e5ea-f5c1-46f4-bbba-c69275adde9e'
+	
+2018-03-21 17:56:33.336 CET [54381] ERROR:  syntax error at or near "$19" at character 315
+2018-03-21 17:56:33.336 CET [54381] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1
+2018-03-21 17:56:33.347 CET [54382] ERROR:  syntax error at or near "$19" at character 315
+2018-03-21 17:56:33.347 CET [54382] STATEMENT:  UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = '($27, $28)' ::point, address = $15, lastconnected = $16, profilepicture= $17, score = $18, blocked = ARRAY $19 ::text[], reportedby = ARRAY $20 ::text[], firstconnection = $21, interests = ARRAY $22 ::text[],  picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1
+2018-03-21 17:59:14.477 CET [48828] LOG:  using stale statistics instead of current ones because stats collector is not responding

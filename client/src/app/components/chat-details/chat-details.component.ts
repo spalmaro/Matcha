@@ -22,14 +22,12 @@ export class ChatDetailsComponent implements OnInit {
 
   ngOnInit() {
     const username = this.route.snapshot.paramMap.get('username');
-    this._apiService.getUserInfo();
-    this._apiService.getProfile(username);
 
-    this._apiService.profile.subscribe(data => {
+    this._apiService.getProfile(username).subscribe(data => {
       if (data.username) {
           this._apiService.setVisit(username);
-          const table = [data.profilePicture, data.picture1, data.picture2, data.picture3, data.picture4];
-          const table2 = [this.chatBuddy.profilePicture, this.chatBuddy.picture1, this.chatBuddy.picture2,
+          const table = [data.profilepicture, data.picture1, data.picture2, data.picture3, data.picture4];
+          const table2 = [this.chatBuddy.profilepicture, this.chatBuddy.picture1, this.chatBuddy.picture2,
              this.chatBuddy.picture3, this.chatBuddy.picture4];
 
           for (const i in table) {
@@ -43,20 +41,16 @@ export class ChatDetailsComponent implements OnInit {
       }
     })
 
-    this._apiService.userInfo.subscribe(data => {
+    this._userService.getUserInfo().subscribe(data => {
       if (data.user) {
         this.currentUser = data.user;
-        this._apiService.getMessages(this.currentUser);
+        this._apiService.getMessages(this.currentUser, this.chatBuddy.username);
       }
     })
 
      this._apiService.messages.subscribe(list => {
-       console.log('LIST', list)
-       for (const item of list) {
-         if (item.users.includes(username)) {
-            this.messages = item.messages;
-         }
-       }
+       console.log('LIST OF MESSAGES', list)
+       
      });
   }
 

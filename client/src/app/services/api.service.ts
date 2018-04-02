@@ -1,23 +1,25 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
 import { SocketService } from './socket.service';
 import { UserService } from './user.service';
+import { Http, Headers } from '@angular/http';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ApiService {
-  // private apiUrl = environment.API_URL;
+  private API_URL = environment.API_URL;
   private socket: any;
 
   @Output() userInfo: EventEmitter<any> = new EventEmitter();
   @Output() updateInfo: EventEmitter<any> = new EventEmitter();
   @Output() list: EventEmitter<any> = new EventEmitter();
   @Output() messages: EventEmitter<any> = new EventEmitter();
-  @Output() profile: EventEmitter<any> = new EventEmitter();
   @Output() likedBy: EventEmitter<any> = new EventEmitter();
   @Output() viewedBy: EventEmitter<any> = new EventEmitter();
+  @Output() convos: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private socketService: SocketService,
-    private _userService: UserService
+    private _userService: UserService, private http: Http
   ) {
     this.socket = socketService.socketConnect();
 
@@ -37,12 +39,12 @@ export class ApiService {
       this.messages.emit(data);
     })
 
-    this.socket.on('search:post', data => {
-      this.list.emit(data)
+    this.socket.on('conversations:post', data => {
+      this.convos.emit(data);
     })
 
-    this.socket.on('profile:post', data => {
-      this.profile.emit(data);
+    this.socket.on('search:post', data => {
+      this.list.emit(data)
     })
 
     this.socket.on('likeby:post', data => {
@@ -59,7 +61,10 @@ export class ApiService {
   }
 
   getProfile(username) {
-    this.socket.emit('profile:get', username);
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.get(this.API_URL + '/getProfile?username=' + username, { headers: headers })
+      .map(res => res.json())
   }
 
   updateUserProfile(user) {
@@ -87,8 +92,12 @@ export class ApiService {
     this.socket.emit('message:set', {message: message, to: to, from: this._userService.getCurrentUser, timestamp: timestamp});
   }
 
-  getMessages(user) {
-    this.socket.emit('messages:get', user)
+  getConversations() {
+    this.socket.emit('conversations:get', {username: this._userService.getCurrentUser()})
+  }
+
+  getMessages(from, to) {
+    this.socket.emit('messages:get', {from: from, to: to})
   }
 
   setVisit(username) {
@@ -109,5 +118,33 @@ export class ApiService {
 
   getVisitedByUsers() {
     this.socket.emit('viewedby:get', this._userService.getCurrentUser())
+  }
+
+  forgotpassword(email) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(this.API_URL + '/forgotpassword', {email: email}, { headers: headers })
+      .map(res => res.json())
+  }
+
+  checkActivation(activation_uuid) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(this.API_URL + '/checkActivation', { activation_uuid: activation_uuid }, { headers: headers })
+      .map(res => res.json())
+  }
+
+  changePassword(password, username) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(this.API_URL + '/changePassword', { password: password, username: username }, { headers: headers })
+      .map(res => res.json())
+  }
+
+  changePasswordForgot(activation_uuid, password) {
+    const headers = new Headers()
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(this.API_URL + '/changePasswordForgot', { activation_uuid: activation_uuid, password: password }, { headers: headers })
+      .map(res => res.json())
   }
 }
