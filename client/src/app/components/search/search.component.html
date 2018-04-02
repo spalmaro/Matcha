@@ -3,7 +3,7 @@
   <section id='first'>
     <div class="ui items">
       <div class="item">
-        <div class="profile-pic" *ngIf="profile.profilepicture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.profilepicture +')'"></div>
+        <div class="profile-pic" *ngIf="profile.profilepicture" [style.backgroundImage]="profile.profilepicture"></div>
         <div class="profile-pic" *ngIf="!profile.profilepicture || profile.profilepicture == ''" style="background-image: url('https://scontent.cdninstagram.com/t51.2885-19/11906329_960233084022564_1448528159_a.jpg')"></div>
         <div class="content">
           <div class='name'>
@@ -46,19 +46,19 @@
       <div class="ui stackable four column grid">
         <div *ngIf='!profile.picture1 && !profile.picture2 &&!profile.picture3 &&!profile.picture4'> <h4><i>This user did not upload any pictures yet</i></h4></div>
         <div class="column" *ngIf="profile.picture1">
-          <div #pic1 class="picture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.picture1 +')'">
+          <div #pic1 class="picture" [style.backgroundImage]="profile.picture1">
           </div>
         </div>
         <div class="column" *ngIf="profile.picture2">
-          <div #pic2 class="picture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.picture2 +')'">
+          <div #pic2 class="picture" [style.backgroundImage]="profile.picture2">
           </div>
         </div>
         <div class="column" *ngIf="profile.picture3">
-          <div #pic3 class="picture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.picture3 +')'">
+          <div #pic3 class="picture" [style.backgroundImage]="profile.picture3">
           </div>
         </div>
         <div class="column" *ngIf="profile.picture4">
-          <div #pic4 class="picture" [style.backgroundImage]="'url(data:image/jpeg;base64,'+ profile.picture4 +')'">
+          <div #pic4 class="picture" [style.backgroundImage]="profile.picture4">
           </div>
         </div>
       </div>

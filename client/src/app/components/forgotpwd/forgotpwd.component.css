@@ -34,12 +34,17 @@ img {
 
 mat-card {
 	max-width: 450px;
-	min-height: 340px;
+	min-height: 300px;
 	margin: auto;
 	margin-top: 50px;
 	/* margin-right: auto; */
 }
 
-/* .content { */
-	/* position: relative; */
-/* } */
+.title {
+  margin-bottom: 50px;
+}
+
+mat-form-field {
+  width: 350px;
+  margin-bottom: 15px;
+}

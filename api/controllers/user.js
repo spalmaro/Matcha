@@ -4,6 +4,7 @@ const { Pool, Client } = require('pg')
 const env = require('../config/environment')
 const connectionString = `postgresql://${env.PGUSER}:${env.PGPASSWORD}@${env.PGHOST}:${env.PGPORT}/${env.PGDATABASE}`;
 const jwt = require('jsonwebtoken');
+const emailCtrl = require('./email');
 
 const pool = new Pool({
     connectionString: connectionString,
@@ -49,12 +50,13 @@ const updateUser = (item, socket) => {
     e;
     if (item.liked) delete item.liked
     if (item.dislike) delete item.dislike
+    if (item.lastconnected) delete item.lastconnected
     item['location'] = `(${item['location'].x}, ${item['location'].y})`;
     for (e in item)
         nex.push(item[e])
 
     const userUpdate = {
-        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = current_timestamp, profilepicture = $17, score = $18, blocked = $19, reportedby = $20, firstconnection = $21, interests = $22, picture1 = $23, picture2 = $24, picture3 = $25, picture4 = $26 WHERE user_uuid=$1",
+        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = current_timestamp, profilepicture = $16, score = $17, blocked = $18, reportedby = $19, firstconnection = $20, interests = $21, picture1 = $22, picture2 = $23, picture3 = $24, picture4 = $25 WHERE user_uuid=$1",
         values: nex
     };
 
@@ -68,7 +70,7 @@ const updateUser = (item, socket) => {
         }
     })
     .catch(err => {
-        console.log('ERROR', err)
+        console.log('ERROR UPDATE', err)
         socket.emit({ success: false, error: err });
     })
 }
@@ -150,10 +152,188 @@ const blockUser = (data) => {
     })
 }
 
+const forgotPassword = (email, res) => {
+    const checkEmail = {
+        text: "SELECT * FROM users WHERE email = $1",
+        values: [email]
+    }
+
+    pool.query(checkEmail).then(row => {
+        if (row.rowCount === 1) {
+            let user_uuid = row.rows[0].user_uuid;
+            const checkReset = {
+                text: "SELECT * FROM password_reset WHERE user_uuid = $1",
+                values: [user_uuid]
+            }
+            pool.query(checkReset).then(suc => {
+                if (suc.rowCount !== 0) {
+                    const delResend = {
+                        text: "DELETE FROM password_reset WHERE user_uuid = $1",
+                        values: [user_uuid]
+                    }
+                    pool.query(delResend).then(delSuccess => {
+                        if (delSuccess.rowCount === 1) {
+                            const getActivationUuid = {
+                                text: "INSERT INTO password_reset(user_uuid) VALUES($1) RETURNING activation_uuid",
+                                values: [user_uuid]
+                            }
+                            pool.query(getActivationUuid).then(result => {
+                            if (result.rowCount === 1) {
+                                emailCtrl.sendMail(email, result.rows[0].activation_uuid, (success => {
+                                    if (success) res.json({success: true})
+                                    else res.json({success: false, error: 'email not sent'})
+                                }))
+                            } else {
+                                res.json({success: false, error: 'email not sent'})
+                            }
+                            }).catch(err => {
+                                console.log('ERROR', err);
+                                res.json({success: false, error: err})
+                            })
+                        } else {
+                            res.json({success: false, error: 'email not sent'})
+                        }
+                    }).catch(err => {
+                        console.log('ERROR', err);
+                        res.json({success: false, error: err})
+                    })
+                } else {
+                    const getActivationUuid = {
+                        text: "INSERT INTO password_reset(user_uuid) VALUES($1) RETURNING activation_uuid",
+                        values: [user_uuid]
+                    }
+                    pool.query(getActivationUuid).then(result => {
+                        if (result.rowCount === 1) {
+                            emailCtrl.sendMail(email, result.rows[0].activation_uuid, (success => {
+                                if (success) res.json({success: true})
+                                else res.json({success: false, error: 'email not sent'})
+                            }))
+                        } else {
+                            res.json({success: false, error: 'email not sent'})
+                        }
+                    }).catch(err => {
+                        console.log('ERROR', err);
+                        res.json({success: false, error: err})
+                    })
+                }
+            }).catch(err => {
+                console.log('ERROR', err);
+                res.json({success: false, error: err})
+            })
+        } else {
+            res.json({success: false, error: 'invalid'})
+        }
+    }).catch(err => {
+        console.log('ERROR', err)
+        res.json({success: false, error: err})
+    })
+}
+
+const checkActivation = (activation_uuid, res) => {
+    const check = {
+        text: "SELECT * FROM password_reset NATURAL JOIN users WHERE activation_uuid = $1",
+        values: [activation_uuid]
+    }
+
+    pool.query(check).then(row => {
+        if (row.rowCount === 0) {
+            res.json({success: false})
+        } else {
+            let now = Date.now();
+            let user_uuid = row.rows[0].user_uuid;
+            let email = row.rows[0].email;
+            if (row.rows[0].expiration_ts > now){
+                res.json({status: 'valid'})
+            } else if (row.rows[0].expiration_ts < now) {
+                const delResend = {
+                    text: "DELETE FROM password_reset WHERE user_uuid = $1",
+                    values: [user_uuid]
+                }
+                pool.query(delResend).then(delSuccess => {
+                    if (delSuccess.rowCount === 1) {
+                        const getActivationUuid = {
+                            text: "INSERT INTO password_reset(user_uuid) VALUES($1) RETURNING activation_uuid",
+                            values: [user_uuid]
+                        }
+                        pool.query(getActivationUuid).then(result => {
+                            if (result.rowCount === 1) {
+                                emailCtrl.sendMail(email, result.rows[0].activation_uuid, (success => {
+                                    if (success) res.json({ status: 'resent' })
+                                    else res.json({ success: false, msg: 'activation uuid failed'})
+                                }))
+                            } else res.json({ success: false, error: 'email not sent' })
+                        }).catch(err => {
+                            console.log('ERROR', err);
+                            res.json({ success: false, error: err })
+                        })
+                    } else {
+                        res.json({ success: false, error: 'email not sent' })
+                    }
+                }).catch(err => {
+                    console.log('ERROR', err);
+                    res.json({ success: false, error: err })
+                })
+            }
+        }
+    }).catch(err => {
+        console.log('Error ',err)
+    })
+}
+
+const changePassword = (password, username, res) => {
+    const change = {
+        text: "UPDATE users SET password = $1 WHERE username = $2",
+        values: [password, username]
+    }
+
+    pool.query(change).then(row => {
+        if (row.rowCount === 1) {
+            res.json({success: true})
+        } else {
+            res.json({success: false})
+        }
+    }).catch(err => {
+        console.log(err);
+        res.json({ success: false })
+    })
+}
+
+const changePasswordForgot = (activation_uuid, password, res) => {
+    const change = {
+        text: "UPDATE users SET password= $2 WHERE user_uuid = (SELECT user_uuid FROM password_reset NATURAL JOIN users WHERE activation_uuid = $1) RETURNING username, email",
+        values: [activation_uuid, password]
+    }
+
+    const deleteEntry = {
+        text: "DELETE FROM password_reset WHERE activation_uuid = $1",
+        values: [activation_uuid]
+    }
+
+    pool.query(change).then(row => {
+        if (row.rowCount === 1) {
+            const token = jwt.sign({ username: row.rows[0].username, email: row.rows[0].email }, env.secret, {
+                expiresIn: 604800 // 1 week
+            });
+            res.json({ success: true, token: token, username: row.rows[0].username })
+            pool.query(deleteEntry).then(result => {
+            }).catch(err => console.log(err))
+        } else {
+            res.json({ success: false })
+        }
+    }).catch(err => {
+        console.log(err);
+        res.json({ success: false })
+    })
+}
+
 module.exports = {
     'addUser': addUser,
     'updateUser': updateUser,
     'getUserInfo': getUserInfo,
     'reportUser': reportUser,
-    'blockUser': blockUser
+    'blockUser': blockUser,
+    'forgotPassword': forgotPassword,
+    'checkActivation': checkActivation,
+    'changePassword': changePassword,
+    'changePasswordForgot': changePasswordForgot
 };

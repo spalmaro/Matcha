@@ -14,7 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class SearchComponent implements OnInit {
   profile: User;
   currentUser: User;
-  likesme: boolean = false;
+  likesme = false;
   ilike = false;
   idislike = false;
 
