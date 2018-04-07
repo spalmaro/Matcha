@@ -95,11 +95,18 @@ module.exports = (io) => {
         })
 
         socket.on('disconnect', () => {
+            console.log('disconnecting')
             userCtrl.markOffline(socket.decoded_token.username);
         })
 
         socket.on('reconnect', () => {
+            console.log('reconnecting')
             userCtrl.markOnline(socket.decoded_token.username);
         })
+
+        socket.on('connect', function() {
+            console.log('connect fired!');
+            userCtrl.markOnline(socket.decoded_token.username);
+        });
     })
 }

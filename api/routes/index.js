@@ -54,11 +54,6 @@ router.get('/getUserInfo', (req, res, next) => {
   User.getUserInfo(req.query.username.toLowerCase(), res)
 })
 
-router.post('/logout', (req, res, next) => {
-  console.log('LOgouuuut', req.body)
-  User.markOffline(req.body.username);
-})
-
 router.get('/getProfile', (req, res, next) => {
   Search.getProfile(req.query.username, res)
 })

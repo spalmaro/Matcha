@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   public notiftotal = 0;
   public search = '';
   public newmsgs = 0;
+  username;
 
   constructor(private _userService: UserService,
     private _apiService: ApiService, private _notificationService: NotificationService, private router: Router) { }
@@ -21,6 +22,7 @@ export class NavbarComponent implements OnInit {
     this._userService.getUserInfo().subscribe(data => {
       if (data.success === true) {
         this._notificationService.getNotifications(data.user);
+        this.username = data.user.username;
       }
     });
 
@@ -49,8 +51,9 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this._userService.logout();
-    this.router.navigate(['/']);
+    this._apiService.markOffline(this.username)
+      this._userService.logout();
+      this.router.navigate(['/']);
   }
 
   stop(event) {

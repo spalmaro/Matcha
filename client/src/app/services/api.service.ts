@@ -152,9 +152,8 @@ export class ApiService {
       .map(res => res.json())
   }
 
-  markOffline() {
-    console.log('API')
-    this.socket.emit('markOffline:set');
+  markOffline(username) {
+    this.socket.emit('markOffline:set', username)
   }
 
 }

@@ -32,6 +32,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 
 
 const appRoutes: Routes = [
@@ -78,7 +79,8 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatButtonModule,
     MatCardModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [
     UserService,

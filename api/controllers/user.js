@@ -51,6 +51,7 @@ const updateUser = (item, socket) => {
     if (item.liked) delete item.liked
     if (item.dislike) delete item.dislike
     if (item.lastconnected) delete item.lastconnected
+    if (item.online || item.online === false) delete item.online
     item['location'] = `(${item['location'].x}, ${item['location'].y})`;
     for (e in item)
         nex.push(item[e])
@@ -327,7 +328,6 @@ const changePasswordForgot = (activation_uuid, password, res) => {
 }
 
 const markOffline = (username) => {
-    console.log('PFFF', username)
     const updateOffline = {
         text: "UPDATE users SET online = false WHERE username = $1",
         values: [username]
