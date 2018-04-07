@@ -51,9 +51,13 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this._apiService.markOffline(this.username)
-      this._userService.logout();
-      this.router.navigate(['/']);
+   this._apiService.markOffline(this.username).subscribe({next: (res) => {
+     const response = res.json();
+     if (response.success) {
+       this._userService.logout();
+       this.router.navigate(['/']);
+     }
+   }})
   }
 
   stop(event) {

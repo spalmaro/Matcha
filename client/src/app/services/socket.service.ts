@@ -8,12 +8,15 @@ export class SocketService {
   private url = environment.API_URL;
 
   constructor() {
-    this.socket = io.connect(this.url)
-    this.socket.on('connection', socket => {
-      socket.on('authenticated', () => {
-        console.log('AUTHENTICATED')
+    this.socket = io.connect(this.url);
+    this.socket
+      .on('connection', socket => {
+        socket.on('authenticated', () => {
+          console.log('AUTHENTICATED');
+        });
       })
-    }).emit('authenticate', { token: localStorage.getItem('token')})
+      .emit('authenticate', { token: localStorage.getItem('token') })
+      .emit('markOnline:set', { token: localStorage.getItem('token') });
   }
 
   socketConnect() {
