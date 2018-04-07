@@ -24,6 +24,7 @@ export class User {
          public interests: Array<String>;
          public location: Object;
          public address: String;
+         public online: boolean;
 
          constructor(data: any) {
            this.firstname = data.firstname;
@@ -49,5 +50,6 @@ export class User {
            this.picture4 = data.picture4;
            this.location = data.location;
            this.address = data.address;
+           this.online = data.online;
          }
        }

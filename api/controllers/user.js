@@ -56,7 +56,7 @@ const updateUser = (item, socket) => {
         nex.push(item[e])
 
     const userUpdate = {
-        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = current_timestamp, profilepicture = $16, score = $17, blocked = $18, reportedby = $19, firstconnection = $20, interests = $21, picture1 = $22, picture2 = $23, picture3 = $24, picture4 = $25 WHERE user_uuid=$1",
+        text: "UPDATE users SET email = $2, username = $3, firstname = $4, lastname = $5, age = $6, dobday = $7, dobmonth = $8, dobyear = $9, password = $10, gender = $11, orientation = $12, description = $13, location = $14, address = $15, lastconnected = current_timestamp, profilepicture = $16, score = $17, blocked = $18, reportedby = $19, firstconnection = $20, interests = $21, picture1 = $22, picture2 = $23, picture3 = $24, picture4 = $25, online = true WHERE user_uuid=$1",
         values: nex
     };
 
@@ -326,6 +326,29 @@ const changePasswordForgot = (activation_uuid, password, res) => {
     })
 }
 
+const markOffline = (username) => {
+    console.log('PFFF', username)
+    const updateOffline = {
+        text: "UPDATE users SET online = false WHERE username = $1",
+        values: [username]
+    }
+
+    pool.query(updateOffline).then(row => {
+        
+    }).catch(err => console.log('MARK OFFLINE ERROR => ', err))
+}
+
+const markOnline = (username) => {
+    const updateOnline =  {
+        text: "UPDATE users SET online = true WHERE username = $1",
+        values: [username]
+    }
+
+    pool.query(updateOnline).then(row => {
+        
+    }).catch(err => console.log('MARK ONLINE ERROR => ', err))
+}
+
 module.exports = {
     'addUser': addUser,
     'updateUser': updateUser,
@@ -335,5 +358,7 @@ module.exports = {
     'forgotPassword': forgotPassword,
     'checkActivation': checkActivation,
     'changePassword': changePassword,
-    'changePasswordForgot': changePasswordForgot
+    'changePasswordForgot': changePasswordForgot,
+    'markOffline': markOffline,
+    'markOnline': markOnline
 };

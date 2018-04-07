@@ -41,7 +41,6 @@ export class ProfileComponent implements OnInit {
     this._apiService.getVisitedByUsers();
 
     this._apiService.likedBy.subscribe(data => {
-      console.log('LIKED BY', data)
       this.likeBy = data;
     })
 

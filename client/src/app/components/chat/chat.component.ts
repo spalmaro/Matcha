@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'app/services/api.service';
 import { User } from 'app/models/user';
 import { UserService } from 'app/services/user.service';
+import { NotificationService } from 'app/services/notification.service';
 
 @Component({
   selector: 'app-chat',
@@ -13,7 +14,7 @@ export class ChatComponent implements OnInit {
   user: User = new User({})
   people = []
   constructor(private _apiService: ApiService,
-  private _userService: UserService) { }
+  private _userService: UserService, private _notificationService: NotificationService) { }
 
   ngOnInit() {
 
@@ -30,6 +31,12 @@ export class ChatComponent implements OnInit {
       }
     })
 
+    this._notificationService.readMessages()
+
+  }
+
+  markConversationRead(person) {
+    this._apiService.readConversation(person);
   }
 
 }

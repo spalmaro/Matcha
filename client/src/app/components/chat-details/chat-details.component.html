@@ -1,13 +1,22 @@
 <app-navbar></app-navbar>
 <div class='chat-box'>
-  <div id="chat-box-inside-title">
-  		<h3>Chat with {{chatBuddy.username}}</h3>
+  <div id="chat-box-inside-title" style="padding: 10px">
+      <h3>Chat with {{chatBuddy.username}}</h3>
+      <p>{{chatBuddy.online ? 'Online' : lastConnected}}</p>
   	</div>
   	<div class="chat-box-inside-text">
   		<ul id="chat-box-inside-list">
-  			<li *ngFor='let msg of ' class="chat-box-inside-content target-user">
-  				<img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic">
-  				<span>Salut j'adore tes photos !</span>
+  			<li *ngFor='let msg of messages' [ngClass]="msg.msg_from === chatBuddy.username ? 'chat-box-inside-content target-user' : 'chat-box-bis curr-user'">
+          <!-- <img src="/assets/images/left.svg" alt="User picture" class="chat-box-pic"> -->
+          <!-- {{chatBuddy.username}} -->
+          <div *ngIf='msg.msg_from === chatBuddy.username'>
+            <div class="buddy-profile-pic" [style.backgroundImage]="chatBuddy.profilepicture"></div>
+            <span>{{msg.msg_msg}}</span>
+          </div>
+          <div *ngIf='msg.msg_from === currentUser.username'>
+              <div class="current-profile-pic" [style.backgroundImage]="currentUser.profilepicture"></div>
+              <span>{{msg.msg_msg}}</span> <br>
+            </div>
   			</li>
   		</ul>
   	</div>

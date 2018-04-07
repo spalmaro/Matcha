@@ -49,3 +49,7 @@ h4 {
 .max {
 	max-width: 500px;
 }
+
+.greyed {
+  background-color: #E8E8EE;
+}

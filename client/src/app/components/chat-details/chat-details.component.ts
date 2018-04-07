@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from 'app/services/api.service';
 import { UserService } from 'app/services/user.service';
 import { User } from 'app/models/user';
@@ -11,11 +11,14 @@ import * as moment from 'moment'
   templateUrl: './chat-details.component.html',
   styleUrls: ['./chat-details.component.css']
 })
-export class ChatDetailsComponent implements OnInit {
+export class ChatDetailsComponent implements OnInit, OnDestroy {
+
   currentUser: User = new User({});
   chatBuddy: User = new User({});
-  messages = {};
+  messages = [];
   message = '';
+  alive = true;
+  lastConnected;
 
   constructor(private _apiService: ApiService, private _userService: UserService,
     private route: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router) { }
@@ -36,6 +39,7 @@ export class ChatDetailsComponent implements OnInit {
             }
           }
         this.chatBuddy = data;
+        this.lastConnected = moment(this.chatBuddy.lastconnected).fromNow();
       } else {
         this.router.navigateByUrl('/profile');
       }
@@ -44,14 +48,19 @@ export class ChatDetailsComponent implements OnInit {
     this._userService.getUserInfo().subscribe(data => {
       if (data.user) {
         this.currentUser = data.user;
-        this._apiService.getMessages(this.currentUser, this.chatBuddy.username);
+        setInterval(() => {
+          this._apiService.getMessages(this.currentUser, this.chatBuddy.username);
+        }, 1000)
       }
     })
 
-     this._apiService.messages.subscribe(list => {
-       console.log('LIST OF MESSAGES', list)
-       
-     });
+    this._apiService.messages.subscribe(list => {
+      this.messages = list;
+    });
+  }
+
+  ngOnDestroy() {
+    this.alive = false;
   }
 
   sendMessage() {

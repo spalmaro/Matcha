@@ -2,11 +2,11 @@
 <div class="ui text container chatbox">
 	<div class="ui segments" style="overflow-y: scroll;">
 		<div class="ui segment" style="text-align: center"><h2>Chat</h2></div>
-		<div class="ui segment" *ngFor='let x of people'>
-			<div style="display: flex; flex-direction: row; cursor: pointer;" [routerLink]="'/chat/' + x.username">
+		<div class="ui segment" *ngFor='let x of people' [ngClass]="x.read ? 'greyed' : ''">
+			<div style="display: flex; flex-direction: row; cursor: pointer;" [routerLink]="'/chat/' + x.username" (click)='markConversationRead(x)'>
 					<div class="pict" [style.backgroundImage]="x.profilepicture"></div>
 					<h4>{{x.firstname}} {{x.lastname}}</h4>
-			</div>	
+			</div>
 		</div>
 	</div>
 </div>

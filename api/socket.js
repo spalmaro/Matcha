@@ -65,8 +65,13 @@ module.exports = (io) => {
         })
 
         socket.on('messages:get', data => {
-            console.log('getting messages');
+            // console.log('getting messages');
             notificationCtrl.getMessages(data, socket);
+        })
+
+        socket.on('messages:set', data => {
+            console.log('mark messages as read');
+            notificationCtrl.readMessages(data)
         })
 
         socket.on('conversations:get', data => {
@@ -74,9 +79,27 @@ module.exports = (io) => {
             notificationCtrl.getConversations(data, socket);
         })
 
+        socket.on('conversations:set', data => {
+            console.log('marking conversation as read');
+            notificationCtrl.readConversations(data, socket);
+        })
+
         socket.on('message:set', data => {
             console.log('sending message');
             notificationCtrl.sendMessage(data, socket);
+        })
+
+        socket.on('markOffline:set', () => {
+            console.log('marking user as offline')
+            userCtrl.markOffline(socket.decoded_token.username);
+        })
+
+        socket.on('disconnect', () => {
+            userCtrl.markOffline(socket.decoded_token.username);
+        })
+
+        socket.on('reconnect', () => {
+            userCtrl.markOnline(socket.decoded_token.username);
         })
     })
 }

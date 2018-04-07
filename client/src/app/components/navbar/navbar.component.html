@@ -32,7 +32,7 @@
         <a class="fa-bars" id='burger' [matMenuTriggerFor]="menu" >Menu</a>
 
         <mat-menu #menu="matMenu">
-            <div class="ui left icon input" style="padding: 2px 8px 2px 8px;"> 
+            <div class="ui left icon input" style="padding: 2px 8px 2px 8px;">
               <input style='height:2em; background-color: transparent; border:none; font-size: 14px; width: 260px;' (click)="stop($event)" [(ngModel)]='search' (keydown)='searchUser($event)' type="text" name="query" placeholder="Search" />
               <i class="search icon"></i>
             </div>

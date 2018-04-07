@@ -35,7 +35,7 @@ router.post('/login', async (req, res, next) => {
       const token = jwt.sign({username: result.rows[0].username, email: result.rows[0].email}, env.secret, {
         expiresIn: 604800 // 1 week
       });
-      console.log("connect", result.rows);
+      User.markOnline(req.body.username.toLowerCase())
       res.json({ success: true, token: token, user: { username: result.rows[0].username, email: result.rows[0].email }, firstconnection: result.rows[0].firstconnection })
     }
     else if (result.rows[0]) {
@@ -52,6 +52,11 @@ router.post('/login', async (req, res, next) => {
 
 router.get('/getUserInfo', (req, res, next) => {
   User.getUserInfo(req.query.username.toLowerCase(), res)
+})
+
+router.post('/logout', (req, res, next) => {
+  console.log('LOgouuuut', req.body)
+  User.markOffline(req.body.username);
 })
 
 router.get('/getProfile', (req, res, next) => {

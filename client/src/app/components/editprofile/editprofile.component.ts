@@ -40,7 +40,6 @@ export class EditprofileComponent implements OnInit {
       })
 
       this._userService.getUserInfo().subscribe(data => {
-        console.log('USER', data)
         if (data.success === true) {
           if (data.user.profilepicture != null) {
             this.user.profilepicture = this.sanitizer.bypassSecurityTrustUrl(data.user.profilepicture);
@@ -103,12 +102,13 @@ export class EditprofileComponent implements OnInit {
   setLocation(position) {
     if (position) {
       const {latitude, longitude} = position.coords;
-      console.log ('LATITUDE', latitude)
       this._userService.getLocation(latitude, longitude).subscribe(data => {
         this.user.address = data.results[4].formatted_address;
         this.user.location = { x: longitude, y: latitude };
         this._apiService.updateUserProfile(this.user);
       })
+    } else {
+      this.setLocationBackup();
     }
   }
 

@@ -54,6 +54,7 @@ export class ApiService {
     this.socket.on('viewdby:post', data => {
       this.viewedBy.emit(data);
     })
+
   }
 
   getUserInfo() {
@@ -120,6 +121,9 @@ export class ApiService {
     this.socket.emit('viewedby:get', this._userService.getCurrentUser())
   }
 
+  readConversation(person) {
+    this.socket.emit('conversations:set', {buddy: person, currentUser: this._userService.getCurrentUser()});
+  }
   forgotpassword(email) {
     const headers = new Headers()
     headers.append('Content-Type', 'application/json')
@@ -147,4 +151,10 @@ export class ApiService {
     return this.http.post(this.API_URL + '/changePasswordForgot', { activation_uuid: activation_uuid, password: password }, { headers: headers })
       .map(res => res.json())
   }
+
+  markOffline() {
+    console.log('API')
+    this.socket.emit('markOffline:set');
+  }
+
 }

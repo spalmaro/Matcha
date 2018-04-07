@@ -11,7 +11,7 @@ module.exports = {
 
     setVisit(data) {
         const searchVisit = {
-            text: "SELECT * FROM visit WHERE visit_subject = $1 AND visit_current_user = $2 ",
+            text: "SELECT * FROM visit WHERE visit_subject = $2 AND visit_current_user = $1 ",
             values: [data.username, data.currentUser]
         }
 
@@ -51,7 +51,7 @@ module.exports = {
 
     readNotifications(data, socket) {
         const markRead = {
-            text: "UPDATE notifications SET notif_read = true WHERE notif_who = $1",
+            text: "UPDATE notifications SET notif_read = true WHERE notif_who = $1 AND NOT notif_type = 'message'",
             values: [data]
         }
 
@@ -61,22 +61,60 @@ module.exports = {
         }).catch(err => console.log(err))
     },
 
+    readMessages(data, socket) {
+        const markRead = {
+            text: "UPDATE notifications SET notif_read = true WHERE notif_who = $1 AND notif_type = 'message'",
+            values: [data]
+        }
+
+        pool.query(markRead).then(result =>{
+            if (result.rowCount)
+                console.log('notifications marked as read')
+        }).catch(err => console.log(err))
+    },
+
+    readConversations(data, socket) {
+        const markRead = {
+            text: "UPDATE match SET match_read = true WHERE ($1 = ANY (users)) AND ($2 = ANY (users))",
+            values: [data.currentUser, data.buddy.username]
+        }
+
+        pool.query(markRead).then(result =>{
+            if (result.rowCount)
+                console.log('notifications marked as read')
+        }).catch(err => console.log(err))
+    },
+
     sendMessage(data, socket) {
-        console.log('Send message ==>', data)
         const findConversation = {
             text: "SELECT * FROM match WHERE ($1 = ANY (users)) AND ($2 = ANY (users)) ",
+            values: [data.to, data.from]
+        }
+
+        const sendNotification = {
+            text: "INSERT INTO notifications(notif_type, notif_who, notif_from, notif_read, notif_date) VALUES ('message', $1, $2, false, current_timestamp)",
             values: [data.to, data.from]
         }
 
         pool.query(findConversation).then(row => {
             if (row.rowCount == 1) {
                 const sendMsg = {
-                    text: "INSERT INTO messages(match_uuid, msg_from, msg_to, msg_msg, msg_ts) VALUES($1, $2, $3, $4)",
-                    values: [row.rows[0].match_uuid, data.from, data.to, data.message, data.timestamp]
+                    text: "INSERT INTO messages(match_uuid, msg_from, msg_to, msg_msg) VALUES($1, $2, $3, $4)",
+                    values: [row.rows[0].match_uuid, data.from, data.to, data.message]
                 }
                 pool.query(sendMsg).then(result => {
-                    if (result.rowCount == 1)
+                    if (result.rowCount == 1) {
                         console.log('message sent')
+                        pool.query(sendNotification).then(count => {
+                            if (count.rowCount) {
+                                const unreadMatch = {
+                                    text: "UPDATE match SET match_read = false WHERE match_uuid = $1",
+                                    values: [row.rows[0].match_uuid]
+                                }
+                                pool.query(unreadMatch).then(another => {}).catch(err => console.log('mark match unread err', err))
+                            }
+                        }).catch(err => console.log('sendMessage notification err => ', err))
+                    }
                 }).catch(err => console.log(err))
             }
         }).catch(err => console.log(err))
@@ -90,14 +128,17 @@ module.exports = {
         }
 
         pool.query(findConversations).then(result => {
+            //check if its in array order for unread !!!!
             if (result.rowCount) {
                 let people = result.rows;
                 let arr = [];
+                let unread = []
                 for (let x of people) {
                     if (x.users[0] != data.username)
                         arr.push(x.users[0]);
                     else
                         arr.push(x.users[1]);
+                    unread.push(x.match_read);
                 }
                 const getPeople = {
                     text: "SELECT username, firstname, lastname, profilepicture FROM users WHERE username IN ($1)",
@@ -105,6 +146,12 @@ module.exports = {
                 }
                 pool.query(getPeople).then(row => {
                     if (row.rows) {
+                        let ppl = row.rows;
+                        i = 0;
+                        for (let u of ppl) {
+                            u['read'] = unread[i];
+                            i++;
+                        }
                         socket.emit("conversations:post", {result: row.rows})
                     }
                 }).catch(err => console.log('People Error', err))
@@ -113,17 +160,15 @@ module.exports = {
     },
 
     getMessages(data, socket) {
-        //toArray
         const findConversation = {
             text: "SELECT * FROM match WHERE ($1 = ANY (users)) AND ($2 = ANY (users)) ",
-            values: [data.to, data.from]
+            values: [data.to, data.from.username]
         }
 
         pool.query(findConversation).then(row => {
-            console.log('row --->', row.rows)
             if (row.rowCount == 1) {
                 const getMsgs = {
-                    text: "SELECT * FROM messages WHERE match_uuid = $1 ORDER BY msg_ts DESC",
+                    text: "SELECT * FROM messages WHERE match_uuid = $1 ORDER BY msg_ts ASC",
                     values: [row.rows[0].match_uuid]
                 }
                 pool.query(getMsgs).then(result => {
@@ -133,15 +178,6 @@ module.exports = {
                 }).catch(err => console.log(err))
             }
         }).catch(err => console.log(err))
-        // mongodb.connect(url, (err, db) => {
-        //     if (err) {
-        //         throw err;
-        //     }
-        //     db.collection('match').find({'users': data.username}).sort({'timestamp': -1, 'messages.timestamp': -1}).toArray((err, result) => {
-        //         if (err) throw err;
-        //         socket.emit('messages:post', result);
-        //     })
-        // })
     },
 
     getLikedBy(data, socket) {
@@ -166,5 +202,5 @@ module.exports = {
         }).catch(err => console.log(err))
     }
 
-
+    
 }

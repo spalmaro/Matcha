@@ -27,6 +27,10 @@ export class NavbarComponent implements OnInit {
     this._notificationService.unreadnotifs.subscribe(data => {
       this.notiftotal = data;
     });
+
+    this._notificationService.unreadMsgs.subscribe(data => {
+      this.newmsgs = data;
+    });
   }
 
   markAllRead(event: Event) {
@@ -48,7 +52,7 @@ export class NavbarComponent implements OnInit {
     this._userService.logout();
     this.router.navigate(['/']);
   }
-  
+
   stop(event) {
     event.stopPropagation();
   }
