@@ -1,7 +1,7 @@
 module.exports = {
     secret : 'iamuptonogood',
     PGHOST: 'localhost',
-    PGUSER: 'AL',
+    PGUSER: 'spalmaro',
     PGDATABASE: 'matcha',
     PGPASSWORD: 'mongodbiscooler',
     PGPORT: 5432,
