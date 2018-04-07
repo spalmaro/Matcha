@@ -11,7 +11,7 @@ module.exports = (io) => {
         secret: env.secret,
         timeout: 15000 // 15 seconds to send the authentication message
     })).on('authenticated', (socket) => {
-
+        
         socket.on('updateProfile:set', (user) => {
             userCtrl.updateUser(user, socket);
         })
@@ -93,6 +93,11 @@ module.exports = (io) => {
             console.log('marking user as offline')
             userCtrl.markOffline(socket.decoded_token.username);
         })
+
+        socket.on('markOnline:set', token => {
+            console.log('marking user online');
+            userCtrl.markOnline(socket.decoded_token.username);
+        });
 
         socket.on('disconnect', () => {
             console.log('disconnecting')

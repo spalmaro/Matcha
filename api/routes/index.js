@@ -73,4 +73,8 @@ router.post('/changePassword', (req, res, next) => {
 router.post('/changePasswordForgot', (req, res, next) => {
   User.changePasswordForgot(req.body.activation_uuid, bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(8)), res);
 })
+
+router.post('/logout', (req, res, next) => {
+  User.markOfflineHttp(req.body.username, res);
+})
 module.exports = router;

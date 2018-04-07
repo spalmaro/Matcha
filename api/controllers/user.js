@@ -338,6 +338,18 @@ const markOffline = (username) => {
     }).catch(err => console.log('MARK OFFLINE ERROR => ', err))
 }
 
+const markOfflineHttp = (username, res) => {
+  const updateOffline = {
+    text: 'UPDATE users SET online = false WHERE username = $1',
+    values: [username]
+  };
+
+  pool
+    .query(updateOffline)
+    .then(row => { res.json({ success: true }) })
+    .catch(err => console.log('MARK OFFLINE ERROR => ', err));
+};
+
 const markOnline = (username) => {
     const updateOnline =  {
         text: "UPDATE users SET online = true WHERE username = $1",
@@ -360,5 +372,6 @@ module.exports = {
     'changePassword': changePassword,
     'changePasswordForgot': changePasswordForgot,
     'markOffline': markOffline,
+    'markOfflineHttp': markOfflineHttp,
     'markOnline': markOnline
 };
