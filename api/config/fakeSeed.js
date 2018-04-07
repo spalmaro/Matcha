@@ -20,8 +20,8 @@ function createRandomUser() {
         interests.push('#' + faker.lorem.word())
     }
     let user = [
-        faker.internet.email,
-        faker.internet.userName(),
+        faker.internet.email(),
+        faker.internet.userName().toLowerCase(),
         faker.name.firstName(),
         faker.name.lastName(),
         getAge(birthday.slice(0, 4) + '-' + birthday.slice(5, 7) + '-' + birthday.slice(8, 10)),

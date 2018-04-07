@@ -36,6 +36,31 @@ export class HomeComponent implements OnInit {
     });
     this._apiService.list.subscribe(data => {
       this.list = data;
+      for (let user of this.list) {
+        // const table = [user.profilepicture, user.picture1, user.picture2, user.picture3, user.picture4];
+        // for (const i in table) {
+        //   if (table[i] !== null || table[i] !== '') {
+        //     let x = (table[i] as string).slice(4, (table[i] as string).length - 1)
+        //     table[i] = this.sanitizer.bypassSecurityTrustUrl(table[i] as string);
+        //   }
+        // }
+        if (user.profilepicture !== null || user.profilepicture !== '') {
+          user.profilepicture = this.sanitizer.bypassSecurityTrustUrl((user.profilepicture as string).slice(4, (user.profilepicture  as string).length - 1))
+        }
+        if (user.picture1 !== null || user.picture1 !== '') {
+          user.picture1 = this.sanitizer.bypassSecurityTrustUrl((user.picture1 as string).slice(4, (user.picture1  as string).length - 1))
+        }
+        if (user.picture2 !== null || user.picture2 !== '') {
+          user.picture2 = this.sanitizer.bypassSecurityTrustUrl((user.picture2 as string).slice(4, (user.picture2  as string).length - 1))
+        }
+        if (user.picture3 !== null || user.picture3 !== '') {
+          user.picture3 = this.sanitizer.bypassSecurityTrustUrl((user.picture3 as string).slice(4, (user.picture3  as string).length - 1))
+        }
+        if (user.picture4 !== null || user.picture4 !== '') {
+          user.picture4 = this.sanitizer.bypassSecurityTrustUrl((user.picture4 as string).slice(4, (user.picture4  as string).length - 1))
+        }
+      }
+      
     })
   }
 

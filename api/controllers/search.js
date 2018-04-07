@@ -10,85 +10,97 @@ const pool = new Pool({
 
 module.exports = {
     search(data, socket) {
-        mongodb.connect(url, (err, db) => {
-          if (err) { console.log(err); return; }
-          db.collection('views').find({'currentUser': data.user.username}, {'subject': 1}, (err, cursor) => {
-          cursor.toArray((err, result) => {
-			let query = {};
-			console.log('###data =>', data.search.interests);
-            if (data.search.interests.length){
-              query.interests = {$in: data.search.interests}
-            }
-			if (data.user.orientation !== 'Both') {
-              query.gender = data.user.orientation == 'Guys' ? 'Male' : 'Female'
-            } else {
-              query.gender =  {$in: ['Male', 'Female']}
-            }
-            query.orientation = {$in: [data.user.gender == 'Male' ? 'Guys' : 'Girls' , 'Both']} ;
-            query.profilepicture = {$ne: ''};
-            query.score = {$gte: data.search.startScore};
-			query.age = {$gte: data.search.startAge}
-            if (data.search.endAge !== 65) {
-              query.age['$lte'] = data.search.endAge;
-            }
-            if (data.search.endScore !== 100)
-              query.score['$lte'] = data.search.endAge;
-            query.username = {$nin: data.user.blocked, $nin: result, $ne: data.user.username};
-            query.location = {
-              $nearSphere: {
-                $geometry: {
-                  type: "Point",
-                  coordinates: data.user.location
-                },
-                $minDistance: 0,
-                $maxDistance: data.search.distance * 1000
-              }
-			}
-            db.collection('users').find(query).sort({'score' : 1}).limit(16).toArray((err, items) => {
-			  if (err) throw err ;
-              socket.emit('search:post', items);
-            })
-          })
+      let long = data.user.location.x;  
+      let lat = data.user.location.y;
+      let findViews = {
+        text: "SELECT views_subject FROM views WHERE views_current_user = $1",
+        values: [data.user.username]
+      }
+
+      pool.query(findViews).then(row => {
+        let viewed = []
+        for (let subject of row.rows) {
+          viewed.push(subject.views_subject);
+        }
+        let query = `SELECT * FROM users i, ST_Distance(ST_POINT($4, $5)::geometry, location::geometry) as dist WHERE `
+        if (data.search.interests.length){
+          query = query.concat(`interests IN (${data.search.interests}) AND `)
+        } 
+        if (data.user.orientation !== 'Both') {
+          let gender = data.user.orientation == 'Guys' ? 'Male' : 'Female'
+          query = query.concat(`gender = ${gender}`)
+        } else {
+          query = query.concat("gender IN ('Male', 'Female')")
+        }
+        let orientation = data.user.gender == 'Male' ? 'Guys' : 'Girls';
+        query = query.concat(` AND orientation IN ('${orientation}', 'Both') AND NOT profilepicture = '' AND NOT username IN ($1) AND NOT username IN ($2) AND NOT username = $3 AND score >= $6 AND age >= $7 `)
+        if (data.search.endAge !== 65) {
+          query = query.concat(`AND age <= ${data.search.endAge}`);
+        }
+        if (data.search.endScore !== 100)
+          query = query.concat(`AND score <= ${data.search.endScore}`);
+        
+        query = query.concat(' AND dist <= $8 ORDER BY dist, i.score LIMIT 16')
+
+        console.log('FINAL QUERY LOOKS LIKE DIS  ', query)
+  
+        let sortPeople = {
+          text : query,
+          values: [data.user.blocked, viewed, data.user.username, long, lat, data.search.startScore, data.search.startAge, (data.search.distance * 1000)]
+        }
+  
+        pool.query(sortPeople).then(result => {
+          if (result.rowCount > 0) {
+            socket.emit('list:post', result.rows)
+          } else {
+            socket.emit('list:post', []);
+          }
         })
-        })
+      })
     },
 
     getList(user, socket) {
-      mongodb.connect(url, (err, db) => {
-        if (err) { console.log(err); return; }
-        db.collection('views').find({'currentUser' : user.username}, {'subject': 1}, (err, cursor) => {
-          cursor.toArray((err, result) => {
-            let query = {};
-            if (user.interests.length){
-              query.interests = {$in: user.interests}
-            }
-            if (user.orientation !== 'Both') {
-              query.gender = user.orientation == 'Guys' ? 'Male' : 'Female'
-            } else {
-              query.gender =  {$in: ['Male', 'Female']}
-            }
-            query.orientation = {$in: [user.gender == 'Male' ? 'Guys' : 'Girls' , 'Both']} ;
-            query.profilepicture = {$ne: ''};
-            let viewed = []
-            for (let subject of result) {
-              viewed.push(subject.subject);
-            }
-            query.username = {$nin: user.blocked, $nin: viewed, $ne: user.username};
-            query.location = {
-              $nearSphere: {
-                $geometry: {
-                  type: "Point",
-                  coordinates: user.location
-                },
-                $minDistance: 0,
-                $maxDistance: 160000
-              }
-            }
-            db.collection('users').find(query).sort({'score' : 1}).limit(16).toArray((err, items) => {
-              if (err) throw err ;
-              socket.emit('list:post', items);
-            })
-          })
+      let long = user.location.x;  
+      let lat = user.location.y;
+      let findViews = {
+        text: "SELECT views_subject FROM views WHERE views_current_user = $1",
+        values: [user.username]
+      }
+
+      pool.query(findViews).then(row => {
+        let viewed = []
+        for (let subject of row.rows) {
+          viewed.push(subject.views_subject);
+        }
+        let query = `SELECT * FROM users i, LATERAL (
+          SELECT count(*) AS ct
+          FROM   unnest(i.interests) uid
+          WHERE  uid = ANY ($1)
+          ) x, ST_Distance(ST_POINT($5, $6)::geometry, location::geometry) as dist
+          WHERE `
+        if (user.orientation !== 'Both') {
+          let gender = user.orientation == 'Guys' ? 'Male' : 'Female'
+          query = query.concat(`gender = ${gender}`)
+        } else {
+          query = query.concat("gender IN ('Male', 'Female')")
+        }
+        let orientation = user.gender == 'Male' ? 'Guys' : 'Girls';
+        query = query.concat(` AND orientation IN ('${orientation}', 'Both') AND NOT profilepicture = '' AND NOT username IN ($2) AND NOT username IN ($3) AND NOT username = $4`)
+        query = query.concat(' ORDER BY dist, x.ct DESC, i.score LIMIT 16')
+
+        // console.log('FINAL QUERY LOOKS LIKE DIS  ', query)
+  
+        let sortPeople = {
+          text : query,
+          values: [user.interests, user.blocked, viewed, user.username, long, lat]
+        }
+  
+        pool.query(sortPeople).then(result => {
+          if (result.rowCount > 0) {
+            socket.emit('list:post', result.rows)
+          } else {
+            socket.emit('list:post', []);
+          }
         })
       })
     },
