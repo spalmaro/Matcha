@@ -68,7 +68,6 @@ export class ApiService {
   }
 
   updateUserProfile(user) {
-    console.log('##USER', user)
     this.socket.emit('updateProfile:set', user)
   }
 

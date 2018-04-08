@@ -5,7 +5,7 @@
       <div class='popup-background' [hidden]='upload === false' (click)="showPopup(false)">
         <div id="popup-upload" [hidden]='upload === false'>
           <ul>
-            <input #fileInput (change)="uploadPicture($event)" id="file" type="file" name="file" accept="image/*">
+            <input #fileInput (change)="uploadPicture($event)" id="file" type="file" name="file" accept="image/png,image/jpg,image/jpeg">
             <li>
               <button (click)="fileInput.click()" name="uploadPicture" class="upload-picture">Upload Photo</button>
             </li>

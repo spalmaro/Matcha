@@ -9,17 +9,18 @@
           <div class="content" style='cursor: pointer' [routerLink]="'/search/' + list[0].username">
             <div class="right floated meta"><a *ngIf='list[0].online'>Online</a>
               <a *ngIf='!list[0].online'>Last Connected: {{list[0].lastconnected}}</a></div>
-            <img class="ui avatar image" [src]="list[0].profilepicture"> {{list[0].username}}
+            <img class="ui avatar image" [src]="profilepicture"> {{list[0].username}}
           </div>
           <div [ngClass]="list[0].picture1 ? 'image ui slide masked reveal': 'image'">
-            <img [src]="list[0].profilepicture" class='visible content'>
-            <img *ngIf="list[0].picture1" [src]="list[0].picture1" class='hidden content'>
-            <img *ngIf="list[0].picture2" [src]="list[0].picture2" class='hidden content'>
-            <img *ngIf="list[0].picture3" [src]="list[0].picture3" class='hidden content'>
-            <img *ngIf="list[0].picture4" [src]="list[0].picture4" class='hidden content'>
+            <img [src]="profilepicture" class='visible content'>
+            <img *ngIf="list[0].picture1" [src]="picture1" class='hidden content'>
+            <img *ngIf="list[0].picture2" [src]="picture2" class='hidden content'>
+            <img *ngIf="list[0].picture3" [src]="picture3" class='hidden content'>
+            <img *ngIf="list[0].picture4" [src]="picture4" class='hidden content'>
           </div>
           <div class="content">
-            <div class="header">{{list[0].firstname}} {{list[0].lastname}}, {{list[0].age}}</div>
+            <div class="header">{{list[0].firstname}} {{list[0].lastname}} <span *ngIf="list[0].gender == 'Male'"> ♂</span>
+            <span *ngIf="list[0].gender == 'Female'"> ♀</span>, {{list[0].age}}</div>
             <div class="meta">
               <a>Interested In: {{list[0].orientation}}</a>
             </div>
@@ -55,9 +56,9 @@
           <div>
             <h3>Interests: </h3>
               <div class="ui orange labels">
-                <a *ngFor="let interest of search.interests" class="ui label" id='inter'>
+                <a *ngFor="let interest of search.interests; let i = index" class="ui label" id='inter'>
                   {{interest}}
-                  <div class="close">
+                  <div class="close" (click)='removeInterest(i)'>
                     <div>x</div>
                   </div>
                 </a>

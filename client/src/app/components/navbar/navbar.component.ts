@@ -21,11 +21,12 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this._userService.getUserInfo().subscribe(data => {
       if (data.success === true) {
-        this._notificationService.getNotifications(data.user);
+        setInterval(() => {
+          this._notificationService.getNotifications(data.user);
+        }, 1000);
         this.username = data.user.username;
       }
     });
-
     this._notificationService.unreadnotifs.subscribe(data => {
       this.notiftotal = data;
     });
@@ -51,13 +52,18 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-   this._apiService.markOffline(this.username).subscribe({next: (res) => {
-     const response = res.json();
-     if (response.success) {
-       this._userService.logout();
-       this.router.navigate(['/']);
-     }
-   }})
+   this._apiService.markOffline(this.username).subscribe(
+     {
+        next: (val) => {
+        },
+        complete: () => {
+    //  const response = res.json();
+    //  if (response.success) {
+          this._userService.logout();
+          this.router.navigate(['/']);
+        }
+    //  }
+   })
   }
 
   stop(event) {

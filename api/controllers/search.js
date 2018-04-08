@@ -18,13 +18,26 @@ module.exports = {
       }
 
       pool.query(findViews).then(row => {
-        let viewed = []
+        let viewed = '';
+        let x = 0;
         for (let subject of row.rows) {
-          viewed.push(subject.views_subject);
+          if (x < row.rows.length - 1)
+            viewed = viewed.concat(`'${subject.views_subject}', `);
+          else if (x === row.rows.length - 1) {
+                 viewed = viewed.concat(`'${subject.views_subject}'`);
+               }
+          x++;
         }
-        let query = `SELECT * FROM users i, ST_Distance(ST_POINT($4, $5)::geometry, location::geometry) as dist WHERE `
+        let interests = '';
+        for (let i in data.search.interests) {
+          if (i < data.search.interests.length - 1)
+            interests = interests.concat(`'${data.search.interests[i]}',`);
+          else
+            interests = interests.concat(`'${data.search.interests[i]}'`);
+        }
+        let query = `SELECT * FROM users i, ST_Distance(ST_POINT($3, $4)::geometry, location::geometry) as dist WHERE `
         if (data.search.interests.length){
-          query = query.concat(`interests IN (${data.search.interests}) AND `)
+          query = query.concat(`interests && ARRAY[${interests}] AND `)
         } 
         if (data.user.orientation !== 'Both') {
           let gender = data.user.orientation == 'Guys' ? 'Male' : 'Female'
@@ -33,20 +46,23 @@ module.exports = {
           query = query.concat("gender IN ('Male', 'Female')")
         }
         let orientation = data.user.gender == 'Male' ? 'Guys' : 'Girls';
-        query = query.concat(` AND orientation IN ('${orientation}', 'Both') AND NOT profilepicture = '' AND NOT username IN ($1) AND NOT username IN ($2) AND NOT username = $3 AND score >= $6 AND age >= $7 `)
+        let viewedQuery = viewed.length ? viewed : `''`;
+        query = query.concat(` AND orientation IN ('${orientation}', 'Both') AND NOT profilepicture = '' AND NOT username IN ($1) AND NOT username IN (${viewedQuery}) AND NOT username = $2 AND score >= $5 `)
         if (data.search.endAge !== 65) {
-          query = query.concat(`AND age <= ${data.search.endAge}`);
+          query = query.concat(`AND age BETWEEN $6 AND ${data.search.endAge} `);
+        } else {
+          query = query.concat(`AND age >= $6 `)
         }
         if (data.search.endScore !== 100)
-          query = query.concat(`AND score <= ${data.search.endScore}`);
+          query = query.concat(`AND score <= ${data.search.endScore} `);
         
-        query = query.concat(' AND dist <= $8 ORDER BY dist, i.score LIMIT 16')
+        query = query.concat('AND dist <= $7 ORDER BY dist, i.score LIMIT 16 ')
 
         console.log('FINAL QUERY LOOKS LIKE DIS  ', query)
   
         let sortPeople = {
           text : query,
-          values: [data.user.blocked, viewed, data.user.username, long, lat, data.search.startScore, data.search.startAge, (data.search.distance * 1000)]
+          values: [data.user.blocked, data.user.username, long, lat, data.search.startScore, data.search.startAge, (data.search.distance * 1000)]
         }
   
         pool.query(sortPeople).then(result => {

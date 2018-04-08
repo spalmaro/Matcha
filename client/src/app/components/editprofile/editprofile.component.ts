@@ -69,7 +69,8 @@ export class EditprofileComponent implements OnInit {
     const marker = ';base64,';
     const base64Index = base64.indexOf(marker) + marker.length;
     const base64string = base64.substring(base64Index);
-    return (base64string);
+    const test = 'url(data:image/jpeg;base64,' + base64string + ')';
+    return (test);
   }
 
   uploadPicture(event: any) {
@@ -106,6 +107,10 @@ export class EditprofileComponent implements OnInit {
         this.user.address = data.results[4].formatted_address;
         this.user.location = { x: longitude, y: latitude };
         this._apiService.updateUserProfile(this.user);
+        const test = document.getElementById('search_places') as HTMLInputElement;
+        if (test) {
+          test.value = this.user.address as string;
+        }
       })
     } else {
       this.setLocationBackup();
@@ -118,6 +123,10 @@ export class EditprofileComponent implements OnInit {
         this._userService.getLocation(lat, lng).subscribe(result => {
           this.user.address = result.results[4].formatted_address;
           this.user.location = { x: lng, y: lat };
+          const test = document.getElementById('search_places') as HTMLInputElement;
+          if (test) {
+            test.value = this.user.address as string;
+          }
           this._apiService.updateUserProfile(this.user);
       })
       })
