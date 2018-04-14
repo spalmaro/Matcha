@@ -200,6 +200,24 @@ module.exports = {
         pool.query(viewdBy).then(result => {
             socket.emit('viewdby:post', result.rows);
         }).catch(err => console.log(err))
+    },
+
+    checkChatMatch(data, socket) {
+        const checkMatch = {
+            text: "SELECT * FROM match WHERE ($1 = ANY (users)) AND ($2 = ANY (users)) ",
+            values: [data.who, data.currentUser]
+        }
+
+        pool.query(checkMatch).then(result => {
+            if (result.rowCount > 0) {
+                socket.emit('checkMatchChat:post', {exists: true})
+            } else {
+                socket.emit('checkMatchChat:post', {exists: false})
+            }
+        }).catch(err => {
+            console.log('Error =>', err)
+            socket.emit('checkMatchChat:post', {exists: true})
+        })
     }
 
     

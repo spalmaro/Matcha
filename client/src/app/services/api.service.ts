@@ -16,6 +16,7 @@ export class ApiService {
   @Output() likedBy: EventEmitter<any> = new EventEmitter();
   @Output() viewedBy: EventEmitter<any> = new EventEmitter();
   @Output() convos: EventEmitter<any> = new EventEmitter();
+  @Output() checkMatchforChat: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private socketService: SocketService,
@@ -49,6 +50,10 @@ export class ApiService {
 
     this.socket.on('viewdby:post', data => {
       this.viewedBy.emit(data);
+    })
+
+    this.socket.on('checkMatchChat:post', data => {
+      this.checkMatchforChat.emit(data);
     })
   }
 
@@ -101,6 +106,10 @@ export class ApiService {
 
   setVisit(username) {
     this.socket.emit('visit:set', { currentUser: this._userService.getCurrentUser(), username: username });
+  }
+
+  checkChatMatch(who) {
+    this.socket.emit('checkMatchChat:get', { who, currentUser: this._userService.getCurrentUser()});
   }
 
   reportUser(userToReport) {

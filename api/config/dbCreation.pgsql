@@ -37,7 +37,7 @@ CREATE TABLE users(
     picture2 text,
     picture3 text,
     picture4 text,
-    online boolean DEFAULT true,
+    online boolean DEFAULT false,
     PRIMARY KEY (user_uuid)
 );
 

@@ -19,6 +19,7 @@ export class ChatDetailsComponent implements OnInit, OnDestroy {
   message = '';
   alive = true;
   lastConnected;
+  matched = false;
 
   constructor(private _apiService: ApiService, private _userService: UserService,
     private route: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router) { }
@@ -26,9 +27,15 @@ export class ChatDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const username = this.route.snapshot.paramMap.get('username');
 
+    this._apiService.checkChatMatch(username);
+    this._apiService.checkMatchforChat.subscribe(exists => {
+      if (exists.exists) {
+        this.matched = true;
+      }
+    })
+
     this._apiService.getProfile(username).subscribe(data => {
       if (data.username) {
-          this._apiService.setVisit(username);
           const table = [data.profilepicture, data.picture1, data.picture2, data.picture3, data.picture4];
           const table2 = [this.chatBuddy.profilepicture, this.chatBuddy.picture1, this.chatBuddy.picture2,
              this.chatBuddy.picture3, this.chatBuddy.picture4];

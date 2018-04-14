@@ -40,6 +40,11 @@ module.exports = (io) => {
             notificationCtrl.setVisit(data)
         })
 
+        socket.on('checkMatchChat:get', data => {
+            console.log('check chat match for user');
+            notificationCtrl.checkChatMatch(data, socket);
+        })
+
         socket.on('report:set', data => {
             console.log('reporting user');
             userCtrl.reportUser(data);
