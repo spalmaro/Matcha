@@ -16,16 +16,12 @@ module.exports = (io) => {
             userCtrl.updateUser(user, socket);
         })
 
-        socket.on('list:get', (user) => {
-            console.log('getting list of users to match')
-            searchCtrl.getList(user, socket);
-        })
-
         socket.on('status:set', (data) => {
             matchCtrl.setLikeDislike(data, socket);
         })
 
         socket.on('search:get', (data) => {
+            console.log('searching user')
             searchCtrl.search(data, socket);
         });
 

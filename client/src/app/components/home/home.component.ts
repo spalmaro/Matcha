@@ -36,57 +36,59 @@ export class HomeComponent implements OnInit {
     this.ageInterval = [18, 65];
     this.scoreInterval = [0, 100];
 
+    this._apiService.list.subscribe(result => {
+      this.list = result;
+    })
+
     this._userService.getUserInfo().subscribe(data => {
       if (data.success === true) {
         this.user = data.user;
-        this._apiService.getList(this.user);
-      }
-    });
-    this._apiService.list.subscribe(data => {
-      console.log('GOT LIST', data)
-      this.list = data;
-      for (const user of this.list) {
-        if (user.profilepicture !== null || user.profilepicture !== '') {
+        this._apiService.getList(this.user).subscribe(response => {
+          this.list = response.list;
+          for (const user of this.list) {
+            if (user.profilepicture !== null || user.profilepicture !== '') {
 
-          this.profilepicture  = this.sanitizer.bypassSecurityTrustUrl(
-            (user.profilepicture as string).slice(
-              4,
-              (user.profilepicture as string).length - 1
-            )
-          );
-        }
-        if (user.picture1 !== null || user.picture1 !== '') {
-          this.picture1 = this.sanitizer.bypassSecurityTrustUrl(
-            (user.picture1 as string).slice(
-              4,
-              (user.picture1 as string).length - 1
-            )
-          );
-        }
-        if (user.picture2 !== null || user.picture2 !== '') {
-          this.picture2 = this.sanitizer.bypassSecurityTrustUrl(
-            (user.picture2 as string).slice(
-              4,
-              (user.picture2 as string).length - 1
-            )
-          );
-        }
-        if (user.picture3 !== null || user.picture3 !== '') {
-          this.picture3 = this.sanitizer.bypassSecurityTrustUrl(
-            (user.picture3 as string).slice(
-              4,
-              (user.picture3 as string).length - 1
-            )
-          );
-        }
-        if (user.picture4 !== null || user.picture4 !== '') {
-          this.picture4 = this.sanitizer.bypassSecurityTrustUrl(
-            (user.picture4 as string).slice(
-              4,
-              (user.picture4 as string).length - 1
-            )
-          );
-        }
+              this.profilepicture  = this.sanitizer.bypassSecurityTrustUrl(
+                (user.profilepicture as string).slice(
+                  4,
+                  (user.profilepicture as string).length - 1
+                )
+              );
+            }
+            if (user.picture1 !== null || user.picture1 !== '') {
+              this.picture1 = this.sanitizer.bypassSecurityTrustUrl(
+                (user.picture1 as string).slice(
+                  4,
+                  (user.picture1 as string).length - 1
+                )
+              );
+            }
+            if (user.picture2 !== null || user.picture2 !== '') {
+              this.picture2 = this.sanitizer.bypassSecurityTrustUrl(
+                (user.picture2 as string).slice(
+                  4,
+                  (user.picture2 as string).length - 1
+                )
+              );
+            }
+            if (user.picture3 !== null || user.picture3 !== '') {
+              this.picture3 = this.sanitizer.bypassSecurityTrustUrl(
+                (user.picture3 as string).slice(
+                  4,
+                  (user.picture3 as string).length - 1
+                )
+              );
+            }
+            if (user.picture4 !== null || user.picture4 !== '') {
+              this.picture4 = this.sanitizer.bypassSecurityTrustUrl(
+                (user.picture4 as string).slice(
+                  4,
+                  (user.picture4 as string).length - 1
+                )
+              );
+            }
+          }
+        })
       }
     });
   }
@@ -108,11 +110,55 @@ export class HomeComponent implements OnInit {
   setLikeDislike(status: string) {
     this._apiService.setLikeDislike(status, this.list[0].username);
     this.list.shift();
-    // if (this.list.length === 0 && !this.searched) {
-    //   this._apiService.getList(this.user);
-    // } else if (this.searched) {
-    //   this._apiService.searchList(this.search, this.user);
-    // }
+    if (this.list.length === 0 && !this.searched) {
+      this._apiService.getList(this.user).subscribe(data => {
+        this.list = data.list;
+        for (const user of this.list) {
+          if (user.profilepicture !== null || user.profilepicture !== '') {
+            this.profilepicture  = this.sanitizer.bypassSecurityTrustUrl(
+              (user.profilepicture as string).slice(
+                4,
+                (user.profilepicture as string).length - 1
+              )
+            );
+          }
+          if (user.picture1 !== null || user.picture1 !== '') {
+            this.picture1 = this.sanitizer.bypassSecurityTrustUrl(
+              (user.picture1 as string).slice(
+                4,
+                (user.picture1 as string).length - 1
+              )
+            );
+          }
+          if (user.picture2 !== null || user.picture2 !== '') {
+            this.picture2 = this.sanitizer.bypassSecurityTrustUrl(
+              (user.picture2 as string).slice(
+                4,
+                (user.picture2 as string).length - 1
+              )
+            );
+          }
+          if (user.picture3 !== null || user.picture3 !== '') {
+            this.picture3 = this.sanitizer.bypassSecurityTrustUrl(
+              (user.picture3 as string).slice(
+                4,
+                (user.picture3 as string).length - 1
+              )
+            );
+          }
+          if (user.picture4 !== null || user.picture4 !== '') {
+            this.picture4 = this.sanitizer.bypassSecurityTrustUrl(
+              (user.picture4 as string).slice(
+                4,
+                (user.picture4 as string).length - 1
+              )
+            );
+          }
+        }
+      })
+    } else if (this.searched) {
+      this._apiService.searchList(this.search, this.user);
+    }
   }
 
   removeInterest(index) {

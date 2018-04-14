@@ -24,8 +24,8 @@ module.exports = {
           if (x < row.rows.length - 1)
             viewed = viewed.concat(`'${subject.views_subject}', `);
           else if (x === row.rows.length - 1) {
-                 viewed = viewed.concat(`'${subject.views_subject}'`);
-               }
+            viewed = viewed.concat(`'${subject.views_subject}'`);
+          }
           x++;
         }
         let interests = '';
@@ -58,7 +58,7 @@ module.exports = {
         
         query = query.concat('AND dist <= $7 ORDER BY dist, i.score LIMIT 16 ')
 
-        console.log('FINAL QUERY LOOKS LIKE DIS  ', query)
+        // console.log('FINAL QUERY LOOKS LIKE DIS  ', query)
   
         let sortPeople = {
           text : query,
@@ -67,15 +67,16 @@ module.exports = {
   
         pool.query(sortPeople).then(result => {
           if (result.rowCount > 0) {
-            socket.emit('list:post', result.rows)
+            socket.emit('search:post', result.rows)
           } else {
-            socket.emit('list:post', []);
+            console.log('posting', result.rows)
+            socket.emit('search:post', []);
           }
         })
       })
     },
 
-    getList(user, socket) {
+    getList(user, res) {
       let long = user.location.x;  
       let lat = user.location.y;
       let findViews = {
@@ -84,15 +85,21 @@ module.exports = {
       }
 
       pool.query(findViews).then(row => {
-        let viewed = []
+        let viewed = '';
+        i = 1;
         for (let subject of row.rows) {
-          viewed.push(subject.views_subject);
+          if (i < row.rows.length)
+            viewed = viewed.concat(`'${subject.views_subject}', `);
+          else
+            viewed = viewed.concat(`'${subject.views_subject}'`);
+          i++;
         }
+        viewed = viewed ? viewed : `''`;
         let query = `SELECT * FROM users i, LATERAL (
           SELECT count(*) AS ct
           FROM   unnest(i.interests) uid
           WHERE  uid = ANY ($1)
-          ) x, ST_Distance(ST_POINT($5, $6)::geometry, location::geometry) as dist
+          ) x, ST_Distance(ST_POINT($4, $5)::geometry, location::geometry) as dist
           WHERE `
         if (user.orientation !== 'Both') {
           let gender = user.orientation == 'Guys' ? 'Male' : 'Female'
@@ -101,23 +108,30 @@ module.exports = {
           query = query.concat("gender IN ('Male', 'Female')")
         }
         let orientation = user.gender == 'Male' ? 'Guys' : 'Girls';
-        query = query.concat(` AND orientation IN ('${orientation}', 'Both') AND NOT profilepicture = '' AND NOT username IN ($2) AND NOT username IN ($3) AND NOT username = $4`)
+        query = query.concat(` AND orientation IN ('${orientation}', 'Both') AND NOT profilepicture = '' AND NOT username IN ($2) AND NOT username IN (${viewed}) AND NOT username = $3`)
         query = query.concat(' ORDER BY dist, x.ct DESC, i.score LIMIT 16')
 
         // console.log('FINAL QUERY LOOKS LIKE DIS  ', query)
   
         let sortPeople = {
           text : query,
-          values: [user.interests, user.blocked, viewed, user.username, long, lat]
+          values: [user.interests, user.blocked, user.username, long, lat]
         }
   
         pool.query(sortPeople).then(result => {
+          console.log(result.rowCount)
           if (result.rowCount > 0) {
-            socket.emit('list:post', result.rows)
+            res.json({ list: result.rows });
           } else {
-            socket.emit('list:post', []);
+            res.json({ list: [] });
           }
+        }).catch(err => {
+          console.error(err);
+          res.json({ list: [] });  
         })
+      }).catch(err => {
+        console.error(err);
+        res.json({ success: false });
       })
     },
 

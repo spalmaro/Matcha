@@ -31,10 +31,6 @@ export class ApiService {
       this.updateInfo.emit(data)
     })
 
-    this.socket.on('list:post', list => {
-      this.list.emit(list);
-    })
-
     this.socket.on('messages:post', data => {
       this.messages.emit(data);
     })
@@ -72,7 +68,11 @@ export class ApiService {
   }
 
   getList(user) {
-    this.socket.emit('list:get', user);
+    const headers = new Headers()
+
+    headers.append('Content-Type', 'application/json')
+    return this.http.post(this.API_URL + '/getList', { user }, { headers })
+      .map(res => res.json())
   }
 
   searchList(search, user) {

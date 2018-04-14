@@ -25,7 +25,7 @@
           <label *ngIf='likesme'><i>This user likes you</i></label>
         </div>
       </div>
-        <div *ngIf='currentUser.profilepicture' style="display:inline-block; margin-top: 50px;">
+        <div *ngIf='currentUser.profilepicture' style="display:inline-block; margin-top: 50px;" class='buttonss'>
           <button *ngIf='!ilike' class='like' (click)='setLikeDislike("like")'>Like</button>
           <button *ngIf='ilike' class='like' (click)='setLikeDislike("dislike")'>Liked</button>
           <button *ngIf='!idislike' class='dislike' (click)='setLikeDislike("dislike")'>Dislike</button>
@@ -39,7 +39,7 @@
   </section>
   <section id='top'>
     <div>
-      <h1>{{profile.firstname}} {{profile.lastname}}</h1>
+      <h1 class='fnamelname'>{{profile.firstname}} {{profile.lastname}}</h1>
       <p *ngIf='profile.description'>
         {{profile.description}}
       </p>
@@ -64,7 +64,7 @@
       </div>
     </div>
   </section>
-  <section id='top' style='margin-bottom: 80px;'>
+  <section id='top' class='int' style='margin-bottom: 80px;'>
     <div class="four column wide">
       <h1>Interests</h1>
       <!-- <h4 *ngIf='profile.interests.length'><i>This user has not recorded any interests yet</i></h4> -->
